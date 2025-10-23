@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SKULL FOOD™ - Rebellious, Clean-Label, Flavor-Forward</title>
+  <title>SKULL FOOD™</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- --- NEW SEO (Search Engine Optimization) Tags --- -->
-  <meta name="description" content="SKULL FOOD™ is a rebellious, clean-label food brand. We make flavor-forward products from 100% real ingredients. No gums, no preservatives. Join the rebellion.">
-  <meta name="keywords" content="SKULL FOOD, clean label, flavor forward, rebellious food, healthy sauces, real ingredients, farmers market, California, food brand">
-  <meta name="author" content="SKULL FOOD™">
-  <!-- --- End of SEO Tags --- -->
+  <!-- SEO Tags -->
+  <meta name="description" content="SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations. Born from a chemist and a chef. Find us in California." />
+  <meta name="keywords" content="SKULL FOOD, clean label, rebellious food, healthy, farmers market, California, chef-made" />
+  <meta name="author" content="SKULL FOOD LLC" />
 
   <style>
     body {
@@ -17,7 +16,8 @@
       padding: 0;
       color: #fff;
       font-family: 'Helvetica Neue', sans-serif;
-      overflow: auto; /* Allows scrolling */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-y: auto;   /* Allow vertical scroll */
 
       /* --- Background Image Styles --- */
       background-image: url('website layout.png');
@@ -33,12 +33,14 @@
       margin: 3rem auto; 
       padding: 2.5rem 2rem;
       text-align: center;
+      position: relative; /* Needed for z-index */
+      z-index: 10;
     }
     h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
       
-      /* --- NEW GLITCH STYLES --- */
+      /* --- GLITCH STYLES --- */
       font-family: Georgia, 'Times New Roman', serif; /* Georgia Pro or similar */
       color: #fff; /* Base text color is white */
       position: relative; /* Required for pseudo-elements */
@@ -62,14 +64,13 @@
 
     h1::before {
       color: #00ffff; /* Cyan color */
-      opacity: 0.7; /* "30% offset" interpreted as 70% opacity */
-      /* "Direction 90" interpreted as vertical/horizontal offset animation */
+      opacity: 0.7; 
       animation: glitch-anim-1 0.15s infinite linear alternate;
     }
 
     h1::after {
       color: #ff00ff; /* Magenta color */
-      opacity: 0.7; /* "30% offset" interpreted as 70% opacity */
+      opacity: 0.7; 
       animation: glitch-anim-2 0.2s infinite linear alternate-reverse;
     }
 
@@ -84,49 +85,32 @@
       100% { transform: translate(2px, 3px); }
     }
 
-    /* Base paragraph style */
     p {
       font-size: 1.1rem;
       line-height: 1.6;
       margin-bottom: 1.5rem;
-      /* Removed text-shadow from base p tag */
-    }
-
-    /* NEW: Style for the main body paragraphs */
-    .body-text {
+      /* Main body text: White, bold, with dark shadow */
       color: #fff;
       font-weight: bold;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Kept dark shadow for readability */
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
     }
-
-    /* UPDATED: Style for tagline */
-    .tagline {
+    
+    .tagline, .rebellion-text {
       font-weight: bold;
       font-size: 1.2rem;
       margin-bottom: 2rem;
-      color: #057386; /* UPDATED: Changed from #333 to this blue */
-      /* White outline with 20% glow */
+      /* Blue color with 20% white outline */
+      color: #057386;
       text-shadow: 
-        -1px -1px 1px rgba(255,255,255,0.7),  
-         1px -1px 1px rgba(255,255,255,0.7),
-        -1px  1px 1px rgba(255,255,255,0.7),
-         1px  1px 1px rgba(255,255,255,0.7),
-         0 0 5px rgba(255, 255, 255, 0.2); /* 20% white glow */
+        -1px -1px 0 rgba(255,255,255,0.2),  
+         1px -1px 0 rgba(255,255,255,0.2),
+        -1px  1px 0 rgba(255,255,255,0.2),
+         1px  1px 0 rgba(255,255,255,0.2);
     }
-
-    /* UPDATED: Style for "Join the rebellion" */
-    strong {
+    
+    .rebellion-text {
       display: block;
       margin-top: 2rem;
-      font-size: 1.2rem;
-      color: #057386; /* UPDATED: Changed from #333 to this blue */
-      /* White outline with 20% glow */
-      text-shadow: 
-        -1px -1px 1px rgba(255,255,255,0.7),  
-         1px -1px 1px rgba(255,255,255,0.7),
-        -1px  1px 1px rgba(255,255,255,0.7),
-         1px  1px 1px rgba(255,255,255,0.7),
-         0 0 5px rgba(255, 255, 255, 0.2); /* 20% white glow */
     }
 
     /* --- STYLES for Slide-Out Menu --- */
@@ -138,59 +122,23 @@
       right: 20px;
       width: 40px;
       height: 40px;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.8); /* UPDATED: 80% opaque black */
+      border: 1px solid rgba(255,255,255,0.5); /* UPDATED: 50% opaque white */
       border-radius: 5px;
       cursor: pointer;
-      z-index: 1001; /* On top of everything */
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
-      gap: 5px;
-    }
-    .menu-toggle-btn span {
-      display: block;
-      width: 24px;
-      height: 3px;
-      background: #fff;
-      border-radius: 2px;
-    }
-    
-    /* The Slide-Out Menu Panel */
-    .slide-menu {
-      position: fixed;
-      top: 0;
-      right: -320px; /* Start off-screen */
-      width: 300px; /* Width of the menu */
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9); /* Darker, more solid background */
-      backdrop-filter: blur(5px); /* Frosted glass effect */
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-      z-index: 1002;
-      transition: transform 0.3s ease-in-out;
-      padding: 20px;
+      padding: 8px 6px;
       box-sizing: border-box;
-      overflow-y: auto;
+      z-index: 1001; /* Above everything */
     }
-    
-    /* "open" class added by JavaScript to slide menu in */
-    .slide-menu.open {
-      transform: translateX(-320px);
-    }
-
-    /* Close Button (inside menu) */
-    .menu-close-btn {
-      color: #fff;
-      font-size: 2.5rem;
-      font-weight: bold;
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      cursor: pointer;
-    }
-    .menu-close-btn:hover {
-      color: #00ffff;
+    .menu-toggle-btn .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
     }
 
     /* Dimming Overlay */
@@ -200,143 +148,151 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-
-    /* "visible" class added by JavaScript */
-    .menu-overlay.visible {
+    .menu-overlay.active {
       opacity: 1;
       visibility: visible;
     }
 
+    /* The Menu Itself */
+    .slide-menu {
+      position: fixed;
+      top: 0;
+      right: -300px; /* Start off-screen */
+      width: 300px;
+      height: 100%;
+      background: #111; /* Dark background for menu */
+      z-index: 1000;
+      padding: 2rem;
+      box-sizing: border-box;
+      transition: right 0.3s ease;
+    }
+    .slide-menu.active {
+      right: 0; /* Slide in */
+    }
 
-    /* --- STYLES for Contact/Find Us Boxes (Inside Menu) --- */
     .info-container {
-      display: flex;
-      flex-direction: column; /* Stack boxes vertically */
-      gap: 2rem; /* Space between boxes */
-      margin-top: 60px; /* Space below close button */
+      margin-top: 60px; /* Space for a close button if we add one */
     }
-
     .info-box {
-      background-color: transparent; /* Remove box background */
-      border: none; /* Remove box border */
-      border-radius: 0;
-      padding: 0;
-      width: 100%; /* Full width of menu */
-      max-width: 100%;
-      text-align: left; /* Align text left inside the box */
+      background: rgba(0,0,0,0.3); /* Transparent black box inside menu */
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    
     .info-box h2 {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 1.5rem;
+      color: #fff;
       margin-top: 0;
-      border-bottom: 1px solid #00ffff; /* Cyan accent line */
+      border-bottom: 2px solid #00ffff; /* Cyan accent */
       padding-bottom: 0.5rem;
     }
-    
-    /* Paragraphs inside the slide-out menu */
     .info-box p {
-      color: #fff;
-      text-shadow: none; /* Ensure they don't get the dark grey body shadow */
-      font-weight: normal;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-weight: normal; /* Override bold on main body text */
+      font-size: 0.95rem;
+      color: #eee;
+      text-shadow: none; /* Remove shadow from menu text */
     }
-
     .info-box a {
       color: #00ffff; /* Cyan link */
       text-decoration: none;
+      font-weight: bold;
     }
-
     .info-box a:hover {
       text-decoration: underline;
     }
+    
+    /* Instagram Gradient Link Style */
+    .ig-link {
+      background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
   </style>
 </head>
 <body>
 
-  <!-- --- NEW Menu Button (TYPO FIXED) --- -->
-  <button class="menu-toggle-btn" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
+  <!-- Menu Button -->
+  <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
   </button>
 
-  <!-- --- NEW Dimming Overlay (TYPO FIXED) --- -->
-  <div class="menu-overlay" id="menu-overlay"></div>
-
-  <!-- --- NEW Slide-Out Menu --- -->
-  <nav class="slide-menu" id="slide-menu">
-    <span class="menu-close-btn" id="menu-close">&times;</span>
-    
-    <!-- This is the container with your info boxes, moved inside the nav -->
+  <!-- Slide-Out Menu -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
       <div class="info-box">
         <h2>FIND US</h2>
-        <p>Find SKULL FOOD™ products at selects farmers' markets across California.</p>
+        <!-- Corrected "select" typo -->
+        <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
         <p>Follow our social media for weekly locations and weekly gives away!</p>
         <p>
-          <strong>Instagram:</strong> 
-          <!-- Added a clickable link that opens in a new tab -->
-          <a href="https://www.instagram.com/skullfood.us" target="_blank" rel="noopener noreferrer">@skullfood.us</a>
+          <span class="ig-link">Instagram:</span>
+          <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
+            @skullfood.us
+          </a>
         </p>
       </div>
-      
       <div class="info-box">
         <h2>CONTACT US</h2>
-        <p>For inquiries, wholesale, or just to say hi, drop us a line.</p>
+        <p>For inquiries, wholesale, or just to say hi:</p>
         <p>
-          <strong>Email:</strong> 
           <a href="mailto:info@skullfood.us.com">info@skullfood.us.com</a>
         </p>
       </div>
     </div>
   </nav>
 
-  <!-- This is the main intro container -->
+  <!-- Main Page Content -->
   <div class="container">
     <!-- Added data-text attribute for the glitch effect -->
     <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
     
-    <!-- UPDATED: Added class="tagline" -->
+    <!-- Tagline with blue color and white outline -->
     <p class="tagline">Rebellious. Clean-label. Flavor-forward. Coming soon to your taste buds.</p>
 
-    <!-- UPDATED: Added class="body-text" to these three paragraphs -->
-    <p class="body-text">SKULL FOOD™ was born from the combined expertise of a chemist and a chef entrepreneur with over 15 years in international cuisine and packaged food. Together, they didn’t just create healthy products — they made them wild, unique, and bold.</p>
+    <!-- Main text is now white and bold -->
+    <p>SKULL FOOD™ was born from the combined expertise of a chemist and a chef entrepreneur with over 15 years in international cuisine and packaged food. Together, they didn’t just create healthy products — they made them wild, unique, and bold.</p>
 
-    <p class="body-text">Every product is made from 100% real ingredients. No gums. No preservatives. No added oils or any ingredient to fake weight. Just pure culinary fusion — flavor-forward, and unapologetically rebellious.</p>
+    <p>Every product is made from 100% real ingredients. No gums. No preservatives. No added oils or any ingredient to fake weight. Just pure culinary fusion — flavor-forward, and unapologetically rebellious.</p>
 
-    <p class="body-text">SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
+    <p>SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
 
-    <strong>Join the rebellion.</strong>
+    <!-- "Join" text with blue color and white outline -->
+    <strong class="rebellion-text">Join the rebellion.</strong>
   </div>
 
-  <!-- --- NEW JavaScript for Menu --- -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.getElementById('menu-toggle');
-      const menuClose = document.getElementById('menu-close');
-      const slideMenu = document.getElementById('slide-menu');
-      const menuOverlay = document.getElementById('menu-overlay');
+    // JavaScript for the slide-out menu
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
 
-      function openMenu() {
-        slideMenu.classList.add('open');
-        menuOverlay.classList.add('visible');
-      }
+    function toggleMenu() {
+      slideMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+    }
 
-      function closeMenu() {
-        slideMenu.classList.remove('open');
-        menuOverlay.classList.remove('visible');
-      }
-
-      menuToggle.addEventListener('click', openMenu);
-      menuClose.addEventListener('click', closeMenu);
-      menuOverlay.addEventListener('click', closeMenu);
-    });
+    // Open/Close menu when toggle button is clicked
+    menuToggle.addEventListener('click', toggleMenu);
+    
+    // Close menu when the overlay is clicked
+    menuOverlay.addEventListener('click', toggleMenu);
   </script>
 
 </body>
