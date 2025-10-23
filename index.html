@@ -11,17 +11,17 @@
       background-color: #000;
       color: #fff;
       font-family: 'Helvetica Neue', sans-serif;
-      overflow: auto; /* <-- This is the fix to allow scrolling if needed */
+      overflow: auto; /* <-- This allows scrolling if content is too tall */
     }
     .container {
       max-width: 700px;
       margin: 0 auto;
       padding: 4rem 1.5rem;
       text-align: center;
-      /* Added min-height to ensure container takes up at least the screen height */
-      /* This helps with vertical centering on very short pages, but overflow: auto is the main fix */
-      min-height: calc(100vh - 8rem); /* 100% viewport height minus padding */
-      box-sizing: border-box; /* Ensures padding is included in height calculation */
+      /* Removed the min-height: calc(100vh - 8rem) and box-sizing lines.
+        This was likely causing the cutoff issue on mobile browsers.
+        Now the page will simply be as tall as its content.
+      */
     }
     h1 {
       font-size: 2.5rem;
