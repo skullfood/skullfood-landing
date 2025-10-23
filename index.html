@@ -84,24 +84,49 @@
       100% { transform: translate(2px, 3px); }
     }
 
+    /* Base paragraph style */
     p {
       font-size: 1.1rem;
       line-height: 1.6;
       margin-bottom: 1.5rem;
-      /* UPDATED: Replaced white neon with a subtle dark grey shadow for readability */
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+      /* Removed text-shadow from base p tag */
     }
+
+    /* NEW: Style for the main body paragraphs */
+    .body-text {
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Kept dark shadow for readability */
+    }
+
+    /* UPDATED: Style for tagline */
     .tagline {
       font-weight: bold;
       font-size: 1.2rem;
       margin-bottom: 2rem;
+      color: #333; /* Dark Grey */
+      /* White outline with 20% glow */
+      text-shadow: 
+        -1px -1px 1px rgba(255,255,255,0.7),  
+         1px -1px 1px rgba(255,255,255,0.7),
+        -1px  1px 1px rgba(255,255,255,0.7),
+         1px  1px 1px rgba(255,255,255,0.7),
+         0 0 5px rgba(255, 255, 255, 0.2); /* 20% white glow */
     }
+
+    /* UPDATED: Style for "Join the rebellion" */
     strong {
       display: block;
       margin-top: 2rem;
       font-size: 1.2rem;
-      /* UPDATED: Replaced white neon with a subtle dark grey shadow for readability */
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+      color: #333; /* Dark Grey */
+      /* White outline with 20% glow */
+      text-shadow: 
+        -1px -1px 1px rgba(255,255,255,0.7),  
+         1px -1px 1px rgba(255,255,255,0.7),
+        -1px  1px 1px rgba(255,255,255,0.7),
+         1px  1px 1px rgba(255,255,255,0.7),
+         0 0 5px rgba(255, 255, 255, 0.2); /* 20% white glow */
     }
 
     /* --- STYLES for Slide-Out Menu --- */
@@ -214,6 +239,13 @@
       border-bottom: 1px solid #00ffff; /* Cyan accent line */
       padding-bottom: 0.5rem;
     }
+    
+    /* Paragraphs inside the slide-out menu */
+    .info-box p {
+      color: #fff;
+      text-shadow: none; /* Ensure they don't get the dark grey body shadow */
+      font-weight: normal;
+    }
 
     .info-box a {
       color: #00ffff; /* Cyan link */
@@ -269,13 +301,16 @@
   <div class="container">
     <!-- Added data-text attribute for the glitch effect -->
     <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
+    
+    <!-- UPDATED: Added class="tagline" -->
     <p class="tagline">Rebellious. Clean-label. Flavor-forward. Coming soon to your taste buds.</p>
 
-    <p>SKULL FOOD™ was born from the combined expertise of a chemist and a chef entrepreneur with over 15 years in international cuisine and packaged food. Together, they didn’t just create healthy products — they made them wild, unique, and bold.</p>
+    <!-- UPDATED: Added class="body-text" to these three paragraphs -->
+    <p class="body-text">SKULL FOOD™ was born from the combined expertise of a chemist and a chef entrepreneur with over 15 years in international cuisine and packaged food. Together, they didn’t just create healthy products — they made them wild, unique, and bold.</p>
 
-    <p>Every product is made from 100% real ingredients. No gums. No preservatives. No added oils or any ingredient to fake weight. Just pure culinary fusion — flavor-forward, and unapologetically rebellious.</p>
+    <p class="body-text">Every product is made from 100% real ingredients. No gums. No preservatives. No added oils or any ingredient to fake weight. Just pure culinary fusion — flavor-forward, and unapologetically rebellious.</p>
 
-    <p>SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
+    <p class="body-text">SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
 
     <strong>Join the rebellion.</strong>
   </div>
