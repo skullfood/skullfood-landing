@@ -96,9 +96,169 @@
       /* UPDATED: Replaced white neon with a subtle dark grey shadow for readability */
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     }
+
+    /* --- STYLES for Slide-Out Menu --- */
+
+    /* Hamburger Menu Button */
+    .menu-toggle-btn {
+      position: fixed; /* Stays in corner */
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1001; /* On top of everything */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+    .menu-toggle-btn span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+    }
+    
+    /* The Slide-Out Menu Panel */
+    .slide-menu {
+      position: fixed;
+      top: 0;
+      right: -320px; /* Start off-screen */
+      width: 300px; /* Width of the menu */
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9); /* Darker, more solid background */
+      backdrop-filter: blur(5px); /* Frosted glass effect */
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 1002;
+      transition: transform 0.3s ease-in-out;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    
+    /* "open" class added by JavaScript to slide menu in */
+    .slide-menu.open {
+      transform: translateX(-320px);
+    }
+
+    /* Close Button (inside menu) */
+    .menu-close-btn {
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .menu-close-btn:hover {
+      color: #00ffff;
+    }
+
+    /* Dimming Overlay */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    /* "visible" class added by JavaScript */
+    .menu-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+
+    /* --- STYLES for Contact/Find Us Boxes (Inside Menu) --- */
+    .info-container {
+      display: flex;
+      flex-direction: column; /* Stack boxes vertically */
+      gap: 2rem; /* Space between boxes */
+      margin-top: 60px; /* Space below close button */
+    }
+
+    .info-box {
+      background-color: transparent; /* Remove box background */
+      border: none; /* Remove box border */
+      border-radius: 0;
+      padding: 0;
+      width: 100%; /* Full width of menu */
+      max-width: 100%;
+      text-align: left; /* Align text left inside the box */
+    }
+    
+    .info-box h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      margin-top: 0;
+      border-bottom: 1px solid #00ffff; /* Cyan accent line */
+      padding-bottom: 0.5rem;
+    }
+
+    .info-box a {
+      color: #00ffff; /* Cyan link */
+      text-decoration: none;
+    }
+
+    .info-box a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
+
+  <!-- --- NEW Menu Button --- -->
+  <button class="menu-toggle-btn" id="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- --- NEW Dimming Overlay --- -->
+  <div class="menu-overlay" id="menu-overlay"></div>
+
+  <!-- --- NEW Slide-Out Menu --- -->
+  <nav class="slide-menu" id="slide-menu">
+    <span class="menu-close-btn" id="menu-close">&times;</span>
+    
+    <!-- This is the container with your info boxes, moved inside the nav -->
+    <div class="info-container">
+      <div class="info-box">
+        <h2>FIND US</h2>
+        <p>Find SKULL FOOD™ products at selects farmers' markets across California.</p>
+        <p>Follow our social media for weekly locations and weekly gives away!</p>
+        <p>
+          <strong>Instagram:</strong> 
+          <!-- Added a clickable link that opens in a new tab -->
+          <a href="https://www.instagram.com/skull.food.us" target="_blank" rel="noopener noreferrer">@skull.food.us</a>
+        </p>
+      </div>
+      
+      <div class="info-box">
+        <h2>CONTACT US</h2>
+        <p>For inquiries, wholesale, or just to say hi, drop us a line.</p>
+        <p>
+          <strong>Email:</strong> 
+          <a href="mailto:info@skullfood.us.com">info@skullfood.us.com</a>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  <!-- This is the main intro container -->
   <div class="container">
     <!-- Added data-text attribute for the glitch effect -->
     <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
@@ -112,5 +272,30 @@
 
     <strong>Join the rebellion.</strong>
   </div>
+
+  <!-- --- NEW JavaScript for Menu --- -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const menuClose = document.getElementById('menu-close');
+      const slideMenu = document.getElementById('slide-menu');
+      const menuOverlay = document.getElementById('menu-overlay');
+
+      function openMenu() {
+        slideMenu.classList.add('open');
+        menuOverlay.classList.add('visible');
+      }
+
+      function closeMenu() {
+        slideMenu.classList.remove('open');
+        menuOverlay.classList.remove('visible');
+      }
+
+      menuToggle.addEventListener('click', openMenu);
+      menuClose.addEventListener('click', closeMenu);
+      menuOverlay.addEventListener('click', closeMenu);
+    });
+  </script>
+
 </body>
 </html>
