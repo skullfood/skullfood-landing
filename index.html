@@ -13,39 +13,60 @@
       overflow: auto; /* Allows scrolling */
 
       /* --- Background Image Styles --- */
-      /* Using the correct file name 'website layout.png' */
       background-image: url('website layout.png');
-      
-      background-size: cover; /* Cover the entire viewport */
-      background-position: center; /* Center the image */
-      background-repeat: no-repeat; /* Do not tile the image */
-      background-attachment: fixed; /* Image stays fixed in place on scroll */
-      min-height: 100vh; /* Ensure body is at least the full height of the screen */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
       box-sizing: border-box;
     }
     .container {
       max-width: 700px;
-      /* Add margin top/bottom for spacing, auto for left/right center */
       margin: 3rem auto; 
-      padding: 2.5rem 2rem; /* Padding inside the container */
+      padding: 2.5rem 2rem;
       text-align: center;
-      
-      /* --- Overlay Removed --- */
-      /* background-color: rgba(0, 0, 0, 0.75); --- Removed this line */
-      /* border-radius: 12px; --- No longer needed */
-      /* box-shadow: 0 8px 20px rgba(0,0,0,0.4); --- No longer needed */
     }
     h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
-      /* Added text shadow for readability */
-      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7); /* Original text shadow for readability */
+      
+      /* --- NEON EFFECT for H1 --- */
+      color: #fff; /* Base text color */
+      text-shadow: 
+        0 0 7px #0f0, /* Green glow - inner */
+        0 0 10px #0f0, /* Green glow - middle */
+        0 0 21px #0f0, /* Green glow - outer */
+        0 0 42px #0f0, /* Wider glow */
+        0 0 82px #0f0; /* Even wider glow */
+      animation: neonGlow 1.5s ease-in-out infinite alternate; /* Optional: subtle pulse */
     }
+
+    /* Optional: Keyframes for a subtle glowing animation */
+    @keyframes neonGlow {
+      from {
+        text-shadow: 
+          0 0 7px #0f0, 
+          0 0 10px #0f0, 
+          0 0 21px #0f0, 
+          0 0 42px #0f0, 
+          0 0 82px #0f0;
+      }
+      to {
+        text-shadow: 
+          0 0 5px #0f0, 
+          0 0 10px #0f0, 
+          0 0 15px #0f0, 
+          0 0 35px #0f0, 
+          0 0 75px #0f0;
+      }
+    }
+
     p {
       font-size: 1.1rem;
       line-height: 1.6;
       margin-bottom: 1.5rem;
-      /* Added text shadow for readability */
       text-shadow: 0 2px 4px rgba(0,0,0,0.7);
     }
     .tagline {
@@ -57,7 +78,6 @@
       display: block;
       margin-top: 2rem;
       font-size: 1.2rem;
-      /* Added text shadow for readability */
       text-shadow: 0 2px 4px rgba(0,0,0,0.7);
     }
   </style>
@@ -77,3 +97,4 @@
   </div>
 </body>
 </html>
+
