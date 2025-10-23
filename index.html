@@ -30,44 +30,62 @@
     h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.7); /* Original text shadow for readability */
       
-      /* --- NEON EFFECT for H1 --- */
-      color: #fff; /* Base text color */
-      text-shadow: 
-        0 0 7px #0f0, /* Green glow - inner */
-        0 0 10px #0f0, /* Green glow - middle */
-        0 0 21px #0f0, /* Green glow - outer */
-        0 0 42px #0f0, /* Wider glow */
-        0 0 82px #0f0; /* Even wider glow */
-      animation: neonGlow 1.5s ease-in-out infinite alternate; /* Optional: subtle pulse */
+      /* --- NEW GLITCH STYLES --- */
+      font-family: Georgia, 'Times New Roman', serif; /* Georgia Pro or similar */
+      color: #fff; /* Base text color is white */
+      position: relative; /* Required for pseudo-elements */
+      
+      /* Remove old neon styles */
+      text-shadow: none; 
+      animation: none;
+    }
+    
+    /* --- Glitch pseudo-elements --- */
+    h1::before,
+    h1::after {
+      content: attr(data-text); /* Gets text from the H1's data-text attribute */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-shadow: none; /* Ensure no old shadows are inherited */
     }
 
-    /* Optional: Keyframes for a subtle glowing animation */
-    @keyframes neonGlow {
-      from {
-        text-shadow: 
-          0 0 7px #0f0, 
-          0 0 10px #0f0, 
-          0 0 21px #0f0, 
-          0 0 42px #0f0, 
-          0 0 82px #0f0;
-      }
-      to {
-        text-shadow: 
-          0 0 5px #0f0, 
-          0 0 10px #0f0, 
-          0 0 15px #0f0, 
-          0 0 35px #0f0, 
-          0 0 75px #0f0;
-      }
+    h1::before {
+      color: #00ffff; /* Cyan color */
+      opacity: 0.7; /* "30% offset" interpreted as 70% opacity */
+      /* "Direction 90" interpreted as vertical/horizontal offset animation */
+      animation: glitch-anim-1 0.15s infinite linear alternate;
+    }
+
+    h1::after {
+      color: #ff00ff; /* Magenta color */
+      opacity: 0.7; /* "30% offset" interpreted as 70% opacity */
+      animation: glitch-anim-2 0.2s infinite linear alternate-reverse;
+    }
+
+    /* --- Keyframes for Glitch Effect --- */
+    @keyframes glitch-anim-1 {
+      0% { transform: translate(3px, 2px); } /* Offset */
+      100% { transform: translate(-3px, -2px); }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { transform: translate(-2px, -3px); }
+      100% { transform: translate(2px, 3px); }
     }
 
     p {
       font-size: 1.1rem;
       line-height: 1.6;
       margin-bottom: 1.5rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+      /* UPDATED: Replaced shadow with white neon */
+      text-shadow: 
+        0 0 2px #fff,
+        0 0 5px #fff,
+        0 0 10px #fff;
     }
     .tagline {
       font-weight: bold;
@@ -78,13 +96,18 @@
       display: block;
       margin-top: 2rem;
       font-size: 1.2rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+      /* UPDATED: Replaced shadow with white neon */
+      text-shadow: 
+        0 0 2px #fff,
+        0 0 5px #fff,
+        0 0 10px #fff;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>SKULL FOOD™</h1>
+    <!-- Added data-text attribute for the glitch effect -->
+    <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
     <p class="tagline">Rebellious. Clean-label. Flavor-forward. Coming soon to your taste buds.</p>
 
     <p>SKULL FOOD™ was born from the combined expertise of a chemist and a chef entrepreneur with over 15 years in international cuisine and packaged food. Together, they didn’t just create healthy products — they made them wild, unique, and bold.</p>
