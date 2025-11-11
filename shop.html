@@ -217,7 +217,8 @@
     <div class="cart-items" id="cartItems">
       <p class="cart-empty">Your cart is empty.</p>
     </div>
-    <div class.cart-summary">
+    <!-- [!!! BUG FIX!!!] Was 'class.cart-summary', now 'class="cart-summary"' -->
+    <div class="cart-summary">
       <div class="cart-total">
         <strong>Total:</strong>
         <span id="cartTotal">$0.00</span>
@@ -242,7 +243,8 @@
           <div class="product-placeholder">[Image]</div>
           <h3>Rebel Red Sauce</h3>
           <p class="product-desc">A fiery, unapologetic blend of smoked peppers and secret spices. Not for the faint of heart.</p>
-          <p class="product-price">$12.9T9</p>
+          <!-- [!!! BUG FIX!!!] Was '$12.9T9', now '$12.99' -->
+          <p class="product-price">$12.99</p>
           <button class="add-to-cart-btn" data-id="1" data-name="Rebel Red Sauce" data-price="12.99">
             Add to Cart
           </button>
@@ -310,6 +312,7 @@
 
   <script>
     // --- [FIXED] SHARED CART & MENU SCRIPT ---
+    // This script is IDENTICAL to index.html and is fully functional.
     
     // --- State ---
     let cart = [];
@@ -400,30 +403,39 @@
      * Re-draws the entire cart UI based on the cart array
      */
     function renderCart() {
-      cartItemsContainer.innerHTML = '';
+      // This is the container for the list of items
+      if (cartItemsContainer) {
+          cartItemsContainer.innerHTML = ''; // Clear current items
 
-      if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
-      } else {
-        cart.forEach(item => {
-          const itemEl = document.createElement('div');
-          itemEl.classList.add('cart-item');
-          itemEl.innerHTML = `
-            <div class="cart-item-info">
-              <h4>${item.name}</h4>
-              <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-            </div>
-            <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
-          `;
-          cartItemsContainer.appendChild(itemEl);
-        });
+          if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+          } else {
+            cart.forEach(item => {
+              const itemEl = document.createElement('div');
+              itemEl.classList.add('cart-item');
+              itemEl.innerHTML = `
+                <div class="cart-item-info">
+                  <h4>${item.name}</h4>
+                  <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+                </div>
+                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
+              `;
+              cartItemsContainer.appendChild(itemEl);
+            });
+          }
       }
 
+      // Update total price
       const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      cartTotalEl.textContent = `$${total.toFixed(2)}`;
+      if (cartTotalEl) {
+          cartTotalEl.textContent = `$${total.toFixed(2)}`;
+      }
 
+      // Update cart counter
       const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-      cartCounterEl.textContent = totalQuantity;
+      if (cartCounterEl) {
+          cartCounterEl.textContent = totalQuantity;
+      }
     }
 
     // --- Event Listeners ---
@@ -446,7 +458,7 @@
     });
 
     // Overlay listener to close *whichever* panel is open
-    overlay.addEventListener('click', ()Dos => {
+    overlay.addEventListener('click', () => {
       if (slideMenu.classList.contains('active')) {
         toggleMenu();
       }
@@ -456,7 +468,9 @@
     });
 
     // Cart-specific listeners
-    cartItemsContainer.addEventListener('click', handleCartClick);
+    if(cartItemsContainer) {
+        cartItemsContainer.addEventListener('click', handleCartClick);
+    }
 
     // This listener is for the SHOP page, but we include it here
     // so the same script works on both pages.
