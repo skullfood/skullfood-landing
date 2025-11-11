@@ -153,7 +153,15 @@
     .cart-counter { position: absolute; top: -8px; right: -8px; background: #ff00ff; color: white; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; }
     .slide-cart { position: fixed; top: 0; left: -320px; width: 320px; height: 100%; background: #111; z-index: 1000; box-sizing: border-box; transition: left 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #00ffff; }
     .slide-cart.active { left: 0; }
-    .slide-cart h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 1rem; border-bottom: 2px solid #00ffff; padding-bottom: 0.5rem; }
+    .slide-cart h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      /* [FIX] Changed margin-top to push title below fixed button */
+      margin-top: 60px;
+      border-bottom: 2px solid #00ffff;
+      padding-bottom: 0.5rem;
+    }
     .cart-items { flex-grow: 1; overflow-y: auto; margin-top: 1rem; }
     .cart-empty { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #aaa; text-shadow: none; text-align: center; margin-top: 2rem; }
     .cart-item { display: flex; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #333; }
@@ -217,7 +225,7 @@
     <div class="cart-items" id="cartItems">
       <p class="cart-empty">Your cart is empty.</p>
     </div>
-    <!-- [!!! BUG FIX!!!] Was 'class.cart-summary', now 'class="cart-summary"' -->
+    <!-- This was the file's previous bug, it's correct now -->
     <div class="cart-summary">
       <div class="cart-total">
         <strong>Total:</strong>
@@ -243,7 +251,6 @@
           <div class="product-placeholder">[Image]</div>
           <h3>Rebel Red Sauce</h3>
           <p class="product-desc">A fiery, unapologetic blend of smoked peppers and secret spices. Not for the faint of heart.</p>
-          <!-- [!!! BUG FIX!!!] Was '$12.9T9', now '$12.99' -->
           <p class="product-price">$12.99</p>
           <button class="add-to-cart-btn" data-id="1" data-name="Rebel Red Sauce" data-price="12.99">
             Add to Cart
