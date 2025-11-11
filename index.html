@@ -5,6 +5,7 @@
   <title>SKULL FOOD™ - Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
+  <!-- SEO Tags -->
   <meta name="description" content="SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations. Born from a chemist and a chef. Find us in California." />
   <meta name="keywords" content="SKULL FOOD, clean label, rebellious food, healthy, farmers market, California, chef-made" />
   <meta name="author" content="SKULL FOOD LLC" />
@@ -374,19 +375,23 @@
 </head>
 <body>
 
+  <!-- Menu Button (Right) -->
   <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </button>
 
+  <!-- Cart Toggle Button (Left) -->
   <button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
     🛒
     <span class="cart-counter" id="cartCounter">0</span>
   </button>
 
+  <!-- Overlay (Shared by Menu and Cart) -->
   <div class="overlay" id="overlay"></div>
 
+  <!-- Slide-Out Menu (Right) -->
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
       <div class="info-box">
@@ -410,9 +415,11 @@
     </div>
   </nav>
 
+  <!-- Slide-Out Cart (Left) -->
   <aside class="slide-cart" id="slideCart">
     <h2>Your Cart</h2>
     <div class="cart-items" id="cartItems">
+      <!-- Items will be dynamically added here -->
       <p class="cart-empty">Your cart is empty.</p>
     </div>
     <div class="cart-summary">
@@ -424,6 +431,7 @@
     </div>
   </aside>
 
+  <!-- Main Page Content -->
   <div class="container">
     <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
     
@@ -433,6 +441,7 @@
 
     <p>Every product is made from 100% real ingredients. No gums. No preservatives. No added oils or any ingredient to fake weight. Just pure culinary fusion — flavor-forward, and unapologetically rebellious.</p>
 
+    <!-- [NEW] Shop Now Button -->
     <a href="shop.html" class="shop-now-btn">Shop Now</a>
 
     <p>SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
@@ -441,7 +450,7 @@
   </div>
 
   <script>
-    // --- [NEW] SHARED CART & MENU SCRIPT ---
+    // --- [FIXED] SHARED CART & MENU SCRIPT ---
     
     // --- State ---
     let cart = [];
@@ -507,6 +516,11 @@
       
       // Open the cart to show the user
       if (!slideCart.classList.contains('active')) {
+        // [FIX] Check if menu is open and close it first
+        if (slideMenu.classList.contains('active')) {
+          slideMenu.classList.remove('active');
+          overlay.classList.remove('active');
+        }
         toggleCart();
       }
     }
@@ -554,10 +568,26 @@
     }
 
     // --- Event Listeners ---
-    menuToggle.addEventListener('click', toggleMenu);
-    cartToggle.addEventListener('click', toggleCart);
+
+    // [NEW/FIXED] Smarter button listeners
+    menuToggle.addEventListener('click', () => {
+      // If cart is open, close it *before* toggling the menu
+      if (slideCart.classList.contains('active')) {
+        toggleCart(); // This will close cart & overlay
+      }
+      toggleMenu(); // This will open menu & overlay
+    });
+
+    cartToggle.addEventListener('click', () => {
+      // If menu is open, close it *before* toggling the cart
+      if (slideMenu.classList.contains('active')) {
+        toggleMenu(); // This will close menu & overlay
+      }
+      toggleCart(); // This will open cart & overlay
+    });
+
+    // Overlay listener to close *whichever* panel is open
     overlay.addEventListener('click', () => {
-      // Close whichever panel is open
       if (slideMenu.classList.contains('active')) {
         toggleMenu();
       }
