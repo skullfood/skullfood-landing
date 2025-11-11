@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SKULL FOOD™ - Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <meta name="description" content="Shop SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations." />
+  <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, healthy" />
+  <meta name="author" content="SKULL FOOD LLC" />
+
+  <style>
+    /* ALL STYLES ARE IDENTICAL TO INDEX.HTML
+      This ensures both pages look and feel the same.
+    */
+    body {
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      font-family: 'Helvetica Neue', sans-serif;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background-image: url('website-design-content-layout-graphic.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    .container {
+      max-width: 900px; /* Wider container for products */
+      margin: 3rem auto;  
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* --- Page Title Styles --- */
+    .page-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #fff;
+      position: relative;
+      text-shadow: 0 0 8px #00ffff;
+    }
+    a.back-link {
+      display: inline-block;
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* --- [NEW] Product Grid Styles --- */
+    .product-section {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+    }
+    .product-grid {
+      display: grid;
+      /* Create 3 columns on desktop, 2 on tablet, 1 on mobile */
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .product-card {
+      background: rgba(17, 17, 17, 0.7);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      text-align: left;
+    }
+    .product-card h3 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.3rem;
+      color: #00ffff;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .product-card .product-desc {
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: #ccc;
+      text-shadow: none;
+      min-height: 60px; /* Give space for description */
+    }
+    .product-card .product-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 1rem;
+      text-shadow: none;
+      text-align: right;
+    }
+    .add-to-cart-btn {
+      background: #00ffff;
+      color: #000;
+      border: none;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .add-to-cart-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 10px #00ffff;
+    }
+    .product-placeholder {
+      width: 100%;
+      height: 180px;
+      background: #333;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* --- ALL CART & MENU STYLES (Identical to index.html) --- */
+    .menu-toggle-btn { position: fixed; top: 20px; right: 20px; width: 40px; height: 40px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; display: flex; flex-direction: column; justify-content: space-around; align-items: center; padding: 8px 6px; box-sizing: border-box; z-index: 1001; }
+    .menu-toggle-btn .bar { width: 100%; height: 3px; background-color: #ffffff; border-radius: 2px; opacity: 1; box-shadow: 0 0 3px rgba(255,255,255,0.5); }
+    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+    .overlay.active { opacity: 1; visibility: visible; }
+    .slide-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #111; z-index: 1000; padding: 2rem; box-sizing: border-box; transition: right 0.3s ease; }
+    .slide-menu.active { right: 0; }
+    .info-container { margin-top: 60px; }
+    .info-box { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
+    .info-box h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 0; border-bottom: 2px solid #00ffff; padding-bottom: 0.5rem; }
+    .info-box p { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #eee; text-shadow: none; }
+    .info-box a { color: #00ffff; text-decoration: none; font-weight: bold; }
+    .info-box a:hover { text-decoration: underline; }
+    .ig-link { background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; font-weight: bold; text-decoration: none; }
+    .cart-toggle-btn { position: fixed; top: 20px; left: 20px; width: 40px; height: 40px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; z-index: 1001; font-size: 1.2rem; color: white; padding: 0; }
+    .cart-counter { position: absolute; top: -8px; right: -8px; background: #ff00ff; color: white; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; }
+    .slide-cart { position: fixed; top: 0; left: -320px; width: 320px; height: 100%; background: #111; z-index: 1000; box-sizing: border-box; transition: left 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #00ffff; }
+    .slide-cart.active { left: 0; }
+    .slide-cart h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 1rem; border-bottom: 2px solid #00ffff; padding-bottom: 0.5rem; }
+    .cart-items { flex-grow: 1; overflow-y: auto; margin-top: 1rem; }
+    .cart-empty { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #aaa; text-shadow: none; text-align: center; margin-top: 2rem; }
+    .cart-item { display: flex; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #333; }
+    .cart-item-info { flex-grow: 1; margin-left: 1rem; }
+    .cart-item-info h4 { font-size: 1rem; color: #fff; margin: 0 0 5px 0; font-weight: bold; }
+    .cart-item-info p { font-size: 0.9rem; color: #aaa; margin: 0; font-weight: normal; text-shadow: none; }
+    .remove-item-btn { background: none; border: none; color: #ff00ff; font-size: 1.1rem; font-weight: bold; cursor: pointer; padding: 5px; }
+    .remove-item-btn:hover { color: #fff; }
+    .cart-summary { border-top: 1px solid #444; padding-top: 1rem; }
+    .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; }
+    .checkout-btn { background: #00ffff; color: #000; border: none; padding: 0.8rem; font-size: 1rem; font-weight: bold; text-transform: uppercase; border-radius: 5px; cursor: pointer; width: 100%; text-align: center; transition: background 0.3s ease, box-shadow 0.3s ease; }
+    .checkout-btn:hover { background: #fff; box-shadow: 0 0 10px #00ffff; }
+    
+  </style>
+</head>
+<body>
+
+  <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </button>
+
+  <button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
+    🛒
+    <span class="cart-counter" id="cartCounter">0</span>
+  </button>
+
+  <div class="overlay" id="overlay"></div>
+
+  <nav class="slide-menu" id="slideMenu">
+    <div class="info-container">
+      <div class="info-box">
+        <h2>FIND US</h2>
+        <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
+        <p>Follow our social media for weekly locations and weekly gives away!</p>
+        <p>
+          <span class="ig-link">Instagram:</span>
+          <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
+            @skullfood.us
+          </a>
+        </p>
+      </div>
+      <div class="info-box">
+        <h2>CONTACT US</h2>
+        <p>For inquiries, wholesale, or just to say hi:</p>
+        <p>
+          <a href="mailto:info@skullfood.us.com">info@skullfood.us.com</a>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  <aside class="slide-cart" id="slideCart">
+    <h2>Your Cart</h2>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Your cart is empty.</p>
+    </div>
+    <div class="cart-summary">
+      <div class="cart-total">
+        <strong>Total:</strong>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </aside>
+
+  <div class="container">
+    
+    <a href="index.html" class="back-link">&laquo; Back to Home</a>
+    
+    <h1 class="page-title">OUR PRODUCTS</h1>
+
+    <div class="product-section">
+      <div class="product-grid">
+        
+        <div class="product-card">
+          <div class="product-placeholder">[Image]</div>
+          <h3>Rebel Red Sauce</h3>
+          <p class="product-desc">A fiery, unapologetic blend of smoked peppers and secret spices. Not for the faint of heart.</p>
+          <p class="product-price">$12.99</p>
+          <button class="add-to-cart-btn" data-id="1" data-name="Rebel Red Sauce" data-price="12.99">
+            Add to Cart
+          </button>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-placeholder">[Image]</div>
+          <h3>Glitch Green Pesto</h3>
+          <p class="product-desc">A cyber-punk twist on a classic. Kale, basil, and a hint of lime-zest static.</p>
+          <p class="product-price">$14.99</p>
+          <button class="add-to-cart-btn" data-id="2" data-name="Glitch Green Pesto" data-price="14.99">
+            Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-placeholder">[Image]</div>
+          <h3>Magenta Mutiny</h3>
+          <p class="product-desc">Explosive beet and horseradish relish. The perfect rebellion for any meal.</p>
+          <p class="product-price">$11.99</p>
+          <button class="add-to-cart-btn" data-id="3" data-name="Magenta Mutiny" data-price="11.99">
+            Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-placeholder">[Image]</div>
+          <h3>Cyan-ide Salsa</h3>
+          <p class="product-desc">A (perfectly safe) and vibrant tomatillo salsa with a cooling, digital-age kick.</p>
+          <p class="product-price">$13.99</p>
+          <button class="add-to-cart-btn" data-id="4" data-name="Cyan-ide Salsa" data-price="13.99">
+            Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-placeholder">[Image]</div>
+          <h3>Void-Berry Jam</h3>
+          <p class="product-desc">Blackberry, blueberry, and activated charcoal. Sweet, dark, and mysterious.</p>
+          <p class="product-price">$15.99</p>
+          <button class="add-to-cart-btn" data-id="5" data-name="Void-Berry Jam" data-price="15.99">
+            Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-placeholder">[Image]</div>
+          <h3>OG Skull Rub</h3>
+          <p class="product-desc">The original blend. A smoky, savory, and rebellious rub for all proteins.</p>
+          <p class="product-price">$10.99</p>
+          <button class="add-to-cart-btn" data-id="6" data-name="OG Skull Rub" data-price="10.99">
+            Add to Cart
+          </button>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+  <script>
+    // --- [NEW] SHARED CART & MENU SCRIPT ---
+    // This script is IDENTICAL to index.html
+    
+    // --- State ---
+    let cart = [];
+
+    // --- DOM Elements ---
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const cartToggle = document.getElementById('cartToggle');
+    const slideCart = document.getElementById('slideCart');
+    const overlay = document.getElementById('overlay');
+    
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const cartCounterEl = document.getElementById('cartCounter');
+    
+    // --- Menu Functions ---
+    function toggleMenu() {
+      slideMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // --- Cart Functions ---
+    function toggleCart() {
+      slideCart.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    /**
+     * [NEW] Loads cart from localStorage
+     */
+    function loadCart() {
+      const storedCart = localStorage.getItem('skullfoodCart');
+      if (storedCart) {
+        cart = JSON.parse(storedCart);
+      } else {
+        cart = [];
+      }
+      renderCart();
+    }
+
+    /**
+     * [NEW] Saves cart to localStorage
+     */
+    function saveCart() {
+      localStorage.setItem('skullfoodCart', JSON.stringify(cart));
+      renderCart(); // Re-render every time we save
+    }
+
+    /**
+     * Adds an item to the cart or updates its quantity
+     */
+    function addToCart(id, name, price) {
+      const existingItem = cart.find(item => item.id === id);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ id, name, price, quantity: 1 });
+      }
+      saveCart();
+      if (!slideCart.classList.contains('active')) {
+        toggleCart();
+      }
+    }
+
+    /**
+     * Handles clicks inside the cart (e.g., remove item)
+     */
+    function handleCartClick(event) {
+      const removeButton = event.target.closest('.remove-item-btn');
+      if (removeButton) {
+        const id = removeButton.dataset.id;
+        cart = cart.filter(item => item.id !== id);
+        saveCart();
+      }
+    }
+
+    /**
+     * Re-draws the entire cart UI based on the cart array
+     */
+    function renderCart() {
+      cartItemsContainer.innerHTML = '';
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+      } else {
+        cart.forEach(item => {
+          const itemEl = document.createElement('div');
+          itemEl.classList.add('cart-item');
+          itemEl.innerHTML = `
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+            </div>
+            <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
+          `;
+          cartItemsContainer.appendChild(itemEl);
+        });
+      }
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      cartTotalEl.textContent = `$${total.toFixed(2)}`;
+      const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCounterEl.textContent = totalQuantity;
+    }
+
+    // --- Event Listeners ---
+    menuToggle.addEventListener('click', toggleMenu);
+    cartToggle.addEventListener('click', toggleCart);
+    overlay.addEventListener('click', () => {
+      if (slideMenu.classList.contains('active')) {
+        toggleMenu();
+      }
+      if (slideCart.classList.contains('active')) {
+        toggleCart();
+      }
+    });
+
+    cartItemsContainer.addEventListener('click', handleCartClick);
+
+    // This listener is for the "Add to Cart" buttons
+    // We use event delegation on the whole body for simplicity
+    document.body.addEventListener('click', (event) => {
+      const addToCartButton = event.target.closest('.add-to-cart-btn');
+      if (addToCartButton) {
+        const id = addToCartButton.dataset.id;
+        const name = addToCartButton.dataset.name;
+        const price = parseFloat(addToCartButton.dataset.price);
+        addToCart(id, name, price);
+      }
+    });
+
+    // --- Initial Load ---
+    loadCart(); // Load and render cart on page load
+
+  </script>
+
+</body>
+</html>
