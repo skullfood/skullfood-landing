@@ -5,7 +5,6 @@
   <title>SKULL FOOD™</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- SEO Tags -->
   <meta name="description" content="SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations. Born from a chemist and a chef. Find us in California." />
   <meta name="keywords" content="SKULL FOOD, clean label, rebellious food, healthy, farmers market, California, chef-made" />
   <meta name="author" content="SKULL FOOD LLC" />
@@ -30,7 +29,7 @@
     }
     .container {
       max-width: 700px;
-      margin: 3rem auto; 
+      margin: 3rem auto;  
       padding: 2.5rem 2rem;
       text-align: center;
       position: relative; /* Needed for z-index */
@@ -46,7 +45,7 @@
       position: relative; /* Required for pseudo-elements */
       
       /* Remove old neon styles */
-      text-shadow: none; 
+      text-shadow: none;  
       animation: none;
     }
     
@@ -64,13 +63,13 @@
 
     h1::before {
       color: #00ffff; /* Cyan color */
-      opacity: 0.7; 
+      opacity: 0.7;  
       animation: glitch-anim-1 0.15s infinite linear alternate;
     }
 
     h1::after {
       color: #ff00ff; /* Magenta color */
-      opacity: 0.7; 
+      opacity: 0.7;  
       animation: glitch-anim-2 0.2s infinite linear alternate-reverse;
     }
 
@@ -113,7 +112,7 @@
       margin-top: 2rem;
     }
 
-    /* --- STYLES for Slide-Out Menu --- */
+    /* --- STYLES for Slide-Out Menu (RIGHT) --- */
 
     /* Hamburger Menu Button */
     .menu-toggle-btn {
@@ -122,8 +121,8 @@
       right: 20px;
       width: 40px;
       height: 40px;
-      background: rgba(0,0,0,0.3); /* UPDATED: Set to 30% opaque black */
-      border: 1px solid rgba(255,255,255,0.3); /* UPDATED: Border to 30% */
+      background: rgba(0,0,0,0.3); 
+      border: 1px solid rgba(255,255,255,0.3); 
       border-radius: 5px;
       cursor: pointer;
       display: flex;
@@ -137,10 +136,9 @@
     .menu-toggle-btn .bar {
       width: 100%;
       height: 3px;
-      background-color: #ffffff; /* Explicit white */
+      background-color: #ffffff; 
       border-radius: 2px;
-      opacity: 1; /* Ensure 100% opacity */
-      /* NEW: Add a subtle glow to the bars themselves */
+      opacity: 1; 
       box-shadow: 0 0 3px rgba(255,255,255,0.5);
     }
 
@@ -224,24 +222,262 @@
       text-decoration: none;
     }
     
+    /* --- [NEW] STYLES for Products --- */
+    .product-section {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+    }
+    .product-section h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.8rem;
+      color: #fff;
+      text-shadow: 0 0 5px #00ffff;
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: rgba(17, 17, 17, 0.7); /* Dark semi-transparent */
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .product-card h3 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.3rem;
+      color: #00ffff; /* Cyan */
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .product-card .product-price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 1rem;
+      text-shadow: none;
+    }
+    .add-to-cart-btn {
+      background: #00ffff; /* Cyan */
+      color: #000; /* Black text */
+      border: none;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .add-to-cart-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 10px #00ffff;
+    }
+    .product-placeholder {
+      width: 100%;
+      height: 150px;
+      background: #333;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    /* --- [NEW] STYLES for Slide-Out Cart (LEFT) --- */
+
+    /* Cart Toggle Button */
+    .cart-toggle-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px; /* Positioned on the left */
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      font-size: 1.2rem;
+      color: white;
+      padding: 0;
+    }
+    .cart-counter {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff00ff; /* Magenta */
+      color: white;
+      font-size: 0.75rem;
+      font-weight: bold;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #fff;
+    }
+    
+    /* Cart Overlay (Can share with menu overlay) */
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .cart-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* The Cart Panel Itself */
+    .slide-cart {
+      position: fixed;
+      top: 0;
+      left: -320px; /* Start off-screen */
+      width: 320px;
+      height: 100%;
+      background: #111;
+      z-index: 1000;
+      box-sizing: border-box;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      border-right: 1px solid #00ffff;
+    }
+    .slide-cart.active {
+      left: 0; /* Slide in */
+    }
+    .slide-cart h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-top: 1rem;
+      border-bottom: 2px solid #00ffff; /* Cyan accent */
+      padding-bottom: 0.5rem;
+    }
+    
+    /* Cart Content Styling */
+    .cart-items {
+      flex-grow: 1; /* Takes up available space */
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+    .cart-empty {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-weight: normal;
+      font-size: 0.95rem;
+      color: #aaa;
+      text-shadow: none;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #333;
+    }
+    .cart-item-info {
+      flex-grow: 1;
+      margin-left: 1rem;
+    }
+    .cart-item-info h4 {
+      font-size: 1rem;
+      color: #fff;
+      margin: 0 0 5px 0;
+      font-weight: bold;
+    }
+    .cart-item-info p {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin: 0;
+      font-weight: normal;
+      text-shadow: none;
+    }
+    .remove-item-btn {
+      background: none;
+      border: none;
+      color: #ff00ff; /* Magenta */
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .remove-item-btn:hover {
+      color: #fff;
+    }
+    
+    /* Cart Summary/Total */
+    .cart-summary {
+      border-top: 1px solid #444;
+      padding-top: 1rem;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .checkout-btn {
+      background: #00ffff; /* Cyan */
+      color: #000;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .checkout-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 10px #00ffff;
+    }
+    
   </style>
 </head>
 <body>
 
-  <!-- Menu Button -->
   <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </button>
 
-  <!-- Slide-Out Menu -->
+  <button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
+    🛒
+    <span class="cart-counter" id="cartCounter">0</span>
+  </button>
+
   <div class="menu-overlay" id="menuOverlay"></div>
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
       <div class="info-box">
         <h2>FIND US</h2>
-        <!-- Corrected "select" typo -->
         <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
         <p>Follow our social media for weekly locations and weekly gives away!</p>
         <p>
@@ -261,27 +497,59 @@
     </div>
   </nav>
 
-  <!-- Main Page Content -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="slide-cart" id="slideCart">
+    <h2>Your Cart</h2>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Your cart is empty.</p>
+    </div>
+    <div class="cart-summary">
+      <div class="cart-total">
+        <strong>Total:</strong>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </aside>
+
   <div class="container">
-    <!-- Added data-text attribute for the glitch effect -->
     <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
     
-    <!-- Tagline with blue color and white outline -->
     <p class="tagline">Rebellious. Clean-label. Flavor-forward. Coming soon to your taste buds.</p>
 
-    <!-- Main text is now white and bold -->
     <p>SKULL FOOD™ was born from the combined expertise of a chemist and a chef entrepreneur with over 15 years in international cuisine and packaged food. Together, they didn’t just create healthy products — they made them wild, unique, and bold.</p>
 
     <p>Every product is made from 100% real ingredients. No gums. No preservatives. No added oils or any ingredient to fake weight. Just pure culinary fusion — flavor-forward, and unapologetically rebellious.</p>
 
+    <div class="product-section">
+      <h2>Our Products</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-placeholder"></div>
+          <h3>Rebel Red Sauce</h3>
+          <p class="product-price">$12.99</p>
+          <button class="add-to-cart-btn" data-id="1" data-name="Rebel Red Sauce" data-price="12.99">
+            Add to Cart
+          </button>
+        </div>
+        <div class="product-card">
+          <div class="product-placeholder"></div>
+          <h3>Glitch Green Pesto</h3>
+          <p class="product-price">$14.99</p>
+          <button class="add-to-cart-btn" data-id="2" data-name="Glitch Green Pesto" data-price="14.99">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
     <p>SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
 
-    <!-- "Join" text with blue color and white outline -->
     <strong class="rebellion-text">Join the rebellion.</strong>
   </div>
 
   <script>
-    // JavaScript for the slide-out menu
+    // --- JavaScript for the (RIGHT) slide-out menu ---
     const menuToggle = document.getElementById('menuToggle');
     const slideMenu = document.getElementById('slideMenu');
     const menuOverlay = document.getElementById('menuOverlay');
@@ -291,11 +559,133 @@
       menuOverlay.classList.toggle('active');
     }
 
-    // Open/Close menu when toggle button is clicked
     menuToggle.addEventListener('click', toggleMenu);
-    
-    // Close menu when the overlay is clicked
+    // [FIX] Combined overlay click listener
+    // menuOverlay.addEventListener('click', toggleMenu); // This was the old one
+
+    // --- [NEW] JavaScript for the (LEFT) slide-out CART ---
+
+    // DOM Elements
+    const cartToggle = document.getElementById('cartToggle');
+    const slideCart = document.getElementById('slideCart');
+    const cartOverlay = document.getElementById('cartOverlay'); // This is the new cart overlay
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const cartCounterEl = document.getElementById('cartCounter');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+    // Cart State
+    let cart = [];
+
+    // --- Core Functions ---
+
+    /**
+     * Toggles the cart panel and overlay
+     */
+    function toggleCart() {
+      slideCart.classList.toggle('active');
+      cartOverlay.classList.toggle('active'); // Use the cart overlay
+    }
+
+    /**
+     * Adds an item to the cart or updates its quantity
+     */
+    function addToCart(event) {
+      const button = event.target;
+      const id = button.dataset.id;
+      const name = button.dataset.name;
+      const price = parseFloat(button.dataset.price);
+
+      // Check if item is already in cart
+      const existingItem = cart.find(item => item.id === id);
+
+      if (existingItem) {
+        // Increment quantity
+        existingItem.quantity++;
+      } else {
+        // Add new item
+        cart.push({ id, name, price, quantity: 1 });
+      }
+
+      // Re-render the cart
+      renderCart();
+      
+      // Open the cart to show the user
+      if (!slideCart.classList.contains('active')) {
+        toggleCart();
+      }
+    }
+
+    /**
+     * Handles clicks inside the cart (e.g., remove item)
+     */
+    function handleCartClick(event) {
+      // Check if the click was on a 'remove' button
+      const removeButton = event.target.closest('.remove-item-btn');
+      if (removeButton) {
+        const id = removeButton.dataset.id;
+        
+        // Remove item from cart array
+        cart = cart.filter(item => item.id !== id);
+        
+        // Re-render the cart
+        renderCart();
+      }
+    }
+
+    /**
+      * Re-draws the entire cart UI based on the cart array
+      */
+    function renderCart() {
+      // Clear current cart items
+      cartItemsContainer.innerHTML = '';
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+      } else {
+        cart.forEach(item => {
+          const itemEl = document.createElement('div');
+          itemEl.classList.add('cart-item');
+          itemEl.innerHTML = `
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+            </div>
+            <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
+          `;
+          cartItemsContainer.appendChild(itemEl);
+        });
+      }
+
+      // Update total price
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      cartTotalEl.textContent = `$${total.toFixed(2)}`;
+
+      // Update cart counter
+      const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCounterEl.textContent = totalQuantity;
+    }
+
+    // --- Event Listeners ---
+
+    // [NEW] Close menu when its overlay is clicked
     menuOverlay.addEventListener('click', toggleMenu);
+
+    // [NEW] Open/Close cart
+    cartToggle.addEventListener('click', toggleCart);
+    cartOverlay.addEventListener('click', toggleCart);
+
+    // Add to cart
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', addToCart);
+    });
+
+    // Remove from cart (using event delegation)
+    cartItemsContainer.addEventListener('click', handleCartClick);
+
+    // Initial render
+    renderCart();
+
   </script>
 
 </body>
