@@ -5,6 +5,7 @@
   <title>SKULL FOOD™ - Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
+  <!-- SEO Tags -->
   <meta name="description" content="Shop SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations." />
   <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, healthy" />
   <meta name="author" content="SKULL FOOD LLC" />
@@ -170,19 +171,23 @@
 </head>
 <body>
 
+  <!-- Menu Button (Right) -->
   <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </button>
 
+  <!-- Cart Toggle Button (Left) -->
   <button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
     🛒
     <span class="cart-counter" id="cartCounter">0</span>
   </button>
 
+  <!-- Overlay (Shared by Menu and Cart) -->
   <div class="overlay" id="overlay"></div>
 
+  <!-- Slide-Out Menu (Right) -->
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
       <div class="info-box">
@@ -206,12 +211,13 @@
     </div>
   </nav>
 
+  <!-- Slide-Out Cart (Left) -->
   <aside class="slide-cart" id="slideCart">
     <h2>Your Cart</h2>
     <div class="cart-items" id="cartItems">
       <p class="cart-empty">Your cart is empty.</p>
     </div>
-    <div class="cart-summary">
+    <div class.cart-summary">
       <div class="cart-total">
         <strong>Total:</strong>
         <span id="cartTotal">$0.00</span>
@@ -220,25 +226,29 @@
     </div>
   </aside>
 
+  <!-- Main Page Content -->
   <div class="container">
     
     <a href="index.html" class="back-link">&laquo; Back to Home</a>
     
     <h1 class="page-title">OUR PRODUCTS</h1>
 
+    <!-- [NEW] Product Section -->
     <div class="product-section">
       <div class="product-grid">
         
+        <!-- Product 1 -->
         <div class="product-card">
           <div class="product-placeholder">[Image]</div>
           <h3>Rebel Red Sauce</h3>
           <p class="product-desc">A fiery, unapologetic blend of smoked peppers and secret spices. Not for the faint of heart.</p>
-          <p class="product-price">$12.99</p>
+          <p class="product-price">$12.9T9</p>
           <button class="add-to-cart-btn" data-id="1" data-name="Rebel Red Sauce" data-price="12.99">
             Add to Cart
           </button>
         </div>
         
+        <!-- Product 2 -->
         <div class="product-card">
           <div class="product-placeholder">[Image]</div>
           <h3>Glitch Green Pesto</h3>
@@ -249,6 +259,7 @@
           </button>
         </div>
 
+        <!-- Product 3 -->
         <div class="product-card">
           <div class="product-placeholder">[Image]</div>
           <h3>Magenta Mutiny</h3>
@@ -259,6 +270,7 @@
           </button>
         </div>
 
+        <!-- Product 4 -->
         <div class="product-card">
           <div class="product-placeholder">[Image]</div>
           <h3>Cyan-ide Salsa</h3>
@@ -269,6 +281,7 @@
           </button>
         </div>
 
+        <!-- Product 5 -->
         <div class="product-card">
           <div class="product-placeholder">[Image]</div>
           <h3>Void-Berry Jam</h3>
@@ -279,6 +292,7 @@
           </button>
         </div>
 
+        <!-- Product 6 -->
         <div class="product-card">
           <div class="product-placeholder">[Image]</div>
           <h3>OG Skull Rub</h3>
@@ -295,8 +309,7 @@
   </div>
 
   <script>
-    // --- [NEW] SHARED CART & MENU SCRIPT ---
-    // This script is IDENTICAL to index.html
+    // --- [FIXED] SHARED CART & MENU SCRIPT ---
     
     // --- State ---
     let cart = [];
@@ -349,14 +362,24 @@
      * Adds an item to the cart or updates its quantity
      */
     function addToCart(id, name, price) {
+      // Check if item is already in cart
       const existingItem = cart.find(item => item.id === id);
+
       if (existingItem) {
         existingItem.quantity++;
       } else {
         cart.push({ id, name, price, quantity: 1 });
       }
-      saveCart();
+
+      saveCart(); // Save and re-render
+      
+      // Open the cart to show the user
       if (!slideCart.classList.contains('active')) {
+        // [FIX] Check if menu is open and close it first
+        if (slideMenu.classList.contains('active')) {
+          slideMenu.classList.remove('active');
+          overlay.classList.remove('active');
+        }
         toggleCart();
       }
     }
@@ -369,7 +392,7 @@
       if (removeButton) {
         const id = removeButton.dataset.id;
         cart = cart.filter(item => item.id !== id);
-        saveCart();
+        saveCart(); // Save and re-render
       }
     }
 
@@ -378,6 +401,7 @@
      */
     function renderCart() {
       cartItemsContainer.innerHTML = '';
+
       if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
       } else {
@@ -394,16 +418,35 @@
           cartItemsContainer.appendChild(itemEl);
         });
       }
+
       const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       cartTotalEl.textContent = `$${total.toFixed(2)}`;
+
       const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
       cartCounterEl.textContent = totalQuantity;
     }
 
     // --- Event Listeners ---
-    menuToggle.addEventListener('click', toggleMenu);
-    cartToggle.addEventListener('click', toggleCart);
-    overlay.addEventListener('click', () => {
+
+    // [NEW/FIXED] Smarter button listeners
+    menuToggle.addEventListener('click', () => {
+      // If cart is open, close it *before* toggling the menu
+      if (slideCart.classList.contains('active')) {
+        toggleCart(); // This will close cart & overlay
+      }
+      toggleMenu(); // This will open menu & overlay
+    });
+
+    cartToggle.addEventListener('click', () => {
+      // If menu is open, close it *before* toggling the cart
+      if (slideMenu.classList.contains('active')) {
+        toggleMenu(); // This will close menu & overlay
+      }
+      toggleCart(); // This will open cart & overlay
+    });
+
+    // Overlay listener to close *whichever* panel is open
+    overlay.addEventListener('click', ()Dos => {
       if (slideMenu.classList.contains('active')) {
         toggleMenu();
       }
@@ -412,10 +455,11 @@
       }
     });
 
+    // Cart-specific listeners
     cartItemsContainer.addEventListener('click', handleCartClick);
 
-    // This listener is for the "Add to Cart" buttons
-    // We use event delegation on the whole body for simplicity
+    // This listener is for the SHOP page, but we include it here
+    // so the same script works on both pages.
     document.body.addEventListener('click', (event) => {
       const addToCartButton = event.target.closest('.add-to-cart-btn');
       if (addToCartButton) {
