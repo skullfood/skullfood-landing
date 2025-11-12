@@ -5,15 +5,72 @@
   <title>SKULL FOOD™ - Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- SEO Tags -->
   <meta name="description" content="SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations. Born from a chemist and a chef. Find us in California." />
   <meta name="keywords" content="SKULL FOOD, clean label, rebellious food, healthy, farmers market, California, chef-made" />
   <meta name="author" content="SKULL FOOD LLC" />
 
-  <!-- PayPal Script -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
   <style>
+    /* === NEW NAV BAR STYLES === */
+    .main-header {
+      background: rgba(10, 10, 10, 0.9);
+      border-bottom: 1px solid #00ffff;
+      padding: 1rem 0;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 900; /* Below slide-out menus (1000) */
+      box-sizing: border-box;
+    }
+    .nav-container-new {
+      max-width: 700px; /* Match your main container width */
+      margin: 0 auto;
+      padding: 0 2rem; /* Match your main container padding */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .main-nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+    }
+    .main-nav li {
+      margin-left: 1.5rem;
+    }
+    .main-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-weight: bold;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+    .main-nav a:hover {
+      color: #00ffff;
+    }
+
+    /* --- Responsive Nav --- */
+    @media (max-width: 768px) {
+      .main-nav {
+        display: none; /* Hide text links on mobile */
+      }
+      .nav-container-new {
+        justify-content: center; /* Center the logo on mobile */
+      }
+    }
+    /* === END NEW NAV BAR STYLES === */
+
     body {
       margin: 0;
       padding: 0;
@@ -463,23 +520,32 @@
 </head>
 <body>
 
-  <!-- Menu Button (Right) -->
+  <header class="main-header">
+    <div class="nav-container-new">
+      <a href="index.html" class="nav-logo">SKULL FOOD&trade;</a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Sweet Spreads</a></li>
+          <li><a href="pepper-spreads.html">Pepper Spreads</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
   <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </button>
 
-  <!-- Cart Toggle Button (Left) -->
   <button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
     🛒
     <span class="cart-counter" id="cartCounter">0</span>
   </button>
 
-  <!-- Overlay (Shared by Menu and Cart) -->
   <div class="overlay" id="overlay"></div>
 
-  <!-- Slide-Out Menu (Right) -->
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
       <div class="info-box">
@@ -503,7 +569,6 @@
     </div>
   </nav>
 
-  <!-- Slide-Out Cart (Left) -->
   <aside class="slide-cart" id="slideCart">
     <button class="close-btn" id="cartCloseBtn">&times;</button>
     <div class="cart-content">
@@ -530,7 +595,6 @@
   </div>
 
 
-  <!-- Main Page Content -->
   <div class="container">
     <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
     
@@ -667,8 +731,8 @@
       
       function renderPayPalButtons() {
           if (!window.paypal) {
-              console.error("PayPal SDK script not loaded.");
-              return;
+            console.error("PayPal SDK script not loaded.");
+            return;
           }
 
           paypal.Buttons({
