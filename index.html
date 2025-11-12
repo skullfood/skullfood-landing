@@ -559,11 +559,11 @@
     /* === NEW CONTACT FORM STYLES === */
     .contact-fab {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 30px; /* [CHANGED] */
+      right: 30px; /* [CHANGED] */
       background: #00ffff;
-      color: #fff; /* [CHANGED] White text */
-      padding: 0.9rem 1.25rem; /* [CHANGED] Adjusted padding */
+      color: #fff; /* [CHANGED] */
+      padding: 1.1rem 1.6rem; /* [CHANGED] */
       border-radius: 30px; 
       display: flex;
       align-items: center;
@@ -572,21 +572,26 @@
       box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
       z-index: 800;
       transition: all 0.3s ease;
-      font-size: 1.1rem; 
+      font-size: 1.6rem; /* [CHANGED] */
       font-weight: bold; 
     }
     .contact-fab:hover {
       background: #fff;
-      color: #000; /* [CHANGED] Black text on hover */
+      color: #000; /* [CHANGED] */
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6);
       transform: scale(1.05);
     }
     
-    /* [ADDED] New style for SVG icon */
     .fab-svg-icon {
-      width: 24px;
-      height: 24px;
-      margin-right: 0.75rem;
+      width: 36px; /* [CHANGED] */
+      height: 36px; /* [CHANGED] */
+      margin-right: 0.9rem; /* [CHANGED] */
+      fill: #fff; /* [CHANGED] */
+      transition: fill 0.3s ease; /* [ADDED] */
+    }
+    
+    .contact-fab:hover .fab-svg-icon {
+      fill: #000; /* [CHANGED] */
     }
 
     .modal-close-icon {
@@ -790,7 +795,7 @@
     </div>
   </div>
   <a href="#" id="contact-fab" aria-label="Contact Us">
-    <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
     </svg>
     <span class="fab-text">Chat with us</span>
