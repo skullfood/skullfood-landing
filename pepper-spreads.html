@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SKULL FOOD™ - Pepper Spreads</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Tags -->
+  <meta name="description" content="Shop SKULL FOOD™: Rebellious, clean-label, and flavor-forward PEPPER SPREADS." />
+  <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, pepper spread" />
+  <meta name="author" content="SKULL FOOD LLC" />
+
+  <style>
+    /* ALL STYLES ARE IDENTICAL TO shop.html
+      BUT all cyan/magenta colors have been
+      replaced with a new RED theme.
+    */
+    body {
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      font-family: 'Helvetica Neue', sans-serif;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background-image: url('website-design-content-layout-graphic.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    .container {
+      max-width: 900px;
+      margin: 3rem auto;  
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* --- Page Title Styles --- */
+    .page-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #fff;
+      position: relative;
+      text-shadow: 0 0 8px #ff0000; /* [THEME] Red glow */
+    }
+    a.back-link {
+      display: inline-block;
+      color: #ff4136; /* [THEME] Red link */
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Product Grid Styles --- */
+    .product-section {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .product-card {
+      background: rgba(17, 17, 17, 0.7);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card h3 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.2rem;
+      color: #ff4136; /* [THEME] Red title */
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .product-card .product-desc {
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: #ccc;
+      text-shadow: none;
+      min-height: 60px;
+      flex-grow: 1;
+    }
+    .product-desc ul {
+      padding-left: 20px;
+      margin-top: 10px;
+      color: #ccc;
+    }
+    .product-desc li {
+      margin-bottom: 5px;
+    }
+    .product-card .product-price {
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+      text-shadow: none;
+    }
+    
+    .product-price .price-amount {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+    }
+    
+    .product-price .price-unit {
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #aaa;
+    }
+
+    .price-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+    .price-wrapper .sale-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+    }
+    .price-wrapper .original-price {
+      font-size: 0.9rem;
+      color: #aaa;
+      text-decoration: line-through;
+    }
+    .price-wrapper .sale-badge {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #ff4136; /* [THEME] Red sale badge */
+    }
+    
+    .price-wrapper .price-unit {
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #aaa;
+      margin-bottom: 0.25rem;
+    }
+
+    .add-to-cart-btn {
+      background: #ff4136; /* [THEME] Red button */
+      color: #fff; /* White text */
+      border: none;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      margin-top: auto;
+    }
+    .add-to-cart-btn:hover {
+      background: #fff;
+      color: #000; /* Black text on white hover */
+      box-shadow: 0 0 10px #ff4136; /* [THEME] Red glow */
+    }
+    
+    .coming-soon-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.2rem;
+      color: #ff4136; /* [THEME] Red text */
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 0 3px #ff4136, 0 0 5px #ff0000; /* [THEME] Red glow */
+    }
+
+    .product-placeholder {
+      width: 100%;
+      height: 180px;
+      background: #333;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* --- ALL CART & MENU STYLES (Red Theme) --- */
+    .menu-toggle-btn { position: fixed; top: 20px; right: 20px; width: 40px; height: 40px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; display: flex; flex-direction: column; justify-content: space-around; align-items: center; padding: 8px 6px; box-sizing: border-box; z-index: 1001; }
+    .menu-toggle-btn .bar { width: 100%; height: 3px; background-color: #ffffff; border-radius: 2px; opacity: 1; box-shadow: 0 0 3px rgba(255,255,255,0.5); }
+    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+    .overlay.active { opacity: 1; visibility: visible; }
+    .slide-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #111; z-index: 1000; padding: 2rem; box-sizing: border-box; transition: right 0.3s ease; }
+    .slide-menu.active { right: 0; }
+    .info-container { margin-top: 60px; }
+    .info-box { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
+    .info-box h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 0; border-bottom: 2px solid #ff4136; padding-bottom: 0.5rem; } /* [THEME] Red border */
+    .info-box p { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #eee; text-shadow: none; }
+    .info-box a { color: #ff4136; text-decoration: none; font-weight: bold; } /* [THEME] Red link */
+    .info-box a:hover { text-decoration: underline; }
+    .ig-link { background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; font-weight: bold; text-decoration: none; }
+    .cart-toggle-btn { position: fixed; top: 20px; left: 20px; width: 40px; height: 40px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; z-index: 1001; font-size: 1.2rem; color: white; padding: 0; }
+    .cart-counter { position: absolute; top: -8px; right: -8px; background: #ff4136; color: white; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; } /* [THEME] Red counter */
+    .slide-cart { position: fixed; top: 0; left: -320px; width: 320px; height: 100%; background: #111; z-index: 1000; box-sizing: border-box; transition: left 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #ff4136; } /* [THEME] Red border */
+    .slide-cart.active { left: 0; }
+    .slide-cart h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-top: 60px;
+      border-bottom: 2px solid #ff4136; /* [THEME] Red border */
+      padding-bottom: 0.5rem;
+    }
+    .cart-items { flex-grow: 1; overflow-y: auto; margin-top: 1rem; }
+    .cart-empty { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #aaa; text-shadow: none; text-align: center; margin-top: 2rem; }
+    .cart-item { display: flex; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #333; }
+    .cart-item-info { flex-grow: 1; margin-left: 1rem; }
+    .cart-item-info h4 { font-size: 1rem; color: #fff; margin: 0 0 5px 0; font-weight: bold; }
+    .cart-item-info p { font-size: 0.9rem; color: #aaa; margin: 0; font-weight: normal; text-shadow: none; }
+    .remove-item-btn { background: none; border: none; color: #ff4136; font-size: 1.1rem; font-weight: bold; cursor: pointer; padding: 5px; } /* [THEME] Red remove */
+    .remove-item-btn:hover { color: #fff; }
+    .cart-summary { border-top: 1px solid #444; padding-top: 1rem; }
+    .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; }
+    .checkout-btn { background: #ff4136; color: #fff; border: none; padding: 0.8rem; font-size: 1rem; font-weight: bold; text-transform: uppercase; border-radius: 5px; cursor: pointer; width: 100%; text-align: center; transition: background 0.3s ease, box-shadow 0.3s ease; } /* [THEME] Red button */
+    .checkout-btn:hover { background: #fff; color: #000; box-shadow: 0 0 10px #ff4136; } /* [THEME] Red glow */
+    
+    /* Modal styles (Red Theme) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-container {
+      background: #111;
+      border: 1px solid #ff4136; /* [THEME] Red border */
+      border-radius: 8px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 450px;
+      position: relative;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* [THEME] Red glow */
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+    .modal-header h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #ff4136; /* [THEME] Red title */
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .modal-body p {
+      font-size: 1rem;
+      font-weight: normal;
+      text-shadow: none;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .submit-btn {
+      background: #ff4136; /* [THEME] Red button */
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 1rem;
+    }
+    .submit-btn:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 0 10px #ff4136; /* [THEME] Red glow */
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Menu Button (Right) -->
+  <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </button>
+
+  <!-- Cart Toggle Button (Left) -->
+  <button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
+    🛒
+    <span class="cart-counter" id="cartCounter">0</span>
+  </button>
+
+  <!-- Overlay (Shared by Menu and Cart) -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Slide-Out Menu (Right) -->
+  <nav class="slide-menu" id="slideMenu">
+    <div class="info-container">
+      <div class="info-box">
+        <h2>FIND US</h2>
+        <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
+        <p>Follow our social media for weekly locations and weekly gives away!</p>
+        <p>
+          <span class="ig-link">Instagram:</span>
+          <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
+            @skullfood.us
+          </a>
+        </p>
+      </div>
+      <div class="info-box">
+        <h2>CONTACT US</h2>
+        <p>For inquiries, wholesale, or just to say hi:</p>
+        <p>
+          <a href="mailto:info@skullfood.us.com">info@skullfood.us.com</a>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Slide-Out Cart (Left) -->
+  <aside class="slide-cart" id="slideCart">
+    <h2>Your Cart</h2>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Your cart is empty.</p>
+    </div>
+    <div class="cart-summary">
+      <div class="cart-total">
+        <strong>Total:</strong>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Main Page Content -->
+  <div class="container">
+    
+    <a href="index.html" class="back-link">&laquo; Back to Home</a>
+    
+    <h1 class="page-title">PEPPER SPREADS</h1>
+
+    <!-- Product Section -->
+    <div class="product-section">
+      <div class="product-grid">
+        
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-placeholder"></div>
+          <h3>[Pepper Flavor 1]</h3>
+          <p class="product-desc">[Description for the first pepper spread. Bold, smoky, and rebellious.]</p>
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="p1" data-name="Pepper Flavor 1" data-price="13.99">
+            Add to Cart
+          </button>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-placeholder"></div>
+          <h3>[Pepper Flavor 2]</h3>
+          <p class="product-desc">[Description for the second pepper spread. A bright, citrusy heat.]</p>
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="p2" data-name="Pepper Flavor 2" data-price="13.99">
+            Add to Cart
+          </button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-placeholder"></div>
+          <h3>[Pepper Flavor 3]</h3>
+          <p class="product-desc">[Description for the third pepper spread. Deep, dark, and complex flavor.]</p>
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="p3" data-name="Pepper Flavor 3" data-price="13.99">
+            Add to Cart
+          </button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-placeholder"></div>
+          <h3>[Pepper Flavor 4]</h3>
+          <p class="product-desc">[Description for the fourth pepper spread. A green, herby, and vibrant heat.]</p>
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="p4" data-name="Pepper Flavor 4" data-price="13.99">
+            Add to Cart
+          </button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <div class="product-placeholder"></div>
+          <h3>[Pepper Flavor 5]</h3>
+          <p class="product-desc">[Description for the fifth pepper spread. The hottest one in the lineup. Unapologetic.]</g>
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="p5" data-name="Pepper Flavor 5" data-price="13.99">
+            Add to Cart
+          </button>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- 
+    The Waitlist Modal HTML is removed from this page
+    to keep it clean.
+  -->
+
+  <script>
+    // --- [FIXED] SHARED CART & MENU SCRIPT ---
+    
+    // --- State ---
+    let cart = [];
+
+    // --- DOM Elements ---
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const cartToggle = document.getElementById('cartToggle');
+    const slideCart = document.getElementById('slideCart');
+    const overlay = document.getElementById('overlay');
+    
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const cartCounterEl = document.getElementById('cartCounter');
+
+    // Waitlist Modal DOM Elements are not needed on this page
+    
+    // --- Menu Functions ---
+    function toggleMenu() {
+      slideMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // --- Cart Functions ---
+    function toggleCart() {
+      slideCart.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    // Waitlist Modal Functions are not needed on this page
+
+    /**
+     * Loads cart from localStorage
+     */
+    function loadCart() {
+      const storedCart = localStorage.getItem('skullfoodCart');
+      if (storedCart) {
+        cart = JSON.parse(storedCart);
+      } else {
+        cart = [];
+      }
+      renderCart();
+    }
+
+    /**
+     * Saves cart to localStorage
+     */
+    function saveCart() {
+      localStorage.setItem('skullfoodCart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    /**
+     * Adds an item to the cart or updates its quantity
+     */
+    function addToCart(id, name, price) {
+      const existingItem = cart.find(item => item.id === id);
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ id, name, price, quantity: 1 });
+      }
+
+      saveCart();
+      
+      if (!slideCart.classList.contains('active')) {
+        if (slideMenu.classList.contains('active')) {
+          slideMenu.classList.remove('active');
+          overlay.classList.remove('active');
+        }
+        toggleCart();
+      }
+    }
+
+    /**
+     * Handles clicks inside the cart (e.g., remove item)
+     */
+    function handleCartClick(event) {
+      const removeButton = event.target.closest('.remove-item-btn');
+      if (removeButton) {
+        const id = removeButton.dataset.id;
+        cart = cart.filter(item => item.id !== id);
+        saveCart();
+      }
+    }
+
+    /**
+     * Re-draws the entire cart UI based on the cart array
+     */
+    function renderCart() {
+      if (cartItemsContainer) {
+          cartItemsContainer.innerHTML = '';
+
+          if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+          } else {
+            cart.forEach(item => {
+              const itemEl = document.createElement('div');
+              itemEl.classList.add('cart-item');
+              itemEl.innerHTML = `
+                <div class="cart-item-info">
+                  <h4>${item.name}</h4>
+                  <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+                </div>
+                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
+              `;
+              cartItemsContainer.appendChild(itemEl);
+            });
+          }
+      }
+
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      if (cartTotalEl) {
+          cartTotalEl.textContent = `$${total.toFixed(2)}`;
+      }
+
+      const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+      if (cartCounterEl) {
+          cartCounterEl.textContent = totalQuantity;
+      }
+    }
+
+    // --- Event Listeners ---
+    menuToggle.addEventListener('click', () => {
+      if (slideCart.classList.contains('active')) {
+        toggleCart();
+      }
+      toggleMenu();
+    });
+
+    cartToggle.addEventListener('click', () => {
+      if (slideMenu.classList.contains('active')) {
+        toggleMenu();
+      }
+      toggleCart();
+    });
+
+    overlay.addEventListener('click', () => {
+      if (slideMenu.classList.contains('active')) {
+        toggleMenu();
+      }
+      if (slideCart.classList.contains('active')) {
+        toggleCart();
+      }
+    });
+
+    if(cartItemsContainer) {
+        cartItemsContainer.addEventListener('click', handleCartClick);
+    }
+
+    document.body.addEventListener('click', (event) => {
+      const addToCartButton = event.target.closest('.add-to-cart-btn');
+      if (addToCartButton) {
+        const id = addToCartButton.dataset.id;
+        const name = addToCartButton.dataset.name;
+        const price = parseFloat(addToCartButton.dataset.price);
+        addToCart(id, name, price);
+      }
+    });
+
+    // Waitlist Modal Listeners are not needed on this page
+
+    // --- Initial Load ---
+    loadCart(); // Load and render cart on page load
+
+  </script>
+
+</body>
+</html>
