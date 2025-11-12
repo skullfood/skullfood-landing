@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>SKULL FOOD™ - Shop</title>
@@ -9,6 +7,10 @@
   <meta name="description" content="Shop SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations." />
   <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, healthy" />
   <meta name="author" content="SKULL FOOD LLC" />
+
+  <!-- [NEW] PayPal SDK Script -->
+  <!-- !! CLIENT ID IS NOW LIVE !! -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
   <style>
     /* ALL STYLES ARE IDENTICAL TO INDEX.HTML
@@ -354,6 +356,61 @@
       box-shadow: 0 0 10px #00ffff;
     }
 
+    /* --- [NEW] Styles for Success Modal --- */
+    .modal-overlay.success {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 3000; /* Highest z-index */
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.success.active {
+      display: flex;
+    }
+    .success-modal-container {
+      background: #111;
+      border: 1px solid #00ffff;
+      border-radius: 8px;
+      padding: 2.5rem;
+      width: 90%;
+      max-width: 450px;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      text-align: center;
+    }
+    .success-modal-container h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #00ffff;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    .success-modal-container p {
+      font-size: 1.1rem;
+      font-weight: normal;
+      text-shadow: none;
+      margin-bottom: 2rem;
+    }
+    .success-modal-container button {
+      background: #00ffff;
+      color: #000;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .success-modal-container button:hover {
+      background: #fff;
+    }
+
   </style>
 </head>
 <body>
@@ -410,7 +467,12 @@
         <strong>Total:</strong>
         <span id="cartTotal">$0.00</span>
       </div>
-      <button class="checkout-btn">Checkout</button>
+      <!-- [REMOVED] Old Checkout Button -->
+      <!-- <button class="checkout-btn">Checkout</button> -->
+      
+      <!-- [NEW] PayPal Button Container -->
+      <div id="paypal-button-container" style="margin-top: 1rem;"></div>
+      
     </div>
   </aside>
 
@@ -419,7 +481,7 @@
     
     <a href="index.html" class="back-link">&laquo; Back to Home</a>
     
-    <h1 class="page-title">OUR PRODUCTS</h1>
+    <h1 class="page-title">SWEET SPREADS</h1>
 
     <!-- [NEW] Product Section -->
     <div class="product-section">
@@ -582,6 +644,15 @@
     </div>
   </div>
 
+  <!-- [NEW] Success Modal HTML -->
+  <div class="modal-overlay success" id="successModal">
+    <div class="success-modal-container">
+      <h2>Payment Successful!</h2>
+      <p id="successMessage">Thank you for your order!</p>
+      <button id="closeSuccessModalBtn">Continue Shopping</button>
+    </div>
+  </div>
+
   <script>
     // --- [FIXED] SHARED CART & MENU SCRIPT ---
     
@@ -604,6 +675,11 @@
     const waitlistBtn = document.getElementById('waitlistBtn');
     const closeModalBtn = document.getElementById('closeModalBtn');
     
+    // [NEW] Success Modal Elements
+    const successModal = document.getElementById('successModal');
+    const successMessage = document.getElementById('successMessage');
+    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+    
     
     // --- Menu Functions ---
     function toggleMenu() {
@@ -624,6 +700,16 @@
 
     function closeWaitlistModal() {
       waitlistModal.classList.remove('active');
+    }
+
+    // --- [NEW] Success Modal Functions ---
+    function openSuccessModal(payerName) {
+      successMessage.textContent = `Thank you for your order, ${payerName}! A confirmation has been sent to your email.`;
+      successModal.classList.add('active');
+    }
+
+    function closeSuccessModal() {
+      successModal.classList.remove('active');
     }
 
     /**
@@ -725,7 +811,7 @@
     }
 
     // --- Event Listeners ---
-
+    
     // [NEW/FIXED] Smarter button listeners
     menuToggle.addEventListener('click', () => {
       // If cart is open, close it *before* toggling the menu
@@ -756,6 +842,11 @@
     // Cart-specific listeners
     if(cartItemsContainer) {
         cartItemsContainer.addEventListener('click', handleCartClick);
+    }
+    
+    // [NEW] Success Modal Listener
+    if(closeSuccessModalBtn) {
+        closeSuccessModalBtn.addEventListener('click', closeSuccessModal);
     }
 
     // This listener is for the SHOP page, but we include it here
@@ -789,6 +880,67 @@
 
     // --- Initial Load ---
     loadCart(); // Load and render cart on page load
+
+    // --- [NEW] PayPal Integration ---
+    try {
+        paypal.Buttons({
+          
+          createOrder: function(data, actions) {
+            
+            const items = cart.map(item => {
+              return {
+                name: item.name,
+                unit_amount: {
+                  currency_code: 'USD',
+                  value: parseFloat(item.price).toFixed(2)
+                },
+                quantity: item.quantity
+              };
+            });
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  currency_code: 'USD',
+                  value: total.toFixed(2),
+                  breakdown: {
+                    item_total: {
+                      currency_code: 'USD',
+                      value: total.toFixed(2)
+                    }
+                  }
+                },
+                items: items
+              }]
+            });
+          },
+
+          onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+              
+              const payerName = details.payer.name.given_name;
+              openSuccessModal(payerName);
+              
+              cart = [];
+              saveCart(); 
+              
+              if (slideCart.classList.contains('active')) {
+                toggleCart();
+              }
+
+            });
+          },
+
+          onError: function(err) {
+            console.error('An error occurred with the PayPal payment:', err);
+          }
+          
+        }).render('#paypal-button-container');
+    } catch (e) {
+        console.error('PayPal SDK failed to load or render.', e);
+    }
 
   </script>
 
