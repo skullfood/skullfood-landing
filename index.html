@@ -103,22 +103,42 @@
       margin-top: 2rem;
     }
 
-    /* --- [NEW] Shop Now Button --- */
+    /* --- [MODIFIED] Shop Button Styles --- */
+    .shop-category-nav {
+      display: flex;
+      flex-direction: column; /* Stack on mobile */
+      gap: 1.5rem;
+      margin: 2rem auto;
+      align-items: center;
+    }
+
     .shop-now-btn {
       display: inline-block;
-      margin: 2rem 0;
-      padding: 1rem 2.5rem;
+      padding: 1rem 2rem; /* Adjusted padding */
       background: #00ffff; /* Cyan */
       color: #000; /* Black text */
       border: none;
-      font-size: 1.3rem;
+      font-size: 1.2rem; /* Adjusted font size */
       font-weight: bold;
       text-transform: uppercase;
       border-radius: 5px;
       cursor: pointer;
       text-decoration: none;
       transition: background 0.3s ease, box-shadow 0.3s ease;
+      width: 90%; /* Take up good width on mobile */
+      max-width: 320px; /* Max width for buttons */
     }
+    
+    @media (min-width: 640px) {
+      .shop-category-nav {
+        flex-direction: row; /* Side-by-side on desktop */
+        justify-content: center;
+      }
+      .shop-now-btn {
+        width: auto; /* Auto width on desktop */
+      }
+    }
+
     .shop-now-btn:hover {
       background: #fff;
       box-shadow: 0 0 15px #00ffff;
@@ -285,7 +305,8 @@
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 1.5rem;
       color: #fff;
-      margin-top: 1rem;
+      /* [FIX] Changed margin-top to push title below fixed button */
+      margin-top: 60px; 
       border-bottom: 2px solid #00ffff;
       padding-bottom: 0.5rem;
     }
@@ -441,8 +462,11 @@
 
     <p>Every product is made from 100% real ingredients. No gums. No preservatives. No added oils or any ingredient to fake weight. Just pure culinary fusion — flavor-forward, and unapologetically rebellious.</p>
 
-    <!-- [NEW] Shop Now Button -->
-    <a href="shop.html" class="shop-now-btn">Shop Now</a>
+    <!-- [MODIFIED] Shop Now Button Area -->
+    <div class="shop-category-nav">
+      <a href="shop.html" class="shop-now-btn">Shop Sweet Spreads</a>
+      <a href="pepper-spreads.html" class="shop-now-btn">Shop Pepper Spreads</a>
+    </div>
 
     <p>SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
 
@@ -541,30 +565,39 @@
      * Re-draws the entire cart UI based on the cart array
      */
     function renderCart() {
-      cartItemsContainer.innerHTML = '';
+      // This is the container for the list of items
+      if (cartItemsContainer) {
+          cartItemsContainer.innerHTML = ''; // Clear current items
 
-      if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
-      } else {
-        cart.forEach(item => {
-          const itemEl = document.createElement('div');
-          itemEl.classList.add('cart-item');
-          itemEl.innerHTML = `
-            <div class="cart-item-info">
-              <h4>${item.name}</h4>
-              <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-            </div>
-            <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
-          `;
-          cartItemsContainer.appendChild(itemEl);
-        });
+          if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+          } else {
+            cart.forEach(item => {
+              const itemEl = document.createElement('div');
+              itemEl.classList.add('cart-item');
+              itemEl.innerHTML = `
+                <div class="cart-item-info">
+                  <h4>${item.name}</h4>
+                  <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+                </div>
+                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
+              `;
+              cartItemsContainer.appendChild(itemEl);
+            });
+          }
       }
 
+      // Update total price
       const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      cartTotalEl.textContent = `$${total.toFixed(2)}`;
+      if (cartTotalEl) {
+          cartTotalEl.textContent = `$${total.toFixed(2)}`;
+      }
 
+      // Update cart counter
       const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-      cartCounterEl.textContent = totalQuantity;
+      if (cartCounterEl) {
+          cartCounterEl.textContent = totalQuantity;
+      }
     }
 
     // --- Event Listeners ---
@@ -597,7 +630,9 @@
     });
 
     // Cart-specific listeners
-    cartItemsContainer.addEventListener('click', handleCartClick);
+    if(cartItemsContainer) {
+        cartItemsContainer.addEventListener('click', handleCartClick);
+    }
 
     // This listener is for the SHOP page, but we include it here
     // so the same script works on both pages.
