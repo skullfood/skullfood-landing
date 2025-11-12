@@ -142,7 +142,7 @@
         box-shadow: 0 0 15px #ff4136;
     }
 
-
+    /* --- MENU & OVERLAY --- */
     .menu-toggle-btn {
       position: fixed;
       top: 20px;
@@ -198,6 +198,7 @@
       padding: 2rem;
       box-sizing: border-box;
       transition: right 0.3s ease;
+      overflow-y: auto;
     }
     .slide-menu.active {
       right: 0;
@@ -246,6 +247,7 @@
       text-decoration: none;
     }
     
+    /* --- CART STYLES --- */
     .cart-toggle-btn {
       position: fixed;
       top: 20px;
@@ -281,9 +283,9 @@
     .slide-cart {
       position: fixed;
       top: 0;
-      left: -480px; /* [FIX] Widened cart */
-      width: 480px; /* [FIX] Widened cart */
-      max-width: 90vw; /* Ensure it fits on mobile */
+      left: -100vw; /* Start off-screen */
+      width: 90vw; /* [FIX] Responsive width */
+      max-width: 480px; /* [FIX] Max width for desktop */
       height: 100%;
       background: #111;
       z-index: 1000;
@@ -291,11 +293,18 @@
       transition: left 0.3s ease;
       display: flex;
       flex-direction: column;
-      padding: 1.5rem;
       border-right: 1px solid #00ffff;
+      overflow-y: auto; /* [FIX] Make entire cart scrollable */
     }
     .slide-cart.active {
       left: 0;
+    }
+    
+    .cart-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
     }
 
     .close-btn {
@@ -326,8 +335,7 @@
     }
     
     .cart-items {
-      flex-grow: 1;
-      overflow-y: auto;
+      /* [FIX] Removed flex-grow and overflow-y */
       margin-top: 1rem;
     }
     .cart-empty {
@@ -379,7 +387,7 @@
     .cart-summary {
       border-top: 1px solid #444;
       padding-top: 1rem;
-      margin-top: auto; /* Pushes to bottom */
+      margin-top: auto; /* [FIX] Pushes to bottom of flex container */
     }
     .cart-total {
       display: flex;
@@ -393,9 +401,10 @@
       margin-top: 1rem;
       z-index: 100;
       position: relative;
-      min-height: 250px; /* [FIX] Added safe zone for card form */
+      min-height: 250px; 
     }
     
+    /* --- MODAL STYLES --- */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -497,16 +506,18 @@
   <!-- Slide-Out Cart (Left) -->
   <aside class="slide-cart" id="slideCart">
     <button class="close-btn" id="cartCloseBtn">&times;</button>
-    <h2>Your Cart</h2>
-    <div class="cart-items" id="cartItems">
-      <p class="cart-empty">Your cart is empty.</p>
-    </div>
-    <div class="cart-summary">
-      <div class="cart-total">
-        <strong>Total:</strong>
-        <span id="cartTotal">$0.00</span>
+    <div class="cart-content">
+      <h2>Your Cart</h2>
+      <div class="cart-items" id="cartItems">
+        <p class="cart-empty">Your cart is empty.</p>
       </div>
-      <div id="paypal-button-container"></div>
+      <div class="cart-summary">
+        <div class="cart-total">
+          <strong>Total:</strong>
+          <span id="cartTotal">$0.00</span>
+        </div>
+        <div id="paypal-button-container"></div>
+      </div>
     </div>
   </aside>
 
@@ -542,9 +553,9 @@
   <script>
     // --- State ---
     let cart = [];
-    let payPalButtonsRendered = false; // Corrected typo
+    let payPalButtonsRendered = false;
 
-    // --- [FIX] Wait for DOM to be loaded (faster than 'window.load') ---
+    // --- [FIX] Wait for DOM to be loaded ---
     document.addEventListener('DOMContentLoaded', () => {
     
       // --- DOM Elements ---
@@ -565,12 +576,20 @@
       
       // --- All Functions Defined Inside DOMContentLoaded ---
 
-      function toggleMenu() {
+      function toggleMenu(event) {
+        if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
+        if (slideCart && slideCart.classList.contains('active')) {
+          toggleCart(); // Close cart if open
+        }
         if (slideMenu) slideMenu.classList.toggle('active');
         if (overlay) overlay.classList.toggle('active');
       }
 
-      function toggleCart() {
+      function toggleCart(event) {
+        if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
+        if (slideMenu && slideMenu.classList.contains('active')) {
+          toggleMenu(); // Close menu if open
+        }
         if (slideCart) {
             const isCartActive = slideCart.classList.toggle('active');
             if (overlay) overlay.classList.toggle('active');
@@ -597,22 +616,6 @@
         cart = [];
         localStorage.removeItem('skullfoodCart');
         renderCartUI();
-      }
-
-      function addToCart(id, name, price) {
-        const existingItem = cart.find(item => item.id === id);
-        if (existingItem) {
-          existingItem.quantity++;
-        } else {
-          cart.push({ id, name, price: parseFloat(price), quantity: 1 });
-        }
-        saveCart();
-        if (slideCart && !slideCart.classList.contains('active')) {
-          if (slideMenu && slideMenu.classList.contains('active')) {
-             toggleMenu();
-          }
-          toggleCart();
-        }
       }
 
       function handleCartClick(event) {
@@ -701,50 +704,47 @@
           }).render('#paypal-button-container');
       }
 
-      // --- [FIX] Robust Event Delegation for Clicks ---
-      document.body.addEventListener('click', (event) => {
+      // --- [FIX] Event Listeners for Mobile + Desktop ---
 
-        // --- Menu Toggle ---
-        if (menuToggle && menuToggle.contains(event.target)) {
-          if (slideCart && slideCart.classList.contains('active')) {
-            toggleCart();
-          }
-          toggleMenu();
-          return;
-        }
-        
-        // --- Cart Toggle ---
-        if (cartToggle && cartToggle.contains(event.target)) {
-          if (slideMenu && slideMenu.classList.contains('active')) {
-            toggleMenu();
-          }
-          toggleCart();
-          return;
-        }
+      if (menuToggle) {
+          menuToggle.addEventListener('click', toggleMenu);
+          menuToggle.addEventListener('touchstart', toggleMenu);
+      }
 
-        // --- Cart Close Button ---
-        if (cartCloseBtn && cartCloseBtn.contains(event.target)) {
-          toggleCart();
-          return;
-        }
-        
-        // --- Modal Close Button ---
-        if (modalCloseBtn && modalCloseBtn.contains(event.target)) {
-          if (thankYouModal) thankYouModal.classList.remove('active');
-          return;
-        }
-        
-        // --- Overlay Click ---
-        if (overlay && event.target === overlay) {
+      if (cartToggle) {
+          cartToggle.addEventListener('click', toggleCart);
+          cartToggle.addEventListener('touchstart', toggleCart);
+      }
+      
+      if (cartCloseBtn) {
+          cartCloseBtn.addEventListener('click', toggleCart);
+          cartCloseBtn.addEventListener('touchstart', toggleCart);
+      }
+      
+      function closeModals(event) {
+          if(event) event.preventDefault();
           if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
           if (slideCart && slideCart.classList.contains('active')) toggleCart();
-          return;
-        }
-      });
+      }
       
-      // --- Separate listener for dynamic cart items ---
+      if (overlay) {
+          overlay.addEventListener('click', closeModals);
+          overlay.addEventListener('touchstart', closeModals);
+      }
+
       if (cartItemsContainer) {
+        // This listener is for dynamic content, 'click' is more stable here
         cartItemsContainer.addEventListener('click', handleCartClick);
+      }
+      
+      function closeThankYou(event) {
+        if(event) event.preventDefault();
+        if (thankYouModal) thankYouModal.classList.remove('active');
+      }
+      
+      if (modalCloseBtn) {
+          modalCloseBtn.addEventListener('click', closeThankYou);
+          modalCloseBtn.addEventListener('touchstart', closeThankYou);
       }
       
       // --- Initial Load ---
