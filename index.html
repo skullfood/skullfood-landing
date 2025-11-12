@@ -563,23 +563,29 @@
       right: 20px;
       background: #00ffff;
       color: #000;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
+      padding: 1rem 1.5rem; /* [CHANGED] */
+      border-radius: 30px; /* [CHANGED] */
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
       text-decoration: none;
       box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
       z-index: 800;
       transition: all 0.3s ease;
+      font-size: 1.1rem; /* [ADDED] */
+      font-weight: bold; /* [ADDED] */
     }
     .contact-fab:hover {
       background: #fff;
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6);
       transform: scale(1.05);
     }
+    /* [ADDED] New styles for icon and text */
+    .contact-fab .fab-icon {
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+
     .modal-close-icon {
       position: absolute;
       top: 15px;
@@ -780,7 +786,10 @@
       </form>
     </div>
   </div>
-  <a href="#" id="contact-fab" aria-label="Contact Us">💬</a>
+  <a href="#" id="contact-fab" aria-label="Contact Us">
+    <span class="fab-icon">💬</span>
+    <span class="fab-text">Chat with us</span>
+  </a>
   <footer class="main-footer">
     <div class="footer-container">
       <div class="social-links">
