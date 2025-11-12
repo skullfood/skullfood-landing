@@ -225,7 +225,7 @@
     .ig-link { background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; font-weight: bold; text-decoration: none; }
     .cart-toggle-btn { position: fixed; top: 20px; left: 20px; width: 40px; height: 40px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; z-index: 1001; font-size: 1.2rem; color: white; padding: 0; }
     .cart-counter { position: absolute; top: -8px; right: -8px; background: #ff4136; color: white; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; } /* [THEME] Red counter */
-    .slide-cart { position: fixed; top: 0; left: -320px; width: 320px; height: 100%; background: #111; z-index: 1000; box-sizing: border-box; transition: left 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #ff4136; } /* [THEME] Red border */
+    .slide-cart { position: fixed; top: 0; left: -380px; width: 380px; height: 100%; background: #111; z-index: 1000; box-sizing: border-box; transition: left 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #ff4136; } /* [THEME] Red border - MODIFIED width and left */
     .slide-cart.active { left: 0; }
     .slide-cart h2 {
       font-family: Georgia, 'Times New Roman', serif;
@@ -802,6 +802,11 @@
               }
 
             });
+          },
+          
+          // [NEW] This function is called when the user cancels the payment
+          onCancel: function(data) {
+            console.log('Payment cancelled:', data);
           },
 
           onError: function(err) {
