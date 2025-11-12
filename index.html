@@ -281,8 +281,8 @@
     .slide-cart {
       position: fixed;
       top: 0;
-      left: -410px;
-      width: 410px;
+      left: -430px; /* [FIX] Widened cart */
+      width: 430px; /* [FIX] Widened cart */
       height: 100%;
       background: #111;
       z-index: 1000;
@@ -391,6 +391,7 @@
       margin-top: 1rem;
       z-index: 100;
       position: relative;
+      min-height: 200px; /* [FIX] Added safe zone for card form */
     }
     
     .modal-overlay {
@@ -597,6 +598,8 @@
       }
 
       function addToCart(id, name, price) {
+        // This function is defined but not used on index.html
+        // It's used on the shop pages, but included here for consistency
         const existingItem = cart.find(item => item.id === id);
         if (existingItem) {
           existingItem.quantity++;
@@ -746,6 +749,3 @@
     
     }); // End of window.load
   </script>
-
-</body>
-</html>
