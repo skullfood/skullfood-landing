@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SKULL FOOD™ - Pepper Spreads</title>
+  <title>SKULL FOOD™ - Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <!-- SEO Tags -->
-  <meta name="description" content="Shop SKULL FOOD™: Rebellious, clean-label, and flavor-forward PEPPER SPREADS." />
-  <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, pepper spread" />
+  <meta name="description" content="SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations. Born from a chemist and a chef. Find us in California." />
+  <meta name="keywords" content="SKULL FOOD, clean label, rebellious food, healthy, farmers market, California, chef-made" />
   <meta name="author" content="SKULL FOOD LLC" />
 
   <!-- PayPal Script -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
   <style>
-    /* RED THEME */
     body {
       margin: 0;
       padding: 0;
@@ -31,233 +30,368 @@
       box-sizing: border-box;
     }
     .container {
-      max-width: 900px;
+      max-width: 700px;
       margin: 3rem auto;  
       padding: 2.5rem 2rem;
       text-align: center;
       position: relative;
       z-index: 10;
     }
-    
-    .page-title {
+    h1 {
       font-size: 2.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       font-family: Georgia, 'Times New Roman', serif;
       color: #fff;
       position: relative;
-      text-shadow: 0 0 8px #ff0000;
+      text-shadow: none;  
+      animation: none;
     }
-    a.back-link {
+    
+    h1::before,
+    h1::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-shadow: none;
+    }
+
+    h1::before {
+      color: #00ffff;
+      opacity: 0.7;  
+      animation: glitch-anim-1 0.15s infinite linear alternate;
+    }
+
+    h1::after {
+      color: #ff00ff;
+      opacity: 0.7;  
+      animation: glitch-anim-2 0.2s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% { transform: translate(3px, 2px); }
+      100% { transform: translate(-3px, -2px); }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { transform: translate(-2px, -3px); }
+      100% { transform: translate(2px, 3px); }
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+    
+    .tagline, .rebellion-text {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #fff;
+      text-shadow: 
+        -1px -1px 0 #057386,  
+         1px -1px 0 #057386,
+        -1px  1px 0 #057386,
+         1px  1px 0 #057386;
+    }
+    
+    .rebellion-text {
+      display: block;
+      margin-top: 2rem;
+    }
+
+    .shop-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .shop-now-btn {
       display: inline-block;
-      color: #ff4136;
+      padding: 1rem 2.5rem;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .shop-now-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 15px #00ffff;
+    }
+    
+    .shop-now-btn.pepper-theme {
+        background: #ff4136;
+        color: #fff;
+    }
+    .shop-now-btn.pepper-theme:hover {
+        background: #fff;
+        color: #000;
+        box-shadow: 0 0 15px #ff4136;
+    }
+
+
+    .menu-toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.3); 
+      border: 1px solid rgba(255,255,255,0.3); 
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 6px;
+      box-sizing: border-box;
+      z-index: 1001;
+    }
+    .menu-toggle-btn .bar {
+      width: 100%;
+      height: 3px;
+      background-color: #ffffff; 
+      border-radius: 2px;
+      opacity: 1; 
+      box-shadow: 0 0 3px rgba(255,255,255,0.5);
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .slide-menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background: #111;
+      z-index: 1000;
+      padding: 2rem;
+      box-sizing: border-box;
+      transition: right 0.3s ease;
+    }
+    .slide-menu.active {
+      right: 0;
+    }
+    .info-container {
+      margin-top: 60px;
+    }
+    .info-box {
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .info-box h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-top: 0;
+      border-bottom: 2px solid #00ffff;
+      padding-bottom: 0.5rem;
+    }
+    .info-box p {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-weight: normal;
+      font-size: 0.95rem;
+      color: #eee;
+      text-shadow: none;
+    }
+    .info-box a {
+      color: #00ffff;
       text-decoration: none;
       font-weight: bold;
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
     }
-    a.back-link:hover {
+    .info-box a:hover {
       text-decoration: underline;
     }
-
-    .product-section {
-      margin-top: 3rem;
-      padding: 1.5rem;
-      background: rgba(0,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      justify-content: center;
-    }
-    .product-card {
-      background: rgba(17, 17, 17, 0.7);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-card h3 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.2rem;
-      color: #ff4136;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .product-card .product-desc {
-      font-size: 0.95rem;
-      font-weight: normal;
-      color: #ccc;
-      text-shadow: none;
-      min-height: 60px;
-      flex-grow: 1;
-    }
-    .product-desc ul {
-      padding-left: 20px;
-      margin-top: 10px;
-      color: #ccc;
-    }
-    .product-desc li {
-      margin-bottom: 5px;
-    }
-    .product-card .product-price {
-      display: flex;
-      justify-content: flex-end;
-      align-items: baseline;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      margin-top: 1rem;
-      text-shadow: none;
+    
+    .ig-link {
+      background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-weight: bold;
+      text-decoration: none;
     }
     
-    .product-price .price-amount {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #fff;
-    }
-    
-    .product-price .price-unit {
-      font-size: 0.9rem;
-      font-weight: normal;
-      color: #aaa;
-    }
-
-    .price-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      margin-bottom: 1rem;
-      margin-top: 1rem;
-    }
-    .price-wrapper .sale-price {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #fff;
-    }
-    .price-wrapper .original-price {
-      font-size: 0.9rem;
-      color: #aaa;
-      text-decoration: line-through;
-    }
-    .price-wrapper .sale-badge {
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #ff4136;
-    }
-    
-    .price-wrapper .price-unit {
-      font-size: 0.9rem;
-      font-weight: normal;
-      color: #aaa;
-      margin-bottom: 0.25rem;
-    }
-
-    .add-to-cart-btn {
-      background: #ff4136;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
-      font-weight: bold;
-      text-transform: uppercase;
+    .cart-toggle-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.3);
       border-radius: 5px;
       cursor: pointer;
-      width: 100%;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      margin-top: auto;
-    }
-    .add-to-cart-btn:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 10px #ff4136;
-    }
-    
-    .coming-soon-text {
-      font-family: Georgia, 'Times New Roman', serif;
+      z-index: 1001;
       font-size: 1.2rem;
-      color: #ff4136;
-      text-align: center;
+      color: white;
+      padding: 0;
+    }
+    .cart-counter {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff00ff;
+      color: white;
+      font-size: 0.75rem;
       font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-      text-shadow: 0 0 3px #ff4136, 0 0 5px #ff0000;
-    }
-    
-    .waitlist-btn {
-      background: #ff4136;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      margin-top: auto;
-      text-align: center;
-    }
-    .waitlist-btn:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 10px #ff4136;
-    }
-
-    .product-placeholder {
-      width: 100%;
-      height: 180px;
-      background: #333;
-      border-radius: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-style: italic;
-      color: #888;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+      border: 1px solid #fff;
+    }
+
+    .slide-cart {
+      position: fixed;
+      top: 0;
+      left: -410px;
+      width: 410px;
+      height: 100%;
+      background: #111;
+      z-index: 1000;
+      box-sizing: border-box;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      border-right: 1px solid #00ffff;
+    }
+    .slide-cart.active {
+      left: 0;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      z-index: 1002;
+    }
+    .close-btn:hover {
+      color: #ff00ff;
+    }
+
+    .slide-cart h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-top: 60px;
+      border-bottom: 2px solid #00ffff;
+      padding-bottom: 0.5rem;
     }
     
-    /* --- ALL CART & MENU STYLES (Red Theme) --- */
-    .menu-toggle-btn { position: fixed; top: 20px; right: 20px; width: 40px; height: 40px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; display: flex; flex-direction: column; justify-content: space-around; align-items: center; padding: 8px 6px; box-sizing: border-box; z-index: 1001; }
-    .menu-toggle-btn .bar { width: 100%; height: 3px; background-color: #ffffff; border-radius: 2px; opacity: 1; box-shadow: 0 0 3px rgba(255,255,255,0.5); }
-    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-    .overlay.active { opacity: 1; visibility: visible; }
-    .slide-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #111; z-index: 1000; padding: 2rem; box-sizing: border-box; transition: right 0.3s ease; }
-    .slide-menu.active { right: 0; }
-    .info-container { margin-top: 60px; }
-    .info-box { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
-    .info-box h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 0; border-bottom: 2px solid #ff4136; padding-bottom: 0.5rem; }
-    .info-box p { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #eee; text-shadow: none; }
-    .info-box a { color: #ff4136; text-decoration: none; font-weight: bold; }
-    .info-box a:hover { text-decoration: underline; }
-    .ig-link { background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; font-weight: bold; text-decoration: none; }
-    .cart-toggle-btn { position: fixed; top: 20px; left: 20px; width: 40px; height: 40px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; z-index: 1001; font-size: 1.2rem; color: white; padding: 0; }
-    .cart-counter { position: absolute; top: -8px; right: -8px; background: #ff4136; color: white; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; }
-    .slide-cart { position: fixed; top: 0; left: -410px; width: 410px; height: 100%; background: #111; z-index: 1000; box-sizing: border-box; transition: left 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #ff4136; }
-    .slide-cart.active { left: 0; }
-    .close-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 2.5rem; font-weight: bold; cursor: pointer; line-height: 1; padding: 0; z-index: 1002; }
-    .close-btn:hover { color: #ff4136; }
-    .slide-cart h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 60px; border-bottom: 2px solid #ff4136; padding-bottom: 0.5rem; }
-    .cart-items { flex-grow: 1; overflow-y: auto; margin-top: 1rem; }
-    .cart-empty { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #aaa; text-shadow: none; text-align: center; margin-top: 2rem; }
-    .cart-item { display: flex; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #333; }
-    .cart-item-info { flex-grow: 1; margin-left: 1rem; }
-    .cart-item-info h4 { font-size: 1rem; color: #fff; margin: 0 0 5px 0; font-weight: bold; }
-    .cart-item-info p { font-size: 0.9rem; color: #aaa; margin: 0; font-weight: normal; text-shadow: none; }
-    .remove-item-btn { background: none; border: none; color: #ff4136; font-size: 1.1rem; font-weight: bold; cursor: pointer; padding: 5px; }
-    .remove-item-btn:hover { color: #fff; }
-    .cart-summary { border-top: 1px solid #444; padding-top: 1rem; }
-    .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; }
-    #paypal-button-container { margin-top: 1rem; z-index: 100; position: relative; }
+    .cart-items {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+    .cart-empty {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-weight: normal;
+      font-size: 0.95rem;
+      color: #aaa;
+      text-shadow: none;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #333;
+    }
+    .cart-item-info {
+      flex-grow: 1;
+      margin-left: 1rem;
+    }
+    .cart-item-info h4 {
+      font-size: 1rem;
+      color: #fff;
+      margin: 0 0 5px 0;
+      font-weight: bold;
+    }
+    .cart-item-info p {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin: 0;
+      font-weight: normal;
+      text-shadow: none;
+    }
+    .remove-item-btn {
+      background: none;
+      border: none;
+      color: #ff00ff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .remove-item-btn:hover {
+      color: #fff;
+    }
+    
+    .cart-summary {
+      border-top: 1px solid #444;
+      padding-top: 1rem;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    #paypal-button-container {
+      margin-top: 1rem;
+      z-index: 100;
+      position: relative;
+    }
     
     .modal-overlay {
       position: fixed;
@@ -276,21 +410,18 @@
     }
     .modal-container {
       background: #111;
-      border: 1px solid #ff4136;
+      border: 1px solid #00ffff;
       border-radius: 8px;
       padding: 2rem;
       width: 90%;
       max-width: 450px;
       position: relative;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-    }
-    
-    .modal-container.thank-you {
-        text-align: center;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      text-align: center;
     }
     .modal-container h2 {
       font-family: Georgia, 'Times New Roman', serif;
-      color: #ff4136;
+      color: #00ffff;
       margin: 0 0 1rem 0;
       font-size: 1.8rem;
     }
@@ -301,8 +432,8 @@
       margin-bottom: 1.5rem;
     }
     .modal-close-btn {
-      background: #ff4136;
-      color: #fff;
+      background: #00ffff;
+      color: #000;
       border: none;
       padding: 0.8rem 1.5rem;
       font-size: 1rem;
@@ -314,9 +445,8 @@
     }
     .modal-close-btn:hover {
       background: #fff;
-      color: #000;
     }
-
+    
   </style>
 </head>
 <body>
@@ -376,9 +506,9 @@
       <div id="paypal-button-container"></div>
     </div>
   </aside>
-  
+
   <div class="modal-overlay" id="thankYouModal">
-    <div class="modal-container thank-you">
+    <div class="modal-container">
       <h2>Thank You!</h2>
       <p>Your order is confirmed. Thanks for joining the rebellion, <span id="payerName"></span>!</p>
       <button class="modal-close-btn" id="modalCloseBtn">Close</button>
@@ -388,82 +518,22 @@
 
   <!-- Main Page Content -->
   <div class="container">
+    <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
     
-    <a href="index.html" class="back-link">&laquo; Back to Home</a>
-    
-    <h1 class="page-title">PEPPER SPREADS</h1>
+    <p class="tagline">Rebellious. Clean-label. Flavor-forward. Coming soon to your taste buds.</p>
 
-    <div class="product-section">
-      <div class="product-grid">
-        
-        <div class="product-card">
-          <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 1]</h3>
-          <p class="product-desc">[Description for the first pepper spread. Bold, smoky, and rebellious.]</p>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" data-id="p1" data-name="Pepper Flavor 1" data-price="13.99">
-            Add to Cart
-          </button>
-        </div>
-        
-        <div class="product-card">
-          <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 2]</h3>
-          <p class="product-desc">[Description for the second pepper spread. A bright, citrusy heat.]</p>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" data-id="p2" data-name="Pepper Flavor 2" data-price="13.99">
-            Add to Cart
-          </button>
-        </div>
+    <p>SKULL FOOD™ was born from the combined expertise of a chemist and a chef entrepreneur with over 15 years in international cuisine and packaged food. Together, they didn’t just create healthy products — they made them wild, unique, and bold.</p>
 
-        <div class="product-card">
-          <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 3]</h3>
-          <p class="product-desc">[Description for the third pepper spread. Deep, dark, and complex flavor.]</p>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" data-id="p3" data-name="Pepper Flavor 3" data-price="13.99">
-            Add to Cart
-          </button>
-        </div>
+    <p>Every product is made from 100% real ingredients. No gums. No preservatives. No added oils or any ingredient to fake weight. Just pure culinary fusion — flavor-forward, and unapologetically rebellious.</p>
 
-        <div class="product-card">
-          <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 4]</h3>
-          <p class="product-desc">[Description for the fourth pepper spread. A green, herby, and vibrant heat.]</g>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" data-id="p4" data-name="Pepper Flavor 4" data-price="13.99">
-            Add to Cart
-          </button>
-        </div>
-
-        <div class="product-card">
-          <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 5]</h3>
-          <p class="product-desc">[Description for the fifth pepper spread. The hottest one in the lineup. Unapologetic.]</g>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" data-id="p5" data-name="Pepper Flavor 5" data-price="13.99">
-            Add to Cart
-          </button>
-        </div>
-
-      </div>
+    <div class="shop-nav">
+      <a href="shop.html" class="shop-now-btn">Shop Sweet Spreads</a>
+      <a href="pepper-spreads.html" class="shop-now-btn pepper-theme">Shop Pepper Spreads</a>
     </div>
-    
+
+    <p>SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
+
+    <strong class="rebellion-text">Join the rebellion.</strong>
   </div>
 
   <script>
@@ -473,7 +543,7 @@
 
     // --- [FIX] Wait for DOM to be loaded ---
     document.addEventListener('DOMContentLoaded', () => {
-
+    
       // --- DOM Elements ---
       const menuToggle = document.getElementById('menuToggle');
       const slideMenu = document.getElementById('slideMenu');
@@ -536,7 +606,7 @@
         saveCart();
         if (!slideCart.classList.contains('active')) {
           if (slideMenu && slideMenu.classList.contains('active')) {
-            toggleMenu();
+             toggleMenu();
           }
           toggleCart();
         }
@@ -609,8 +679,8 @@
             onApprove: function(data, actions) {
               return actions.order.capture().then(function(details) {
                 const payerName = details.payer.name.given_name || 'Rebel';
-                if(payerNameEl) payerNameEl.textContent = payerName;
-                if(thankYouModal) thankYouModal.classList.add('active');
+                if (payerNameEl) payerNameEl.textContent = payerName;
+                if (thankYouModal) thankYouModal.classList.add('active');
                 if (slideCart.classList.contains('active')) {
                   toggleCart();
                 }
@@ -628,7 +698,7 @@
       }
 
       // --- Event Listeners ---
-      if(menuToggle) {
+      if (menuToggle) {
           menuToggle.addEventListener('click', () => {
             if (slideCart && slideCart.classList.contains('active')) {
               toggleCart();
@@ -637,7 +707,7 @@
           });
       }
 
-      if(cartToggle) {
+      if (cartToggle) {
           cartToggle.addEventListener('click', () => {
             if (slideMenu && slideMenu.classList.contains('active')) {
               toggleMenu();
@@ -646,11 +716,11 @@
           });
       }
       
-      if(cartCloseBtn) {
+      if (cartCloseBtn) {
           cartCloseBtn.addEventListener('click', toggleCart);
       }
 
-      if(overlay) {
+      if (overlay) {
           overlay.addEventListener('click', () => {
             if (slideMenu && slideMenu.classList.contains('active')) {
               toggleMenu();
@@ -670,21 +740,10 @@
               if (thankYouModal) thankYouModal.classList.remove('active');
           });
       }
-
-      // --- Direct Event Listeners for Buttons ---
-      const allAddToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-      allAddToCartButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const id = button.dataset.id;
-          const name = button.dataset.name;
-          const price = parseFloat(button.dataset.price);
-          addToCart(id, name, price);
-        });
-      });
-
+      
       // --- Initial Load ---
       loadCart();
-      
+    
     }); // End of DOMContentLoaded
   </script>
 
