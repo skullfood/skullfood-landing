@@ -585,8 +585,8 @@
     let cart = [];
     let payPalButtonsRendered = false;
 
-    // --- [FIX] Wait for DOM to be loaded ---
-    document.addEventListener('DOMContentLoaded', () => {
+    // --- [FIX] Wait for WINDOW to be loaded (safer for mobile) ---
+    window.addEventListener('load', () => {
 
       // --- DOM Elements ---
       const menuToggle = document.getElementById('menuToggle');
@@ -822,7 +822,7 @@
       // --- Initial Load ---
       loadCart();
       
-    }); // End of DOMContentLoaded
+    }); // End of window.load
   </script>
 
 </body>
