@@ -81,13 +81,18 @@
       padding: 1.5rem;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       text-align: left;
+      display: flex; /* Added for layout */
+      flex-direction: column; /* Added for layout */
     }
     .product-card h3 {
       font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.3rem;
+      font-size: 1.2rem; /* [MODIFIED] Slightly reduced font size */
       color: #00ffff;
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
+      white-space: nowrap; /* [NEW] Prevents the title from wrapping to a new line */
+      overflow: hidden; /* [NEW] Hides any overflow just in case */
+      text-overflow: ellipsis; /* [NEW] Adds '...' if text is still too long */
     }
     .product-card .product-desc {
       font-size: 0.95rem;
@@ -95,15 +100,74 @@
       color: #ccc;
       text-shadow: none;
       min-height: 60px; /* Give space for description */
+      flex-grow: 1; /* Makes description take available space */
+    }
+    /* [NEW] Styles for product description lists */
+    .product-desc ul {
+      padding-left: 20px;
+      margin-top: 10px;
+      color: #ccc;
+    }
+    .product-desc li {
+      margin-bottom: 5px;
     }
     .product-card .product-price {
+      /* [MODIFIED] Changed to flex to align price and unit */
+      display: flex;
+      justify-content: flex-end; /* Aligns items to the right */
+      align-items: baseline; /* Aligns text neatly */
+      gap: 0.5rem; /* Space between price and unit */
+      margin-bottom: 1rem;
+      margin-top: 1rem; /* Added margin */
+      text-shadow: none;
+    }
+    
+    /* [NEW] Style for the main price number */
+    .product-price .price-amount {
       font-size: 1.2rem;
       font-weight: bold;
       color: #fff;
-      margin-bottom: 1rem;
-      text-shadow: none;
-      text-align: right;
     }
+    
+    /* [NEW] Style for the "10 Oz" text */
+    .product-price .price-unit {
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #aaa;
+    }
+
+    /* [NEW] Price styling for sales */
+    .price-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+    .price-wrapper .sale-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+    }
+    .price-wrapper .original-price {
+      font-size: 0.9rem;
+      color: #aaa;
+      text-decoration: line-through;
+    }
+    .price-wrapper .sale-badge {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #ff00ff; /* Magenta */
+    }
+    
+    /* [NEW] Unit style for price-wrapper (bundle) */
+    .price-wrapper .price-unit {
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #aaa;
+      margin-bottom: 0.25rem; /* Space it out a bit */
+    }
+
     .add-to-cart-btn {
       background: #00ffff;
       color: #000;
@@ -116,11 +180,30 @@
       cursor: pointer;
       width: 100%;
       transition: background 0.3s ease, box-shadow 0.3s ease;
+      margin-top: auto; /* Pushes button to bottom */
     }
     .add-to-cart-btn:hover {
       background: #fff;
       box-shadow: 0 0 10px #00ffff;
     }
+    
+    /* [REMOVED] Old waitlist button style */
+
+    /* [NEW] Coming Soon Text Style */
+    .coming-soon-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.2rem;
+      color: #00ffff;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      /* Adding a subtle glitch/shadow */
+      text-shadow: 0 0 3px #00ffff, 0 0 5px #ff00ff;
+    }
+
+    /* [REMOVED] Old waitlist helper text style */
+
     .product-placeholder {
       width: 100%;
       height: 180px;
@@ -175,6 +258,102 @@
     .checkout-btn { background: #00ffff; color: #000; border: none; padding: 0.8rem; font-size: 1rem; font-weight: bold; text-transform: uppercase; border-radius: 5px; cursor: pointer; width: 100%; text-align: center; transition: background 0.3s ease, box-shadow 0.3s ease; }
     .checkout-btn:hover { background: #fff; box-shadow: 0 0 10px #00ffff; }
     
+
+    /* --- [NEW] Waitlist Modal Styles --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      display: none; /* Hidden by default */
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active {
+      display: flex; /* Show when active */
+    }
+    .modal-container {
+      background: #111;
+      border: 1px solid #00ffff;
+      border-radius: 8px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 450px;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+    .modal-header h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #00ffff;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .modal-body p {
+      font-size: 1rem;
+      font-weight: normal;
+      text-shadow: none;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1rem;
+      box-sizing: border-box; /* Fix padding issue */
+    }
+    .submit-btn {
+      background: #00ffff;
+      color: #000;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 1rem;
+    }
+    .submit-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
   </style>
 </head>
 <body>
@@ -248,67 +427,108 @@
         
         <!-- Product 1 -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
-          <h3>Rebel Red Sauce</h3>
-          <p class="product-desc">A fiery, unapologetic blend of smoked peppers and secret spices. Not for the faint of heart.</p>
-          <p class="product-price">$12.99</p>
-          <button class="add-to-cart-btn" data-id="1" data-name="Rebel Red Sauce" data-price="12.99">
+          <div class="product-placeholder"></div>
+          <h3>WILD N POPPERS™</h3>
+          <p class="product-desc">Berry to the core, berry on the crown. SKULL FOOD™’s unapologetically bold sweet spread made entirely from real Cranberry. No sugar, no oil, no fluff. Just pure fruit power.</p>
+          <!-- [MODIFIED] Price and Unit -->
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="1" data-name="WILD N POPPERS™" data-price="13.99">
             Add to Cart
           </button>
         </div>
         
         <!-- Product 2 -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
-          <h3>Glitch Green Pesto</h3>
-          <p class="product-desc">A cyber-punk twist on a classic. Kale, basil, and a hint of lime-zest static.</p>
-          <p class="product-price">$14.99</p>
-          <button class="add-to-cart-btn" data-id="2" data-name="Glitch Green Pesto" data-price="14.99">
+          <div class="product-placeholder"></div>
+          <h3>WILD N MANGO™</h3>
+          <p class="product-desc">Sunshine in a jar, crowned with mango. SKULL FOOD™’s tropical twist on the no-sugar, no-oil, no-fluff fruit spread — made entirely from real mangoes and topped with lush mango chunks for that extra pop.</p>
+          <!-- [MODIFIED] Price and Unit -->
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="2" data-name="WILD N MANGO™" data-price="13.99">
             Add to Cart
           </button>
         </div>
 
         <!-- Product 3 -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
-          <h3>Magenta Mutiny</h3>
-          <p class="product-desc">Explosive beet and horseradish relish. The perfect rebellion for any meal.</p>
-          <p class="product-price">$11.99</p>
-          <button class="add-to-cart-btn" data-id="3" data-name="Magenta Mutiny" data-price="11.99">
+          <div class="product-placeholder"></div>
+          <h3>WILD N BERRIES™</h3>
+          <p class="product-desc">Feels like midnight in the middle of the day. SKULL FOOD™’s deep, dreamy sweet spread made from midnight-blue berries and swirled with velvety coconut butter — no sugar, no oil, no fluff.</p>
+          <!-- [MODIFIED] Price and Unit -->
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="3" data-name="WILD N BERRIES™" data-price="13.99">
             Add to Cart
           </button>
         </div>
 
-        <!-- Product 4 -->
+        <!-- Product 4 - NEW -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
-          <h3>Cyan-ide Salsa</h3>
-          <p class="product-desc">A (perfectly safe) and vibrant tomatillo salsa with a cooling, digital-age kick.</p>
-          <p class="product-price">$13.99</p>
-          <button class="add-to-cart-btn" data-id="4" data-name="Cyan-ide Salsa" data-price="13.99">
+          <div class="product-placeholder"></div>
+          <h3>SKULL BURN™</h3>
+          <p class="product-desc">Bold like espresso, wild like fruit, smooth like coconut. The ultimate sensory mashup — a sweet spread that fuses coffee grounds, coconut butter, and a riot of mango, berries, and cranberry. No sugar. No oil. No fluff. Just pure, rebellious intensity.</p>
+          <!-- [MODIFIED] Price and Unit -->
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="4" data-name="SKULL BURN™" data-price="13.99">
             Add to Cart
           </button>
         </div>
 
-        <!-- Product 5 -->
+        <!-- Product 5 - NEW BUNDLE -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
-          <h3>Void-Berry Jam</h3>
-          <p class="product-desc">Blackberry, blueberry, and activated charcoal. Sweet, dark, and mysterious.</p>
-          <p class="product-price">$15.99</p>
-          <button class="add-to-cart-btn" data-id="5" data-name="Void-Berry Jam" data-price="15.99">
+          <div class="product-placeholder"></div>
+          <h3>SKULL SWEET SIX™</h3>
+          <div class="product-desc">
+            A full-force lineup of SKULL FOOD™’s wildest sweet spreads. No sugar. No oil. No fluff. Just six jars of pure, rebellious flavor:
+            <br>🔥 <strong>What’s Inside the box</strong>
+            <ul>
+              <li>WILD N POPPERS™</li>
+              <li>WILD N MANGO™</li>
+              <li>WILD N BERRIES™</li>
+              <li>SKULL BURN™</li>
+            </ul>
+          </div>
+          <!-- [NEW] Sale Price Display -->
+          <div class="price-wrapper">
+            <!-- [NEW] Added unit size for bundle -->
+            <span class="price-unit">10 Oz x 4 units</span>
+            <span class="original-price">$55.96</span>
+            <span class="sale-price">$45.00</span>
+            <span class="sale-badge">(20% OFF)</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="5" data-name="SKULL SWEET SIX™" data-price="45.00">
             Add to Cart
           </button>
         </div>
 
-        <!-- Product 6 -->
+        <!-- Product 6 - NEW -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
-          <h3>OG Skull Rub</h3>
-          <p class="product-desc">The original blend. A smoky, savory, and rebellious rub for all proteins.</p>
-          <p class="product-price">$10.99</p>
-          <button class="add-to-cart-btn" data-id="6" data-name="OG Skull Rub" data-price="10.99">
-            Add to Cart
+          <div class="product-placeholder"></div>
+          <h3>WILD N MATCHA™</h3>
+          <p class="product-desc">Zen meets rebellion. SKULL FOOD™’s bold green sweet spread made from ceremonial-grade matcha and velvety coconut butter. No sugar. No oil. No fluff. Just pure, plant-powered calm with a creamy kick.</p>
+          <!-- [MODIFIED] Price and Unit -->
+          <div class="product-price">
+            <span class="price-unit">10 Oz</span>
+            <span class="price-amount">$13.99</span>
+          </div>
+          
+          <!-- [NEW] "Coming Soon" Sign -->
+          <p class="coming-soon-text">COMING SOON</p>
+
+          <!-- [NEW] Waitlist Button (styled as "add-to-cart") -->
+          <button class="add-to-cart-btn" id="waitlistBtn">
+            JOIN THE WAITING LIST
           </button>
         </div>
 
@@ -317,9 +537,53 @@
     
   </div>
 
+  <!-- [NEW] Waitlist Modal -->
+  <div class="modal-overlay" id="waitlistModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Join the Waitlist</h2>
+        <button class="close-btn" id="closeModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Be the first to know when <strong>WILD N MATCHA™</strong> drops. Enter your info below.</p>
+        
+        <!-- 
+          This form is set to send to your email via formsubmit.co
+          When you get the first email, you MUST click the link
+          to activate the form for your website.
+        -->
+        <form action="https://formsubmit.co/contact@toloni.net" method="POST">
+          <!-- Form fields -->
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="first_name" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="last_name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number (Optional)</label>
+            <input type="text" id="phone" name="phone">
+          </div>
+          
+          <!-- Formsubmit.co settings -->
+          <input type="hidden" name="_subject" value="New Waitlist Signup for WILD N MATCHA™!">
+          <input type="hidden" name="_next" value="httpsYOUR_WEBSITE_URL/shop.html"> <!-- Replace with your live shop URL for a clean redirect -->
+          <input type="hidden" name="_captcha" value="false"> <!-- You can enable this later if you get spam -->
+
+          <button type="submit" class="submit-btn">Notify Me</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script>
     // --- [FIXED] SHARED CART & MENU SCRIPT ---
-    // This script is IDENTICAL to index.html and is fully functional.
     
     // --- State ---
     let cart = [];
@@ -334,6 +598,12 @@
     const cartItemsContainer = document.getElementById('cartItems');
     const cartTotalEl = document.getElementById('cartTotal');
     const cartCounterEl = document.getElementById('cartCounter');
+
+    // [NEW] Waitlist Modal DOM Elements
+    const waitlistModal = document.getElementById('waitlistModal');
+    const waitlistBtn = document.getElementById('waitlistBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    
     
     // --- Menu Functions ---
     function toggleMenu() {
@@ -345,6 +615,15 @@
     function toggleCart() {
       slideCart.classList.toggle('active');
       overlay.classList.toggle('active');
+    }
+
+    // --- [NEW] Waitlist Modal Functions ---
+    function openWaitlistModal() {
+      waitlistModal.classList.add('active');
+    }
+
+    function closeWaitlistModal() {
+      waitlistModal.classList.remove('active');
     }
 
     /**
@@ -490,6 +769,23 @@
         addToCart(id, name, price);
       }
     });
+
+    // [NEW] Waitlist Modal Listeners
+    if (waitlistBtn) {
+      waitlistBtn.addEventListener('click', openWaitlistModal);
+    }
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', closeWaitlistModal);
+    }
+    if (waitlistModal) {
+      // Close modal if user clicks on the dark overlay
+      waitlistModal.addEventListener('click', (event) => {
+        if (event.target === waitlistModal) {
+          closeWaitlistModal();
+        }
+      });
+    }
+
 
     // --- Initial Load ---
     loadCart(); // Load and render cart on page load
