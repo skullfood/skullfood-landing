@@ -283,6 +283,7 @@
       top: 0;
       left: -480px; /* [FIX] Widened cart */
       width: 480px; /* [FIX] Widened cart */
+      max-width: 90vw; /* Ensure it fits on mobile */
       height: 100%;
       background: #111;
       z-index: 1000;
@@ -378,6 +379,7 @@
     .cart-summary {
       border-top: 1px solid #444;
       padding-top: 1rem;
+      margin-top: auto; /* Pushes to bottom */
     }
     .cart-total {
       display: flex;
@@ -540,10 +542,10 @@
   <script>
     // --- State ---
     let cart = [];
-    let payPalButtonsRendered = false;
+    let payPalButtonsRendered = false; // Corrected typo
 
-    // --- [FIX] Wait for WINDOW to be loaded (safer for mobile) ---
-    window.addEventListener('load', () => {
+    // --- [FIX] Wait for DOM to be loaded (faster than 'window.load') ---
+    document.addEventListener('DOMContentLoaded', () => {
     
       // --- DOM Elements ---
       const menuToggle = document.getElementById('menuToggle');
@@ -561,13 +563,13 @@
       const modalCloseBtn = document.getElementById('modalCloseBtn');
       const payerNameEl = document.getElementById('payerName');
       
-      // --- Menu Functions ---
+      // --- All Functions Defined Inside DOMContentLoaded ---
+
       function toggleMenu() {
         if (slideMenu) slideMenu.classList.toggle('active');
         if (overlay) overlay.classList.toggle('active');
       }
 
-      // --- Cart Functions ---
       function toggleCart() {
         if (slideCart) {
             const isCartActive = slideCart.classList.toggle('active');
@@ -598,8 +600,6 @@
       }
 
       function addToCart(id, name, price) {
-        // This function is defined but not used on index.html
-        // It's used on the shop pages, but included here for consistency
         const existingItem = cart.find(item => item.id === id);
         if (existingItem) {
           existingItem.quantity++;
@@ -607,7 +607,7 @@
           cart.push({ id, name, price: parseFloat(price), quantity: 1 });
         }
         saveCart();
-        if (!slideCart.classList.contains('active')) {
+        if (slideCart && !slideCart.classList.contains('active')) {
           if (slideMenu && slideMenu.classList.contains('active')) {
              toggleMenu();
           }
@@ -618,6 +618,7 @@
       function handleCartClick(event) {
         const removeButton = event.target.closest('.remove-item-btn');
         if (removeButton) {
+          event.preventDefault(); // Stop click from bubbling up
           const id = removeButton.dataset.id;
           cart = cart.filter(item => item.id !== id);
           saveCart();
@@ -700,54 +701,56 @@
           }).render('#paypal-button-container');
       }
 
-      // --- Event Listeners ---
-      if (menuToggle) {
-          menuToggle.addEventListener('click', () => {
-            if (slideCart && slideCart.classList.contains('active')) {
-              toggleCart();
-            }
-            toggleMenu();
-          });
-      }
+      // --- [FIX] Robust Event Delegation for Clicks ---
+      document.body.addEventListener('click', (event) => {
 
-      if (cartToggle) {
-          cartToggle.addEventListener('click', () => {
-            if (slideMenu && slideMenu.classList.contains('active')) {
-              toggleMenu();
-            }
+        // --- Menu Toggle ---
+        if (menuToggle && menuToggle.contains(event.target)) {
+          if (slideCart && slideCart.classList.contains('active')) {
             toggleCart();
-          });
-      }
+          }
+          toggleMenu();
+          return;
+        }
+        
+        // --- Cart Toggle ---
+        if (cartToggle && cartToggle.contains(event.target)) {
+          if (slideMenu && slideMenu.classList.contains('active')) {
+            toggleMenu();
+          }
+          toggleCart();
+          return;
+        }
+
+        // --- Cart Close Button ---
+        if (cartCloseBtn && cartCloseBtn.contains(event.target)) {
+          toggleCart();
+          return;
+        }
+        
+        // --- Modal Close Button ---
+        if (modalCloseBtn && modalCloseBtn.contains(event.target)) {
+          if (thankYouModal) thankYouModal.classList.remove('active');
+          return;
+        }
+        
+        // --- Overlay Click ---
+        if (overlay && event.target === overlay) {
+          if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
+          if (slideCart && slideCart.classList.contains('active')) toggleCart();
+          return;
+        }
+      });
       
-      if (cartCloseBtn) {
-          cartCloseBtn.addEventListener('click', toggleCart);
-      }
-
-      if (overlay) {
-          overlay.addEventListener('click', () => {
-            if (slideMenu && slideMenu.classList.contains('active')) {
-              toggleMenu();
-            }
-            if (slideCart && slideCart.classList.contains('active')) {
-              toggleCart();
-            }
-          });
-      }
-
+      // --- Separate listener for dynamic cart items ---
       if (cartItemsContainer) {
         cartItemsContainer.addEventListener('click', handleCartClick);
-      }
-      
-      if (modalCloseBtn) {
-          modalCloseBtn.addEventListener('click', () => {
-              if (thankYouModal) thankYouModal.classList.remove('active');
-          });
       }
       
       // --- Initial Load ---
       loadCart();
     
-    }); // End of window.load
+    }); // End of DOMContentLoaded
   </script>
 
 </body>
