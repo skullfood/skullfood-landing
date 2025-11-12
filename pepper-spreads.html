@@ -5,15 +5,71 @@
   <title>SKULL FOOD™ - Pepper Spreads</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- SEO Tags -->
   <meta name="description" content="Shop SKULL FOOD™: Rebellious, clean-label, and flavor-forward PEPPER SPREADS." />
   <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, pepper spread" />
   <meta name="author" content="SKULL FOOD LLC" />
 
-  <!-- PayPal Script -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
   <style>
+    /* === NEW NAV BAR STYLES === */
+    .main-header {
+      background: rgba(10, 10, 10, 0.9);
+      border-bottom: 1px solid #ff4136; /* RED THEME */
+      padding: 1rem 0;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 900; 
+      box-sizing: border-box;
+    }
+    .nav-container-new {
+      max-width: 700px; /* Aligns with homepage container */
+      margin: 0 auto;
+      padding: 0 2rem; 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .main-nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+    }
+    .main-nav li {
+      margin-left: 1.5rem;
+    }
+    .main-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-weight: bold;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+    .main-nav a:hover {
+      color: #ff4136; /* RED THEME */
+    }
+    @media (max-width: 768px) {
+      .main-nav {
+        display: none; 
+      }
+      .nav-container-new {
+        justify-content: center; 
+      }
+    }
+    /* === END NEW NAV BAR STYLES === */
+
+
     /* RED THEME */
     body {
       margin: 0;
@@ -29,6 +85,9 @@
       background-attachment: fixed;
       min-height: 100vh;
       box-sizing: border-box;
+      /* [NEW] Add flex to push footer down */
+      display: flex;
+      flex-direction: column;
     }
     .container {
       max-width: 900px;
@@ -37,6 +96,8 @@
       text-align: center;
       position: relative;
       z-index: 10;
+      /* [NEW] Make container grow to push footer */
+      flex-grow: 1;
     }
     
     .page-title {
@@ -47,17 +108,7 @@
       position: relative;
       text-shadow: 0 0 8px #ff0000;
     }
-    a.back-link {
-      display: inline-block;
-      color: #ff4136;
-      text-decoration: none;
-      font-weight: bold;
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
-    }
-    a.back-link:hover {
-      text-decoration: underline;
-    }
+    /* REMOVED .back-link styles */
 
     .product-section {
       margin-top: 3rem;
@@ -318,27 +369,68 @@
       color: #000;
     }
 
+    /* === NEW FOOTER STYLES === */
+    .main-footer {
+      background: rgba(10, 10, 10, 0.9);
+      border-top: 1px solid #ff4136; /* RED THEME */
+      padding: 2rem 0;
+      width: 100%;
+      z-index: 10;
+      position: relative;
+    }
+    .footer-container {
+      max-width: 700px; /* Aligns with homepage container */
+      margin: 0 auto;
+      padding: 0 2rem; 
+      text-align: center;
+    }
+    .social-links {
+      margin-bottom: 1.5rem;
+    }
+    .social-links a {
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+    .footer-copyright {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-weight: normal;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin: 0;
+      text-shadow: none;
+    }
+    /* === END FOOTER STYLES === */
+
   </style>
 </head>
 <body>
 
-  <!-- Menu Button (Right) -->
+  <header class="main-header">
+    <div class="nav-container-new">
+      <a href="index.html" class="nav-logo">SKULL FOOD&trade;</a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Sweet Spreads</a></li>
+          <li><a href="pepper-spreads.html">Pepper Spreads</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
   <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </button>
 
-  <!-- Cart Toggle Button (Left) -->
   <button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
     🛒
     <span class="cart-counter" id="cartCounter">0</span>
   </button>
 
-  <!-- Overlay (Shared by Menu and Cart) -->
   <div class="overlay" id="overlay"></div>
 
-  <!-- Slide-Out Menu (Right) -->
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
       <div class="info-box">
@@ -362,7 +454,6 @@
     </div>
   </nav>
 
-  <!-- Slide-Out Cart (Left) -->
   <aside class="slide-cart" id="slideCart">
     <button class="close-btn" id="cartCloseBtn">&times;</button>
     <div class="cart-content">
@@ -389,10 +480,7 @@
   </div>
 
 
-  <!-- Main Page Content -->
   <div class="container">
-    
-    <a href="index.html" class="back-link">&laquo; Back to Home</a>
     
     <h1 class="page-title">PEPPER SPREADS</h1>
 
@@ -469,6 +557,16 @@
     
   </div>
 
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="social-links">
+        <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
+          Instagram: @skullfood.us
+        </a>
+      </div>
+      <p class="footer-copyright">&copy; 2025 SKULL FOOD LLC. All rights reserved.</p>
+    </div>
+  </footer>
   <script>
     // --- State ---
     let cart = [];
@@ -612,8 +710,8 @@
       
       function renderPayPalButtons() {
           if (!window.paypal) {
-              console.error("PayPal SDK script not loaded.");
-              return;
+            console.error("PayPal SDK script not loaded.");
+            return;
           }
 
           paypal.Buttons({
