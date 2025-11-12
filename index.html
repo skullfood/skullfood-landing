@@ -557,41 +557,41 @@
     /* === END FOOTER STYLES === */
 
     /* === NEW CONTACT FORM STYLES === */
-    a.contact-fab { /* [CHANGED] More specific selector */
+    a.contact-fab { 
       position: fixed;
       bottom: 30px; 
       right: 30px; 
       background: #00ffff;
-      color: #fff !important; /* [CHANGED] Important to override other link styles */
-      padding: 1.1rem 1.6rem; 
+      color: #fff !important; /* [FIXED] Set white color */
+      padding: 1rem 1.4rem; /* [CHANGED] Reduced size */
       border-radius: 30px; 
       display: flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none !important; /* [CHANGED] Important to override */
+      text-decoration: none !important; /* [FIXED] Remove underline */
       box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
       z-index: 800;
       transition: all 0.3s ease;
-      font-size: 1.6rem; 
+      font-size: 1.2rem; /* [CHANGED] Reduced size */
       font-weight: bold; 
     }
     a.contact-fab:hover {
       background: #fff;
-      color: #000 !important; /* [CHANGED] Important to override */
+      color: #000 !important; 
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6);
       transform: scale(1.05);
     }
     
     .fab-svg-icon {
-      width: 36px; 
-      height: 36px; 
-      margin-right: 0.9rem; 
-      fill: #fff; /* [CHANGED] Set fill color directly */
+      width: 28px; /* [CHANGED] Reduced size */
+      height: 28px; /* [CHANGED] Reduced size */
+      margin-right: 0.8rem; /* [CHANGED] Reduced size */
+      fill: #fff; /* [FIXED] Set fill color */
       transition: fill 0.3s ease; 
     }
     
     a.contact-fab:hover .fab-svg-icon {
-      fill: #000; /* [CHANGED] */
+      fill: #000; 
     }
 
     .modal-close-icon {
@@ -794,7 +794,8 @@
       </form>
     </div>
   </div>
-  <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us"> <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us"> 
+    <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
     </svg>
     <span class="fab-text">Chat with us</span>
@@ -839,6 +840,8 @@
       const contactModalClose = document.getElementById('contactModalClose');
       const messageTextarea = document.getElementById('message');
       const charCounter = document.getElementById('charCounter');
+      const mainFooter = document.querySelector('.main-footer'); // [NEW] Get footer
+
       
       // --- All Functions Defined Inside DOMContentLoaded ---
 
@@ -903,6 +906,26 @@
         charCounter.textContent = `${charsRemaining} characters remaining`;
       }
       // === END NEW CONTACT MODAL FUNCTIONS ===
+
+      // === [NEW] FOOTER AVOIDANCE FUNCTION ===
+      function handleFabPosition() {
+        if (!contactFab || !mainFooter) return; // Exit if elements don't exist
+        
+        const footerTop = mainFooter.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        const fabMargin = 30; // 30px
+        
+        const overlap = windowHeight - footerTop;
+        
+        if (overlap > 0) {
+          // Footer is in view, move button up
+          contactFab.style.bottom = (overlap + fabMargin) + 'px';
+        } else {
+          // Footer is not in view, reset button
+          contactFab.style.bottom = fabMargin + 'px';
+        }
+      }
+      // === END FOOTER AVOIDANCE FUNCTION ===
 
 
       function loadCart() {
@@ -1067,8 +1090,13 @@
       }
       // === END CONTACT FORM LISTENERS ===
 
+      // === [NEW] SCROLL LISTENER FOR FAB ===
+      window.addEventListener('scroll', handleFabPosition);
+      // === END SCROLL LISTENER ===
+
       // --- Initial Load ---
       loadCart();
+      handleFabPosition(); // [NEW] Run on load
     
     }); // End of DOMContentLoaded
   </script>
