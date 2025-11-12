@@ -1,4 +1,6 @@
-head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <title>SKULL FOOD™ - Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,8 +10,8 @@ head>
   <meta name="keywords" content="SKULL FOOD, clean label, rebellious food, healthy, farmers market, California, chef-made" />
   <meta name="author" content="SKULL FOOD LLC" />
 
-  <!-- [NEW] PayPal SDK Script -->
-  <!-- !! CLIENT ID IS NOW LIVE !! -->
+  <!-- [NEW] PayPal Script -->
+  <!-- Replace YOUR_CLIENT_ID_HERE with your actual PayPal Client ID -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
   <style>
@@ -105,46 +107,45 @@ head>
       margin-top: 2rem;
     }
 
-    /* --- [MODIFIED] Shop Button Styles --- */
-    .shop-category-nav {
+    /* --- [NEW] Shop Now Button Container --- */
+    .shop-nav {
       display: flex;
-      flex-direction: column; /* Stack on mobile */
+      flex-direction: column;
       gap: 1.5rem;
-      margin: 2rem auto;
-      align-items: center;
+      margin: 2rem 0;
     }
 
+    /* --- [NEW] Shop Now Button --- */
     .shop-now-btn {
       display: inline-block;
-      padding: 1rem 2rem; /* Adjusted padding */
+      padding: 1rem 2.5rem;
       background: #00ffff; /* Cyan */
       color: #000; /* Black text */
       border: none;
-      font-size: 1.2rem; /* Adjusted font size */
+      font-size: 1.3rem;
       font-weight: bold;
       text-transform: uppercase;
       border-radius: 5px;
       cursor: pointer;
       text-decoration: none;
       transition: background 0.3s ease, box-shadow 0.3s ease;
-      width: 90%; /* Take up good width on mobile */
-      max-width: 320px; /* Max width for buttons */
     }
-    
-    @media (min-width: 640px) {
-      .shop-category-nav {
-        flex-direction: row; /* Side-by-side on desktop */
-        justify-content: center;
-      }
-      .shop-now-btn {
-        width: auto; /* Auto width on desktop */
-      }
-    }
-
     .shop-now-btn:hover {
       background: #fff;
       box-shadow: 0 0 15px #00ffff;
     }
+    
+    /* [NEW] Pepper Spread Button Theme */
+    .shop-now-btn.pepper-theme {
+        background: #ff4136; /* Red */
+        color: #fff;
+    }
+    .shop-now-btn.pepper-theme:hover {
+        background: #fff;
+        color: #000;
+        box-shadow: 0 0 15px #ff4136;
+    }
+
 
     /* --- STYLES for Slide-Out Menu (RIGHT) --- */
     .menu-toggle-btn {
@@ -288,8 +289,8 @@ head>
     .slide-cart {
       position: fixed;
       top: 0;
-      left: -380px; /* MODIFIED */
-      width: 380px; /* MODIFIED */
+      left: -410px; /* [FIX] Widened cart */
+      width: 410px; /* [FIX] Widened cart */
       height: 100%;
       background: #111;
       z-index: 1000;
@@ -303,12 +304,31 @@ head>
     .slide-cart.active {
       left: 0;
     }
+
+    /* [NEW] Cart Close Button */
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      z-index: 1002;
+    }
+    .close-btn:hover {
+      color: #ff00ff; /* Magenta */
+    }
+
     .slide-cart h2 {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 1.5rem;
       color: #fff;
-      /* [FIX] Changed margin-top to push title below fixed button */
-      margin-top: 60px; 
+      margin-top: 60px; /* Pushes title down */
       border-bottom: 2px solid #00ffff;
       padding-bottom: 0.5rem;
     }
@@ -375,65 +395,54 @@ head>
       font-weight: bold;
       margin-bottom: 1rem;
     }
-    .checkout-btn {
-      background: #00ffff;
-      color: #000;
-      border: none;
-      padding: 0.8rem;
-      font-size: 1rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      text-align: center;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-    }
-    .checkout-btn:hover {
-      background: #fff;
-      box-shadow: 0 0 10px #00ffff;
+
+    /* [NEW] PayPal container */
+    #paypal-button-container {
+      margin-top: 1rem;
+      z-index: 100; /* Ensure PayPal buttons are clickable */
+      position: relative; /* Needed for z-index */
     }
     
-    /* --- [NEW] Styles for Success Modal --- */
-    .modal-overlay.success {
+    /* Thank You Modal Styles */
+    .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.8);
-      z-index: 3000; /* Highest z-index */
-      display: none;
+      z-index: 2000;
+      display: none; /* Hidden by default */
       align-items: center;
       justify-content: center;
     }
-    .modal-overlay.success.active {
-      display: flex;
+    .modal-overlay.active {
+      display: flex; /* Show when active */
     }
-    .success-modal-container {
+    .modal-container {
       background: #111;
-      border: 1px solid #00ffff;
+      border: 1px solid #00ffff; /* Cyan border */
       border-radius: 8px;
-      padding: 2.5rem;
+      padding: 2rem;
       width: 90%;
       max-width: 450px;
       position: relative;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); /* Cyan glow */
       text-align: center;
     }
-    .success-modal-container h2 {
+    .modal-container h2 {
       font-family: Georgia, 'Times New Roman', serif;
-      color: #00ffff;
-      margin-top: 0;
-      margin-bottom: 1rem;
+      color: #00ffff; /* Cyan title */
+      margin: 0 0 1rem 0;
+      font-size: 1.8rem;
     }
-    .success-modal-container p {
+    .modal-container p {
       font-size: 1.1rem;
       font-weight: normal;
       text-shadow: none;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
-    .success-modal-container button {
+    .modal-close-btn {
       background: #00ffff;
       color: #000;
       border: none;
@@ -445,7 +454,7 @@ head>
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    .success-modal-container button:hover {
+    .modal-close-btn:hover {
       background: #fff;
     }
     
@@ -495,6 +504,9 @@ head>
 
   <!-- Slide-Out Cart (Left) -->
   <aside class="slide-cart" id="slideCart">
+    <!-- [NEW] Close Button -->
+    <button class="close-btn" id="cartCloseBtn">&times;</button>
+
     <h2>Your Cart</h2>
     <div class="cart-items" id="cartItems">
       <!-- Items will be dynamically added here -->
@@ -505,15 +517,20 @@ head>
         <strong>Total:</strong>
         <span id="cartTotal">$0.00</span>
       </div>
-      <!-- [REMOVED] Old Checkout Button -->
-      <!-- <button class="checkout-btn">Checkout</button> -->
-      
       <!-- [NEW] PayPal Button Container -->
-      <!-- PayPal will automatically add its buttons here -->
-      <div id="paypal-button-container" style="margin-top: 1rem;"></div>
-      
+      <div id="paypal-button-container"></div>
     </div>
   </aside>
+
+  <!-- [NEW] Thank You Modal -->
+  <div class="modal-overlay" id="thankYouModal">
+    <div class="modal-container">
+      <h2>Thank You!</h2>
+      <p>Your order is confirmed. Thanks for joining the rebellion, <span id="payerName"></span>!</p>
+      <button class="modal-close-btn" id="modalCloseBtn">Close</button>
+    </div>
+  </div>
+
 
   <!-- Main Page Content -->
   <div class="container">
@@ -525,10 +542,10 @@ head>
 
     <p>Every product is made from 100% real ingredients. No gums. No preservatives. No added oils or any ingredient to fake weight. Just pure culinary fusion — flavor-forward, and unapologetically rebellious.</p>
 
-    <!-- [MODIFIED] Shop Now Button Area -->
-    <div class="shop-category-nav">
+    <!-- [NEW] Shop Navigation Buttons -->
+    <div class="shop-nav">
       <a href="shop.html" class="shop-now-btn">Shop Sweet Spreads</a>
-      <a href="pepper-spreads.html" class="shop-now-btn">Shop Pepper Spreads</a>
+      <a href="pepper-spreads.html" class="shop-now-btn pepper-theme">Shop Pepper Spreads</a>
     </div>
 
     <p>SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
@@ -536,36 +553,28 @@ head>
     <strong class="rebellion-text">Join the rebellion.</strong>
   </div>
 
-  <!-- [NEW] Success Modal HTML -->
-  <div class="modal-overlay success" id="successModal">
-    <div class="success-modal-container">
-      <h2>Payment Successful!</h2>
-      <p id="successMessage">Thank you for your order!</p>
-      <button id="closeSuccessModalBtn">Continue Shopping</button>
-    </div>
-  </div>
-
   <script>
-    // --- [FIXED] SHARED CART & MENU SCRIPT ---
+    // --- SHARED CART & MENU SCRIPT ---
     
     // --- State ---
     let cart = [];
+    let payPalButtonsRendered = false; // [NEW] Flag
 
     // --- DOM Elements ---
     const menuToggle = document.getElementById('menuToggle');
     const slideMenu = document.getElementById('slideMenu');
     const cartToggle = document.getElementById('cartToggle');
     const slideCart = document.getElementById('slideCart');
+    const cartCloseBtn = document.getElementById('cartCloseBtn'); // [NEW]
     const overlay = document.getElementById('overlay');
     
     const cartItemsContainer = document.getElementById('cartItems');
     const cartTotalEl = document.getElementById('cartTotal');
     const cartCounterEl = document.getElementById('cartCounter');
     
-    // [NEW] Success Modal Elements
-    const successModal = document.getElementById('successModal');
-    const successMessage = document.getElementById('successMessage');
-    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+    const thankYouModal = document.getElementById('thankYouModal'); // [NEW]
+    const modalCloseBtn = document.getElementById('modalCloseBtn'); // [NEW]
+    const payerNameEl = document.getElementById('payerName'); // [NEW]
     
     // --- Menu Functions ---
     function toggleMenu() {
@@ -575,22 +584,19 @@ head>
 
     // --- Cart Functions ---
     function toggleCart() {
-      slideCart.classList.toggle('active');
+      const isCartActive = slideCart.classList.toggle('active');
       overlay.classList.toggle('active');
-    }
 
-    // --- [NEW] Success Modal Functions ---
-    function openSuccessModal(payerName) {
-      successMessage.textContent = `Thank you for your order, ${payerName}! A confirmation has been sent to your email.`;
-      successModal.classList.add('active');
-    }
-
-    function closeSuccessModal() {
-      successModal.classList.remove('active');
+      // [NEW] Render PayPal buttons ONLY when cart is opened
+      // and if they haven't been rendered already.
+      if (isCartActive && !payPalButtonsRendered) {
+        renderPayPalButtons();
+        payPalButtonsRendered = true;
+      }
     }
 
     /**
-     * [NEW] Loads cart from localStorage
+     * Loads cart from localStorage
      */
     function loadCart() {
       const storedCart = localStorage.getItem('skullfoodCart');
@@ -599,39 +605,38 @@ head>
       } else {
         cart = [];
       }
-      renderCart();
+      renderCartUI();
     }
 
     /**
-     * [NEW] Saves cart to localStorage
+     * Saves cart to localStorage
      */
     function saveCart() {
       localStorage.setItem('skullfoodCart', JSON.stringify(cart));
-      renderCart(); // Re-render every time we save
+      renderCartUI();
+    }
+    
+    /**
+     * [NEW] Clears cart from memory and localStorage
+     */
+    function clearCart() {
+      cart = [];
+      localStorage.removeItem('skullfoodCart');
+      renderCartUI();
     }
 
     /**
      * Adds an item to the cart or updates its quantity
      */
     function addToCart(id, name, price) {
-      // Check if item is already in cart
       const existingItem = cart.find(item => item.id === id);
-
       if (existingItem) {
         existingItem.quantity++;
       } else {
-        cart.push({ id, name, price, quantity: 1 });
+        cart.push({ id, name, price: parseFloat(price), quantity: 1 });
       }
-
-      saveCart(); // Save and re-render
-      
-      // Open the cart to show the user
+      saveCart();
       if (!slideCart.classList.contains('active')) {
-        // [FIX] Check if menu is open and close it first
-        if (slideMenu.classList.contains('active')) {
-          slideMenu.classList.remove('active');
-          overlay.classList.remove('active');
-        }
         toggleCart();
       }
     }
@@ -644,69 +649,127 @@ head>
       if (removeButton) {
         const id = removeButton.dataset.id;
         cart = cart.filter(item => item.id !== id);
-        saveCart(); // Save and re-render
+        saveCart();
       }
     }
 
     /**
      * Re-draws the entire cart UI based on the cart array
      */
-    function renderCart() {
-      // This is the container for the list of items
+    function renderCartUI() {
       if (cartItemsContainer) {
-          cartItemsContainer.innerHTML = ''; // Clear current items
-
-          if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
-          } else {
-            cart.forEach(item => {
-              const itemEl = document.createElement('div');
-              itemEl.classList.add('cart-item');
-              itemEl.innerHTML = `
-                <div class="cart-item-info">
-                  <h4>${item.name}</h4>
-                  <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-                </div>
-                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
-              `;
-              cartItemsContainer.appendChild(itemEl);
-            });
-          }
+        cartItemsContainer.innerHTML = '';
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+        } else {
+          cart.forEach(item => {
+            const itemEl = document.createElement('div');
+            itemEl.classList.add('cart-item');
+            itemEl.innerHTML = `
+              <div class="cart-item-info">
+                <h4>${item.name}</h4>
+                <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+              </div>
+              <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
+            `;
+            cartItemsContainer.appendChild(itemEl);
+          });
+        }
       }
 
-      // Update total price
       const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       if (cartTotalEl) {
-          cartTotalEl.textContent = `$${total.toFixed(2)}`;
+        cartTotalEl.textContent = `$${total.toFixed(2)}`;
       }
 
-      // Update cart counter
       const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
       if (cartCounterEl) {
-          cartCounterEl.textContent = totalQuantity;
+        cartCounterEl.textContent = totalQuantity;
       }
+      
+      // [NEW] Show/Hide PayPal buttons based on cart total
+      const paypalContainer = document.getElementById('paypal-button-container');
+      if (paypalContainer) {
+        paypalContainer.style.display = total > 0 ? 'block' : 'none';
+      }
+    }
+    
+    /**
+     * [NEW] Renders the PayPal Buttons
+     */
+    function renderPayPalButtons() {
+        if (!window.paypal) {
+            console.error("PayPal SDK script not loaded.");
+            return;
+        }
+
+        paypal.Buttons({
+          // This function is called when the user clicks the PayPal button
+          createOrder: function(data, actions) {
+            // Get the current cart total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Return the order details to PayPal
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: total.toFixed(2), // Total amount
+                  currency_code: 'USD'
+                }
+              }]
+            });
+          },
+
+          // This function is called when the payment is approved by the user
+          onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+              
+              const payerName = details.payer.name.given_name || 'Rebel';
+              
+              // 1. Show Thank You Modal
+              payerNameEl.textContent = payerName;
+              thankYouModal.classList.add('active');
+              
+              // 2. Close Cart
+              if (slideCart.classList.contains('active')) {
+                toggleCart();
+              }
+              
+              // 3. Clear the cart
+              clearCart();
+
+            });
+          },
+
+          onCancel: function(data) {
+            console.log('Payment cancelled:', data);
+          },
+
+          onError: function(err) {
+            console.error('An error occurred with the PayPal payment:', err);
+            alert('An error occurred. Please try again.');
+          }
+        }).render('#paypal-button-container');
     }
 
     // --- Event Listeners ---
-    
-    // [NEW/FIXED] Smarter button listeners
     menuToggle.addEventListener('click', () => {
-      // If cart is open, close it *before* toggling the menu
       if (slideCart.classList.contains('active')) {
-        toggleCart(); // This will close cart & overlay
+        toggleCart();
       }
-      toggleMenu(); // This will open menu & overlay
+      toggleMenu();
     });
 
     cartToggle.addEventListener('click', () => {
-      // If menu is open, close it *before* toggling the cart
       if (slideMenu.classList.contains('active')) {
-        toggleMenu(); // This will close menu & overlay
+        toggleMenu();
       }
-      toggleCart(); // This will open cart & overlay
+      toggleCart();
     });
+    
+    // [NEW] Close cart button listener
+    cartCloseBtn.addEventListener('click', toggleCart);
 
-    // Overlay listener to close *whichever* panel is open
     overlay.addEventListener('click', () => {
       if (slideMenu.classList.contains('active')) {
         toggleMenu();
@@ -716,18 +779,18 @@ head>
       }
     });
 
-    // Cart-specific listeners
-    if(cartItemsContainer) {
-        cartItemsContainer.addEventListener('click', handleCartClick);
+    if (cartItemsContainer) {
+      cartItemsContainer.addEventListener('click', handleCartClick);
     }
     
-    // [NEW] Success Modal Listener
-    if(closeSuccessModalBtn) {
-        closeSuccessModalBtn.addEventListener('click', closeSuccessModal);
+    // [NEW] Thank you modal close button
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', () => {
+            thankYouModal.classList.remove('active');
+        });
     }
 
-    // This listener is for the SHOP page, but we include it here
-    // so the same script works on both pages.
+    // Event delegation for "Add to Cart" buttons
     document.body.addEventListener('click', (event) => {
       const addToCartButton = event.target.closest('.add-to-cart-btn');
       if (addToCartButton) {
@@ -739,90 +802,7 @@ head>
     });
 
     // --- Initial Load ---
-    loadCart(); // Load and render cart on page load
-
-    // --- [NEW] PayPal Integration ---
-    // This renders the PayPal buttons into the #paypal-button-container div
-    // Make sure you replaced 'YOUR_CLIENT_ID_HERE' in the script tag in your <head>
-    try {
-        paypal.Buttons({
-          
-          // This function is called when the user clicks the PayPal button.
-          // It dynamically gathers the cart items and total.
-          createOrder: function(data, actions) {
-            
-            // 1. Map our `cart` array to PayPal's `items` format
-            const items = cart.map(item => {
-              return {
-                name: item.name,
-                unit_amount: {
-                  currency_code: 'USD',
-                  value: parseFloat(item.price).toFixed(2)
-                },
-                quantity: item.quantity
-              };
-            });
-
-            // 2. Calculate the total from our cart
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            // 3. Create the order with PayPal
-            return actions.order.create({
-              purchase_units: [{
-                amount: {
-                  currency_code: 'USD',
-                  value: total.toFixed(2),
-                  breakdown: {
-                    item_total: {
-                      currency_code: 'USD',
-                      value: total.toFixed(2)
-                    }
-                    // You can add shipping, tax, etc. here later
-                  }
-                },
-                items: items
-              }]
-            });
-          },
-
-          // This function is called after the user successfully approves the payment
-          onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-              
-              // 1. Get the payer's name
-              const payerName = details.payer.name.given_name;
-
-              // 2. Show our custom "Thank You" modal
-              openSuccessModal(payerName);
-              
-              // 3. Clear the cart
-              cart = [];
-              saveCart(); // This will clear localStorage and re-render the cart UI
-              
-              // 4. Close the cart panel
-              if (slideCart.classList.contains('active')) {
-                toggleCart();
-              }
-
-            });
-          },
-
-          // [NEW] This function is called when the user cancels the payment
-          onCancel: function(data) {
-            console.log('Payment cancelled:', data);
-          },
-
-          // This function is called if an error occurs
-          onError: function(err) {
-            console.error('An error occurred with the PayPal payment:', err);
-            // You could show an error message to the user here
-          }
-          
-        }).render('#paypal-button-container');
-    } catch (e) {
-        console.error('PayPal SDK failed to load or render.', e);
-        // You could show a message here like "Checkout is temporarily unavailable"
-    }
+    loadCart();
 
   </script>
 
