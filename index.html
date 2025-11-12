@@ -85,6 +85,9 @@
       background-attachment: fixed;
       min-height: 100vh;
       box-sizing: border-box;
+      /* [NEW] Add flex to push footer down */
+      display: flex;
+      flex-direction: column;
     }
     .container {
       max-width: 700px;
@@ -93,6 +96,8 @@
       text-align: center;
       position: relative;
       z-index: 10;
+      /* [NEW] Make container grow to push footer */
+      flex-grow: 1;
     }
     h1 {
       font-size: 2.5rem;
@@ -516,6 +521,38 @@
       background: #fff;
     }
     
+    /* === NEW FOOTER STYLES === */
+    .main-footer {
+      background: rgba(10, 10, 10, 0.9);
+      border-top: 1px solid #00ffff;
+      padding: 2rem 0;
+      width: 100%;
+      z-index: 10;
+      position: relative;
+    }
+    .footer-container {
+      max-width: 700px; /* Match your main container width */
+      margin: 0 auto;
+      padding: 0 2rem; /* Match your main container padding */
+      text-align: center;
+    }
+    .social-links {
+      margin-bottom: 1.5rem;
+    }
+    .social-links a {
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+    .footer-copyright {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-weight: normal;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin: 0;
+      text-shadow: none;
+    }
+    /* === END FOOTER STYLES === */
+
   </style>
 </head>
 <body>
@@ -614,6 +651,16 @@
     <strong class="rebellion-text">Join the rebellion.</strong>
   </div>
 
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="social-links">
+        <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
+          Instagram: @skullfood.us
+        </a>
+      </div>
+      <p class="footer-copyright">&copy; 2025 SKULL FOOD LLC. All rights reserved.</p>
+    </div>
+  </footer>
   <script>
     // --- State ---
     let cart = [];
