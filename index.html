@@ -478,6 +478,8 @@
       display: none;
       align-items: center;
       justify-content: center;
+      overflow-y: auto; /* [NEW] Allow modal to scroll on small screens */
+      padding: 1rem 0; /* [NEW] Add padding for scrolling */
     }
     .modal-overlay.active {
       display: flex;
@@ -492,6 +494,7 @@
       position: relative;
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
       text-align: center;
+      margin: auto; /* [NEW] Ensure it's centered when scrolling */
     }
     .modal-container h2 {
       font-family: Georgia, 'Times New Roman', serif;
@@ -553,6 +556,101 @@
     }
     /* === END FOOTER STYLES === */
 
+    /* === NEW CONTACT FORM STYLES === */
+    .contact-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00ffff;
+      color: #000;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
+      z-index: 800;
+      transition: all 0.3s ease;
+    }
+    .contact-fab:hover {
+      background: #fff;
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6);
+      transform: scale(1.05);
+    }
+    .modal-close-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      z-index: 10;
+    }
+    .modal-close-icon:hover {
+      color: #00ffff;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1rem;
+      box-sizing: border-box; /* Important for padding */
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-group .char-counter {
+      font-size: 0.8rem;
+      color: #888;
+      text-align: right;
+      margin-top: 4px;
+    }
+    .submit-btn {
+      background: #00ffff;
+      color: #000;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 1rem;
+    }
+    .submit-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 10px #00ffff;
+    }
+    /* === END CONTACT FORM STYLES === */
+
   </style>
 </head>
 <body>
@@ -572,7 +670,7 @@
   </header>
   <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
     <div class="bar"></div>
-    <div classbar="bar"></div>
+    <div class="bar"></div>
     <div class="bar"></div>
   </button>
 
@@ -642,6 +740,47 @@
     <strong class="rebellion-text">Join the rebellion.</strong>
   </div>
 
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-container">
+      <button class="modal-close-icon" id="contactModalClose">&times;</button>
+      <h2>Contact Us</h2>
+      <form action="https://formsubmit.co/contact@toloni.net" method="POST">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="First Name" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="Last Name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="Email" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" name="Subject" required>
+            <option value="">Please choose an option...</option>
+            <option value="Placing an order">Placing an order</option>
+            <option value="Issue with cart">Issue with cart</option>
+            <option value="Tracking an order">Tracking an order</option>
+            <option value="Refund">Refund</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="Message" maxlength="300" required></textarea>
+          <div class="char-counter" id="charCounter">300 characters remaining</div>
+        </div>
+        
+        <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
+        <input type="hidden" name="_replyto" value="email">
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+  <a href="#" id="contact-fab" aria-label="Contact Us">💬</a>
   <footer class="main-footer">
     <div class="footer-container">
       <div class="social-links">
@@ -675,6 +814,13 @@
       const thankYouModal = document.getElementById('thankYouModal');
       const modalCloseBtn = document.getElementById('modalCloseBtn');
       const payerNameEl = document.getElementById('payerName');
+
+      // === NEW CONTACT FORM ELEMENTS ===
+      const contactFab = document.getElementById('contact-fab');
+      const contactModal = document.getElementById('contactModal');
+      const contactModalClose = document.getElementById('contactModalClose');
+      const messageTextarea = document.getElementById('message');
+      const charCounter = document.getElementById('charCounter');
       
       // --- All Functions Defined Inside DOMContentLoaded ---
 
@@ -682,6 +828,9 @@
         if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
         if (slideCart && slideCart.classList.contains('active')) {
           toggleCart(); // Close cart if open
+        }
+        if (contactModal && contactModal.classList.contains('active')) {
+          closeContactModal(); // Close contact modal if open
         }
         if (slideMenu) slideMenu.classList.toggle('active');
         if (overlay) overlay.classList.toggle('active');
@@ -691,6 +840,9 @@
         if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
         if (slideMenu && slideMenu.classList.contains('active')) {
           toggleMenu(); // Close menu if open
+        }
+        if (contactModal && contactModal.classList.contains('active')) {
+          closeContactModal(); // Close contact modal if open
         }
         if (slideCart) {
             const isCartActive = slideCart.classList.toggle('active');
@@ -702,6 +854,38 @@
             }
         }
       }
+
+      // === NEW CONTACT MODAL FUNCTIONS ===
+      function openContactModal(event) {
+        if(event) event.preventDefault();
+        if (slideMenu && slideMenu.classList.contains('active')) {
+          toggleMenu(); // Close menu if open
+        }
+        if (slideCart && slideCart.classList.contains('active')) {
+          toggleCart(); // Close cart if open
+        }
+        if(contactModal) contactModal.classList.add('active');
+        if(overlay) overlay.classList.add('active');
+      }
+
+      function closeContactModal(event) {
+        if(event) event.preventDefault();
+        if(contactModal) contactModal.classList.remove('active');
+        // Only remove overlay if menu and cart are also closed
+        if (!slideMenu.classList.contains('active') && !slideCart.classList.contains('active')) {
+            if(overlay) overlay.classList.remove('active');
+        }
+      }
+
+      function updateCharCounter() {
+        if (!messageTextarea) return; // [FIX] Check if element exists
+        const maxLength = messageTextarea.maxLength;
+        const currentLength = messageTextarea.value.length;
+        const charsRemaining = maxLength - currentLength;
+        charCounter.textContent = `${charsRemaining} characters remaining`;
+      }
+      // === END NEW CONTACT MODAL FUNCTIONS ===
+
 
       function loadCart() {
         const storedCart = localStorage.getItem('skullfoodCart');
@@ -827,6 +1011,7 @@
           if(event) event.preventDefault();
           if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
           if (slideCart && slideCart.classList.contains('active')) toggleCart();
+          if (contactModal && contactModal.classList.contains('active')) closeContactModal(); // [NEW] Close contact modal on overlay click
       }
       
       if (overlay) {
@@ -849,6 +1034,21 @@
           modalCloseBtn.addEventListener('touchstart', closeThankYou);
       }
       
+      // === NEW CONTACT FORM LISTENERS ===
+      if (contactFab) {
+        contactFab.addEventListener('click', openContactModal);
+        contactFab.addEventListener('touchstart', openContactModal);
+      }
+      if (contactModalClose) {
+        contactModalClose.addEventListener('click', closeContactModal);
+        contactModalClose.addEventListener('touchstart', closeContactModal);
+      }
+      if (messageTextarea) {
+        messageTextarea.addEventListener('input', updateCharCounter);
+        updateCharCounter(); // Run on load
+      }
+      // === END CONTACT FORM LISTENERS ===
+
       // --- Initial Load ---
       loadCart();
     
