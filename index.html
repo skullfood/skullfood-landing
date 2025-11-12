@@ -12,6 +12,27 @@
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
   <style>
+    /* === NEW SHIPPING BAR STYLES === */
+    .shipping-bar {
+      background: #00ffff; /* Your site's cyan color */
+      color: #000;
+      text-align: center;
+      padding: 0.75rem 1rem; /* Approx 12px */
+      position: sticky;
+      top: 0;
+      z-index: 950; /* Above the header (900) but below modals (1000+) */
+      box-sizing: border-box;
+    }
+    .shipping-bar p {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1rem; /* Approx 16px */
+      line-height: 1.2; /* Tighter line height */
+      text-shadow: none; /* Override default p styles */
+      color: #000; /* Override default p styles */
+    }
+    /* === END SHIPPING BAR STYLES === */
+    
     /* === NEW NAV BAR STYLES === */
     .main-header {
       background: rgba(10, 10, 10, 0.9);
@@ -19,8 +40,10 @@
       padding: 1rem 0;
       width: 100%;
       position: sticky;
-      top: 0;
-      z-index: 900; /* Below slide-out menus (1000) */
+      /* [CHANGED] This value is the height of the shipping bar */
+      /* (0.75rem * 2) padding + 1rem * 1.2 line-height = approx 43px */
+      top: 44px; 
+      z-index: 900; 
       box-sizing: border-box;
     }
     .nav-container-new {
@@ -67,6 +90,10 @@
       }
       .nav-container-new {
         justify-content: center; /* Center the logo on mobile */
+      }
+      /* [NEW] Adjust header top position after shipping bar on mobile */
+      .main-header {
+        top: 44px; /* You might need to adjust this if bar height is different on mobile */
       }
     }
     /* === END NEW NAV BAR STYLES === */
@@ -698,6 +725,9 @@
 </head>
 <body>
 
+  <div class="shipping-bar">
+    <p>Free Nationwide Shipping on Orders $65+</p>
+  </div>
   <header class="main-header">
     <div class="nav-container-new">
       <a href="index.html" class="nav-logo">SKULL FOOD&trade;</a>
@@ -1129,7 +1159,7 @@
       // === [NEW] SCROLL LISTENER FOR FAB ===
       window.addEventListener('scroll', handleFabPosition);
       // === END SCROLL LISTENER ===
-
+      
       // --- Initial Load ---
       loadCart();
       handleFabPosition(); // [NEW] Run on load
