@@ -467,216 +467,225 @@
   </div>
 
   <script>
-    // --- SHARED CART & MENU SCRIPT ---
-    
     // --- State ---
     let cart = [];
     let payPalButtonsRendered = false;
 
-    // --- DOM Elements ---
-    const menuToggle = document.getElementById('menuToggle');
-    const slideMenu = document.getElementById('slideMenu');
-    const cartToggle = document.getElementById('cartToggle');
-    const slideCart = document.getElementById('slideCart');
-    const cartCloseBtn = document.getElementById('cartCloseBtn');
-    const overlay = document.getElementById('overlay');
-    
-    const cartItemsContainer = document.getElementById('cartItems');
-    const cartTotalEl = document.getElementById('cartTotal');
-    const cartCounterEl = document.getElementById('cartCounter');
-    
-    const thankYouModal = document.getElementById('thankYouModal');
-    const modalCloseBtn = document.getElementById('modalCloseBtn');
-    const payerNameEl = document.getElementById('payerName');
-    
-    // --- Menu Functions ---
-    function toggleMenu() {
-      slideMenu.classList.toggle('active');
-      overlay.classList.toggle('active');
-    }
+    // --- [FIX] Wait for DOM to be loaded ---
+    document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Cart Functions ---
-    function toggleCart() {
-      const isCartActive = slideCart.classList.toggle('active');
-      overlay.classList.toggle('active');
-
-      if (isCartActive && !payPalButtonsRendered) {
-        renderPayPalButtons();
-        payPalButtonsRendered = true;
+      // --- DOM Elements ---
+      const menuToggle = document.getElementById('menuToggle');
+      const slideMenu = document.getElementById('slideMenu');
+      const cartToggle = document.getElementById('cartToggle');
+      const slideCart = document.getElementById('slideCart');
+      const cartCloseBtn = document.getElementById('cartCloseBtn');
+      const overlay = document.getElementById('overlay');
+      
+      const cartItemsContainer = document.getElementById('cartItems');
+      const cartTotalEl = document.getElementById('cartTotal');
+      const cartCounterEl = document.getElementById('cartCounter');
+      
+      const thankYouModal = document.getElementById('thankYouModal');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+      const payerNameEl = document.getElementById('payerName');
+      
+      // --- Menu Functions ---
+      function toggleMenu() {
+        if (slideMenu) slideMenu.classList.toggle('active');
+        if (overlay) overlay.classList.toggle('active');
       }
-    }
 
-    function loadCart() {
-      const storedCart = localStorage.getItem('skullfoodCart');
-      cart = storedCart ? JSON.parse(storedCart) : [];
-      renderCartUI();
-    }
+      // --- Cart Functions ---
+      function toggleCart() {
+        if (slideCart) {
+            const isCartActive = slideCart.classList.toggle('active');
+            if (overlay) overlay.classList.toggle('active');
 
-    function saveCart() {
-      localStorage.setItem('skullfoodCart', JSON.stringify(cart));
-      renderCartUI();
-    }
-    
-    function clearCart() {
-      cart = [];
-      localStorage.removeItem('skullfoodCart');
-      renderCartUI();
-    }
-
-    function addToCart(id, name, price) {
-      const existingItem = cart.find(item => item.id === id);
-      if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        cart.push({ id, name, price: parseFloat(price), quantity: 1 });
-      }
-      saveCart();
-      if (!slideCart.classList.contains('active')) {
-        if (slideMenu.classList.contains('active')) {
-          toggleMenu();
-        }
-        toggleCart();
-      }
-    }
-
-    function handleCartClick(event) {
-      const removeButton = event.target.closest('.remove-item-btn');
-      if (removeButton) {
-        const id = removeButton.dataset.id;
-        cart = cart.filter(item => item.id !== id);
-        saveCart();
-      }
-    }
-
-    function renderCartUI() {
-      if (cartItemsContainer) {
-        cartItemsContainer.innerHTML = '';
-        if (cart.length === 0) {
-          cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
-        } else {
-          cart.forEach(item => {
-            const itemEl = document.createElement('div');
-            itemEl.classList.add('cart-item');
-            itemEl.innerHTML = `
-              <div class="cart-item-info">
-                <h4>${item.name}</h4>
-                <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-              </div>
-              <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
-            `;
-            cartItemsContainer.appendChild(itemEl);
-          });
+            if (isCartActive && !payPalButtonsRendered) {
+              renderPayPalButtons();
+              payPalButtonsRendered = true;
+            }
         }
       }
 
-      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      if (cartTotalEl) {
-        cartTotalEl.textContent = `$${total.toFixed(2)}`;
+      function loadCart() {
+        const storedCart = localStorage.getItem('skullfoodCart');
+        cart = storedCart ? JSON.parse(storedCart) : [];
+        renderCartUI();
       }
 
-      const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-      if (cartCounterEl) {
-        cartCounterEl.textContent = totalQuantity;
+      function saveCart() {
+        localStorage.setItem('skullfoodCart', JSON.stringify(cart));
+        renderCartUI();
       }
       
-      const paypalContainer = document.getElementById('paypal-button-container');
-      if (paypalContainer) {
-        paypalContainer.style.display = total > 0 ? 'block' : 'none';
+      function clearCart() {
+        cart = [];
+        localStorage.removeItem('skullfoodCart');
+        renderCartUI();
       }
-    }
-    
-    function renderPayPalButtons() {
-        if (!window.paypal) {
-            console.error("PayPal SDK script not loaded.");
-            return;
+
+      function addToCart(id, name, price) {
+        const existingItem = cart.find(item => item.id === id);
+        if (existingItem) {
+          existingItem.quantity++;
+        } else {
+          cart.push({ id, name, price: parseFloat(price), quantity: 1 });
+        }
+        saveCart();
+        if (!slideCart.classList.contains('active')) {
+          if (slideMenu && slideMenu.classList.contains('active')) {
+            toggleMenu();
+          }
+          toggleCart();
+        }
+      }
+
+      function handleCartClick(event) {
+        const removeButton = event.target.closest('.remove-item-btn');
+        if (removeButton) {
+          const id = removeButton.dataset.id;
+          cart = cart.filter(item => item.id !== id);
+          saveCart();
+        }
+      }
+
+      function renderCartUI() {
+        if (cartItemsContainer) {
+          cartItemsContainer.innerHTML = '';
+          if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+          } else {
+            cart.forEach(item => {
+              const itemEl = document.createElement('div');
+              itemEl.classList.add('cart-item');
+              itemEl.innerHTML = `
+                <div class="cart-item-info">
+                  <h4>${item.name}</h4>
+                  <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+                </div>
+                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
+              `;
+              cartItemsContainer.appendChild(itemEl);
+            });
+          }
         }
 
-        paypal.Buttons({
-          createOrder: function(data, actions) {
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            return actions.order.create({
-              purchase_units: [{
-                amount: {
-                  value: total.toFixed(2),
-                  currency_code: 'USD'
-                }
-              }]
-            });
-          },
-          onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-              const payerName = details.payer.name.given_name || 'Rebel';
-              payerNameEl.textContent = payerName;
-              thankYouModal.classList.add('active');
-              if (slideCart.classList.contains('active')) {
-                toggleCart();
-              }
-              clearCart();
-            });
-          },
-          onCancel: function(data) {
-            console.log('Payment cancelled:', data);
-          },
-          onError: function(err) {
-            console.error('An error occurred with the PayPal payment:', err);
-            alert('An error occurred. Please try again.');
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        if (cartTotalEl) {
+          cartTotalEl.textContent = `$${total.toFixed(2)}`;
+        }
+
+        const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+        if (cartCounterEl) {
+          cartCounterEl.textContent = totalQuantity;
+        }
+        
+        const paypalContainer = document.getElementById('paypal-button-container');
+        if (paypalContainer) {
+          paypalContainer.style.display = total > 0 ? 'block' : 'none';
+        }
+      }
+      
+      function renderPayPalButtons() {
+          if (!window.paypal) {
+              console.error("PayPal SDK script not loaded.");
+              return;
           }
-        }).render('#paypal-button-container');
-    }
 
-    // --- Event Listeners ---
-    menuToggle.addEventListener('click', () => {
-      if (slideCart.classList.contains('active')) {
-        toggleCart();
+          paypal.Buttons({
+            createOrder: function(data, actions) {
+              const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+              return actions.order.create({
+                purchase_units: [{
+                  amount: {
+                    value: total.toFixed(2),
+                    currency_code: 'USD'
+                  }
+                }]
+              });
+            },
+            onApprove: function(data, actions) {
+              return actions.order.capture().then(function(details) {
+                const payerName = details.payer.name.given_name || 'Rebel';
+                if(payerNameEl) payerNameEl.textContent = payerName;
+                if(thankYouModal) thankYouModal.classList.add('active');
+                if (slideCart.classList.contains('active')) {
+                  toggleCart();
+                }
+                clearCart();
+              });
+            },
+            onCancel: function(data) {
+              console.log('Payment cancelled:', data);
+            },
+            onError: function(err) {
+              console.error('An error occurred with the PayPal payment:', err);
+              alert('An error occurred. Please try again.');
+            }
+          }).render('#paypal-button-container');
       }
-      toggleMenu();
-    });
 
-    cartToggle.addEventListener('click', () => {
-      if (slideMenu.classList.contains('active')) {
-        toggleMenu();
+      // --- Event Listeners ---
+      if(menuToggle) {
+          menuToggle.addEventListener('click', () => {
+            if (slideCart && slideCart.classList.contains('active')) {
+              toggleCart();
+            }
+            toggleMenu();
+          });
       }
-      toggleCart();
-    });
-    
-    cartCloseBtn.addEventListener('click', toggleCart);
 
-    overlay.addEventListener('click', () => {
-      if (slideMenu.classList.contains('active')) {
-        toggleMenu();
+      if(cartToggle) {
+          cartToggle.addEventListener('click', () => {
+            if (slideMenu && slideMenu.classList.contains('active')) {
+              toggleMenu();
+            }
+            toggleCart();
+          });
       }
-      if (slideCart.classList.contains('active')) {
-        toggleCart();
+      
+      if(cartCloseBtn) {
+          cartCloseBtn.addEventListener('click', toggleCart);
       }
-    });
 
-    if (cartItemsContainer) {
-      cartItemsContainer.addEventListener('click', handleCartClick);
-    }
-    
-    if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', () => {
-            thankYouModal.classList.remove('active');
+      if(overlay) {
+          overlay.addEventListener('click', () => {
+            if (slideMenu && slideMenu.classList.contains('active')) {
+              toggleMenu();
+            }
+            if (slideCart && slideCart.classList.contains('active')) {
+              toggleCart();
+            }
+          });
+      }
+
+      if (cartItemsContainer) {
+        cartItemsContainer.addEventListener('click', handleCartClick);
+      }
+      
+      if (modalCloseBtn) {
+          modalCloseBtn.addEventListener('click', () => {
+              if (thankYouModal) thankYouModal.classList.remove('active');
+          });
+      }
+
+      // --- Direct Event Listeners for Buttons ---
+      const allAddToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+      allAddToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const id = button.dataset.id;
+          const name = button.dataset.name;
+          const price = parseFloat(button.dataset.price);
+          addToCart(id, name, price);
         });
-    }
-
-    // --- [FIX] New Direct Event Listeners for Buttons ---
-    
-    // Find all "Add to Cart" buttons
-    const allAddToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-    // Attach listener to each one
-    allAddToCartButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const id = button.dataset.id;
-        const name = button.dataset.name;
-        const price = parseFloat(button.dataset.price);
-        addToCart(id, name, price);
       });
-    });
 
-    // --- Initial Load ---
-    loadCart();
-
+      // --- Initial Load ---
+      loadCart();
+      
+    }); // End of DOMContentLoaded
   </script>
 
 </body>
