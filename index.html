@@ -562,9 +562,9 @@
       bottom: 20px;
       right: 20px;
       background: #00ffff;
-      color: #000;
-      padding: 1rem 1.5rem; /* [CHANGED] */
-      border-radius: 30px; /* [CHANGED] */
+      color: #fff; /* [CHANGED] White text */
+      padding: 0.9rem 1.25rem; /* [CHANGED] Adjusted padding */
+      border-radius: 30px; 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -572,18 +572,21 @@
       box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
       z-index: 800;
       transition: all 0.3s ease;
-      font-size: 1.1rem; /* [ADDED] */
-      font-weight: bold; /* [ADDED] */
+      font-size: 1.1rem; 
+      font-weight: bold; 
     }
     .contact-fab:hover {
       background: #fff;
+      color: #000; /* [CHANGED] Black text on hover */
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6);
       transform: scale(1.05);
     }
-    /* [ADDED] New styles for icon and text */
-    .contact-fab .fab-icon {
-      font-size: 1.5rem;
-      margin-right: 0.5rem;
+    
+    /* [ADDED] New style for SVG icon */
+    .fab-svg-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.75rem;
     }
 
     .modal-close-icon {
@@ -787,7 +790,9 @@
     </div>
   </div>
   <a href="#" id="contact-fab" aria-label="Contact Us">
-    <span class="fab-icon">💬</span>
+    <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
+    </svg>
     <span class="fab-text">Chat with us</span>
   </a>
   <footer class="main-footer">
