@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>SKULL FOOD™ - Pepper Spreads</title>
@@ -8,15 +10,11 @@
   <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, pepper spread" />
   <meta name="author" content="SKULL FOOD LLC" />
 
-  <!-- [NEW] PayPal SDK Script -->
-  <!-- !! CLIENT ID IS NOW LIVE !! -->
+  <!-- [NEW] PayPal Script -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
   <style>
-    /* ALL STYLES ARE IDENTICAL TO shop.html
-      BUT all cyan/magenta colors have been
-      replaced with a new RED theme.
-    */
+    /* RED THEME */
     body {
       margin: 0;
       padding: 0;
@@ -41,7 +39,6 @@
       z-index: 10;
     }
     
-    /* --- Page Title Styles --- */
     .page-title {
       font-size: 2.5rem;
       margin-bottom: 2rem;
@@ -62,7 +59,6 @@
       text-decoration: underline;
     }
 
-    /* --- Product Grid Styles --- */
     .product-section {
       margin-top: 3rem;
       padding: 1.5rem;
@@ -88,11 +84,11 @@
     }
     .product-card h3 {
       font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.2rem;
+      font-size: 1.2rem; /* [FIX] */
       color: #ff4136; /* [THEME] Red title */
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
-      white-space: nowrap;
+      white-space: nowrap; /* [FIX] */
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -194,6 +190,28 @@
       margin-bottom: 0.75rem;
       text-shadow: 0 0 3px #ff4136, 0 0 5px #ff0000; /* [THEME] Red glow */
     }
+    
+    /* [NEW] Waitlist button style (clone of add-to-cart) */
+    .waitlist-btn {
+      background: #ff4136; /* [THEME] Red button */
+      color: #fff; /* White text */
+      border: none;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      margin-top: auto;
+      text-align: center;
+    }
+    .waitlist-btn:hover {
+      background: #fff;
+      color: #000; /* Black text on white hover */
+      box-shadow: 0 0 10px #ff4136; /* [THEME] Red glow */
+    }
 
     .product-placeholder {
       width: 100%;
@@ -225,16 +243,11 @@
     .ig-link { background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; font-weight: bold; text-decoration: none; }
     .cart-toggle-btn { position: fixed; top: 20px; left: 20px; width: 40px; height: 40px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; z-index: 1001; font-size: 1.2rem; color: white; padding: 0; }
     .cart-counter { position: absolute; top: -8px; right: -8px; background: #ff4136; color: white; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; } /* [THEME] Red counter */
-    .slide-cart { position: fixed; top: 0; left: -380px; width: 380px; height: 100%; background: #111; z-index: 1000; box-sizing: border-box; transition: left 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #ff4136; } /* [THEME] Red border - MODIFIED width and left */
+    .slide-cart { position: fixed; top: 0; left: -410px; width: 410px; height: 100%; background: #111; z-index: 1000; box-sizing: border-box; transition: left 0.3s ease; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #ff4136; } /* [THEME] Red border - [FIX] Widened */
     .slide-cart.active { left: 0; }
-    .slide-cart h2 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.5rem;
-      color: #fff;
-      margin-top: 60px;
-      border-bottom: 2px solid #ff4136; /* [THEME] Red border */
-      padding-bottom: 0.5rem;
-    }
+    .close-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 2.5rem; font-weight: bold; cursor: pointer; line-height: 1; padding: 0; z-index: 1002; } /* [NEW] Close Button */
+    .close-btn:hover { color: #ff4136; } /* [THEME] Red hover */
+    .slide-cart h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 60px; border-bottom: 2px solid #ff4136; padding-bottom: 0.5rem; } /* [THEME] Red border - [FIX] margin-top */
     .cart-items { flex-grow: 1; overflow-y: auto; margin-top: 1rem; }
     .cart-empty { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #aaa; text-shadow: none; text-align: center; margin-top: 2rem; }
     .cart-item { display: flex; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #333; }
@@ -245,8 +258,7 @@
     .remove-item-btn:hover { color: #fff; }
     .cart-summary { border-top: 1px solid #444; padding-top: 1rem; }
     .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; }
-    .checkout-btn { background: #ff4136; color: #fff; border: none; padding: 0.8rem; font-size: 1rem; font-weight: bold; text-transform: uppercase; border-radius: 5px; cursor: pointer; width: 100%; text-align: center; transition: background 0.3s ease, box-shadow 0.3s ease; } /* [THEME] Red button */
-    .checkout-btn:hover { background: #fff; color: #000; box-shadow: 0 0 10px #ff4136; } /* [THEME] Red glow */
+    #paypal-button-container { margin-top: 1rem; z-index: 100; position: relative; } /* [NEW] */
     
     /* Modal styles (Red Theme) */
     .modal-overlay {
@@ -274,116 +286,24 @@
       position: relative;
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* [THEME] Red glow */
     }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #333;
-      padding-bottom: 1rem;
-      margin-bottom: 1rem;
+    
+    /* Thank You Modal */
+    .modal-container.thank-you {
+        text-align: center;
     }
-    .modal-header h2 {
+    .modal-container h2 {
       font-family: Georgia, 'Times New Roman', serif;
       color: #ff4136; /* [THEME] Red title */
-      margin: 0;
-      font-size: 1.5rem;
+      margin: 0 0 1rem 0;
+      font-size: 1.8rem;
     }
-    .close-btn {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .modal-body p {
-      font-size: 1rem;
-      font-weight: normal;
-      text-shadow: none;
-      margin-bottom: 1.5rem;
-      text-align: left;
-    }
-    .form-group {
-      margin-bottom: 1rem;
-      text-align: left;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-    .form-group input {
-      width: 100%;
-      padding: 0.75rem;
-      background: #222;
-      border: 1px solid #444;
-      border-radius: 5px;
-      color: #fff;
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
-    .submit-btn {
-      background: #ff4136; /* [THEME] Red button */
-      color: #fff;
-      border: none;
-      padding: 0.8rem;
-      font-size: 1rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      margin-top: 1rem;
-    }
-    .submit-btn:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 10px #ff4136; /* [THEME] Red glow */
-    }
-
-    /* --- [NEW] Styles for Success Modal (Red Theme) --- */
-    .modal-overlay.success {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 3000; /* Highest z-index */
-      display: none;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-overlay.success.active {
-      display: flex;
-    }
-    .success-modal-container {
-      background: #111;
-      border: 1px solid #ff4136; /* [THEME] Red border */
-      border-radius: 8px;
-      padding: 2.5rem;
-      width: 90%;
-      max-width: 450px;
-      position: relative;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* [THEME] Red glow */
-      text-align: center;
-    }
-    .success-modal-container h2 {
-      font-family: Georgia, 'Times New Roman', serif;
-      color: #ff4136; /* [THEME] Red title */
-      margin-top: 0;
-      margin-bottom: 1rem;
-    }
-    .success-modal-container p {
+    .modal-container p {
       font-size: 1.1rem;
       font-weight: normal;
       text-shadow: none;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
-    .success-modal-container button {
+    .modal-close-btn {
       background: #ff4136; /* [THEME] Red button */
       color: #fff;
       border: none;
@@ -395,7 +315,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    .success-modal-container button:hover {
+    .modal-close-btn:hover {
       background: #fff;
       color: #000;
     }
@@ -446,6 +366,7 @@
 
   <!-- Slide-Out Cart (Left) -->
   <aside class="slide-cart" id="slideCart">
+    <button class="close-btn" id="cartCloseBtn">&times;</button> <!-- [NEW] Close Button -->
     <h2>Your Cart</h2>
     <div class="cart-items" id="cartItems">
       <p class="cart-empty">Your cart is empty.</p>
@@ -455,14 +376,19 @@
         <strong>Total:</strong>
         <span id="cartTotal">$0.00</span>
       </div>
-      <!-- [REMOVED] Old Checkout Button -->
-      <!-- <button class="checkout-btn">Checkout</button> -->
-      
-      <!-- [NEW] PayPal Button Container -->
-      <div id="paypal-button-container" style="margin-top: 1rem;"></div>
-      
+      <div id="paypal-button-container"></div> <!-- [NEW] -->
     </div>
   </aside>
+  
+  <!-- [NEW] Thank You Modal -->
+  <div class="modal-overlay" id="thankYouModal">
+    <div class="modal-container thank-you">
+      <h2>Thank You!</h2>
+      <p>Your order is confirmed. Thanks for joining the rebellion, <span id="payerName"></span>!</p>
+      <button class="modal-close-btn" id="modalCloseBtn">Close</button>
+    </div>
+  </div>
+
 
   <!-- Main Page Content -->
   <div class="container">
@@ -521,7 +447,7 @@
         <div class="product-card">
           <div class="product-placeholder"></div>
           <h3>[Pepper Flavor 4]</h3>
-          <p class="product-desc">[Description for the fourth pepper spread. A green, herby, and vibrant heat.]</p>
+          <p class="product-desc">[Description for the fourth pepper spread. A green, herby, and vibrant heat.]</g>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
@@ -550,43 +476,28 @@
     
   </div>
 
-  <!-- [NEW] Success Modal HTML -->
-  <div class="modal-overlay success" id="successModal">
-    <div class="success-modal-container">
-      <h2>Payment Successful!</h2>
-      <p id="successMessage">Thank you for your order!</p>
-      <button id="closeSuccessModalBtn">Continue Shopping</button>
-    </div>
-  </div>
-
-  <!-- 
-    The Waitlist Modal HTML is removed from this page
-    to keep it clean.
-  -->
-
   <script>
-    // --- [FIXED] SHARED CART & MENU SCRIPT ---
+    // --- SHARED CART & MENU SCRIPT ---
     
     // --- State ---
     let cart = [];
+    let payPalButtonsRendered = false; // [NEW]
 
     // --- DOM Elements ---
     const menuToggle = document.getElementById('menuToggle');
     const slideMenu = document.getElementById('slideMenu');
     const cartToggle = document.getElementById('cartToggle');
     const slideCart = document.getElementById('slideCart');
+    const cartCloseBtn = document.getElementById('cartCloseBtn'); // [NEW]
     const overlay = document.getElementById('overlay');
     
     const cartItemsContainer = document.getElementById('cartItems');
     const cartTotalEl = document.getElementById('cartTotal');
     const cartCounterEl = document.getElementById('cartCounter');
-
-    // [NEW] Success Modal Elements
-    const successModal = document.getElementById('successModal');
-    const successMessage = document.getElementById('successMessage');
-    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
-
-    // Waitlist Modal DOM Elements are not needed on this page
+    
+    const thankYouModal = document.getElementById('thankYouModal'); // [NEW]
+    const modalCloseBtn = document.getElementById('modalCloseBtn'); // [NEW]
+    const payerNameEl = document.getElementById('payerName'); // [NEW]
     
     // --- Menu Functions ---
     function toggleMenu() {
@@ -596,21 +507,14 @@
 
     // --- Cart Functions ---
     function toggleCart() {
-      slideCart.classList.toggle('active');
+      const isCartActive = slideCart.classList.toggle('active');
       overlay.classList.toggle('active');
-    }
 
-    // --- [NEW] Success Modal Functions ---
-    function openSuccessModal(payerName) {
-      successMessage.textContent = `Thank you for your order, ${payerName}! A confirmation has been sent to your email.`;
-      successModal.classList.add('active');
+      if (isCartActive && !payPalButtonsRendered) { // [FIX]
+        renderPayPalButtons();
+        payPalButtonsRendered = true;
+      }
     }
-
-    function closeSuccessModal() {
-      successModal.classList.remove('active');
-    }
-
-    // Waitlist Modal Functions are not needed on this page
 
     /**
      * Loads cart from localStorage
@@ -622,7 +526,7 @@
       } else {
         cart = [];
       }
-      renderCart();
+      renderCartUI();
     }
 
     /**
@@ -630,7 +534,16 @@
      */
     function saveCart() {
       localStorage.setItem('skullfoodCart', JSON.stringify(cart));
-      renderCart();
+      renderCartUI();
+    }
+    
+    /**
+     * [NEW] Clears cart from memory and localStorage
+     */
+    function clearCart() {
+      cart = [];
+      localStorage.removeItem('skullfoodCart');
+      renderCartUI();
     }
 
     /**
@@ -638,21 +551,18 @@
      */
     function addToCart(id, name, price) {
       const existingItem = cart.find(item => item.id === id);
-
       if (existingItem) {
         existingItem.quantity++;
       } else {
-        cart.push({ id, name, price, quantity: 1 });
+        cart.push({ id, name, price: parseFloat(price), quantity: 1 });
       }
-
       saveCart();
-      
       if (!slideCart.classList.contains('active')) {
+        // [FIX] Check for menu
         if (slideMenu.classList.contains('active')) {
-          slideMenu.classList.remove('active');
-          overlay.classList.remove('active');
+          toggleMenu(); // Close menu first
         }
-        toggleCart();
+        toggleCart(); // Open cart
       }
     }
 
@@ -671,37 +581,83 @@
     /**
      * Re-draws the entire cart UI based on the cart array
      */
-    function renderCart() {
+    function renderCartUI() {
       if (cartItemsContainer) {
-          cartItemsContainer.innerHTML = '';
-
-          if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
-          } else {
-            cart.forEach(item => {
-              const itemEl = document.createElement('div');
-              itemEl.classList.add('cart-item');
-              itemEl.innerHTML = `
-                <div class="cart-item-info">
-                  <h4>${item.name}</h4>
-                  <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-                </div>
-                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
-              `;
-              cartItemsContainer.appendChild(itemEl);
-            });
-          }
+        cartItemsContainer.innerHTML = '';
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+        } else {
+          cart.forEach(item => {
+            const itemEl = document.createElement('div');
+            itemEl.classList.add('cart-item');
+            itemEl.innerHTML = `
+              <div class="cart-item-info">
+                <h4>${item.name}</h4>
+                <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+              </div>
+              <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
+            `;
+            cartItemsContainer.appendChild(itemEl);
+          });
+        }
       }
 
       const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       if (cartTotalEl) {
-          cartTotalEl.textContent = `$${total.toFixed(2)}`;
+        cartTotalEl.textContent = `$${total.toFixed(2)}`;
       }
 
       const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
       if (cartCounterEl) {
-          cartCounterEl.textContent = totalQuantity;
+        cartCounterEl.textContent = totalQuantity;
       }
+      
+      const paypalContainer = document.getElementById('paypal-button-container');
+      if (paypalContainer) {
+        paypalContainer.style.display = total > 0 ? 'block' : 'none';
+      }
+    }
+    
+    /**
+     * [NEW] Renders the PayPal Buttons
+     */
+    function renderPayPalButtons() {
+        if (!window.paypal) {
+            console.error("PayPal SDK script not loaded.");
+            return;
+        }
+
+        paypal.Buttons({
+          createOrder: function(data, actions) {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: total.toFixed(2),
+                  currency_code: 'USD'
+                }
+              }]
+            });
+          },
+          onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+              const payerName = details.payer.name.given_name || 'Rebel';
+              payerNameEl.textContent = payerName;
+              thankYouModal.classList.add('active');
+              if (slideCart.classList.contains('active')) {
+                toggleCart();
+              }
+              clearCart();
+            });
+          },
+          onCancel: function(data) {
+            console.log('Payment cancelled:', data);
+          },
+          onError: function(err) {
+            console.error('An error occurred with the PayPal payment:', err);
+            alert('An error occurred. Please try again.');
+          }
+        }).render('#paypal-button-container');
     }
 
     // --- Event Listeners ---
@@ -718,6 +674,8 @@
       }
       toggleCart();
     });
+    
+    cartCloseBtn.addEventListener('click', toggleCart); // [NEW]
 
     overlay.addEventListener('click', () => {
       if (slideMenu.classList.contains('active')) {
@@ -728,15 +686,18 @@
       }
     });
 
-    if(cartItemsContainer) {
-        cartItemsContainer.addEventListener('click', handleCartClick);
+    if (cartItemsContainer) {
+      cartItemsContainer.addEventListener('click', handleCartClick);
     }
     
-    // [NEW] Success Modal Listener
-    if(closeSuccessModalBtn) {
-        closeSuccessModalBtn.addEventListener('click', closeSuccessModal);
+    // Thank you modal close button
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', () => {
+            thankYouModal.classList.remove('active');
+        });
     }
 
+    // Event delegation for "Add to Cart" buttons
     document.body.addEventListener('click', (event) => {
       const addToCartButton = event.target.closest('.add-to-cart-btn');
       if (addToCartButton) {
@@ -747,76 +708,8 @@
       }
     });
 
-    // Waitlist Modal Listeners are not needed on this page
-
     // --- Initial Load ---
-    loadCart(); // Load and render cart on page load
-
-    // --- [NEW] PayPal Integration ---
-    try {
-        paypal.Buttons({
-          
-          createOrder: function(data, actions) {
-            
-            const items = cart.map(item => {
-              return {
-                name: item.name,
-                unit_amount: {
-                  currency_code: 'USD',
-                  value: parseFloat(item.price).toFixed(2)
-                },
-                quantity: item.quantity
-              };
-            });
-
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            return actions.order.create({
-              purchase_units: [{
-                amount: {
-                  currency_code: 'USD',
-                  value: total.toFixed(2),
-                  breakdown: {
-                    item_total: {
-                      currency_code: 'USD',
-                      value: total.toFixed(2)
-                    }
-                  }
-                },
-                items: items
-              }]
-            });
-          },
-
-          onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-              
-              const payerName = details.payer.name.given_name;
-              openSuccessModal(payerName);
-              
-              cart = [];
-              saveCart(); 
-              
-              if (slideCart.classList.contains('active')) {
-                toggleCart();
-              }
-
-            });
-          },
-          
-          // [NEW] This function is called when the user cancels the payment
-          onCancel: function(data) {
-            console.log('Payment cancelled:', data);
-          },
-
-          onError: function(err) {
-            console.error('An error occurred with the PayPal payment:', err);
-          }
-          
-        }).render('#paypal-button-container');
-    } catch (e) {
-        console.error('PayPal SDK failed to load or render.', e);
-    }
+    loadCart();
 
   </script>
 
