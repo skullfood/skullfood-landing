@@ -268,6 +268,35 @@
     .info-container {
       margin-top: 60px;
     }
+    
+    /* === NEW MOBILE NAV LINKS (THE FIX) === */
+    .mobile-nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 2rem;
+    }
+    .mobile-nav-links li {
+      margin-bottom: 1rem;
+    }
+    .mobile-nav-links li:last-child {
+      margin-bottom: 0;
+    }
+    .mobile-nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .mobile-nav-links a:hover {
+      color: #00ffff;
+    }
+    /* === END NEW MOBILE NAV LINKS === */
+    
     .info-box {
       background: rgba(0,0,0,0.3);
       border-radius: 8px;
@@ -697,6 +726,13 @@
 
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
+
+      <ul class="mobile-nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Sweet Spreads</a></li>
+        <li><a href="pepper-spreads.html">Pepper Spreads</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
       <div class="info-box">
         <h2>FIND US</h2>
         <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
@@ -1093,7 +1129,7 @@
       // === [NEW] SCROLL LISTENER FOR FAB ===
       window.addEventListener('scroll', handleFabPosition);
       // === END SCROLL LISTENER ===
-      
+
       // --- Initial Load ---
       loadCart();
       handleFabPosition(); // [NEW] Run on load
