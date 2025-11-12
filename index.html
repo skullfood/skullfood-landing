@@ -1,4 +1,4 @@
-<head>
+head>
   <meta charset="UTF-8" />
   <title>SKULL FOOD™ - Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -288,8 +288,8 @@
     .slide-cart {
       position: fixed;
       top: 0;
-      left: -320px;
-      width: 320px;
+      left: -380px; /* MODIFIED */
+      width: 380px; /* MODIFIED */
       height: 100%;
       background: #111;
       z-index: 1000;
@@ -805,6 +805,11 @@
               }
 
             });
+          },
+
+          // [NEW] This function is called when the user cancels the payment
+          onCancel: function(data) {
+            console.log('Payment cancelled:', data);
           },
 
           // This function is called if an error occurs
