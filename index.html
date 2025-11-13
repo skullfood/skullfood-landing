@@ -373,7 +373,6 @@
       font-size: 1.2rem;
       color: white;
       padding: 0;
-      /* [NEW] Add display:flex for proper default */
       display: flex; 
       align-items: center;
       justify-content: center;
@@ -624,7 +623,7 @@
       right: 30px; 
       background: #00ffff;
       color: #fff !important; 
-      padding: 1rem 1.4rem; 
+      padding: 0.6rem 1rem; /* [CHANGED] Half size */
       border-radius: 30px; 
       display: flex;
       align-items: center;
@@ -633,7 +632,7 @@
       box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
       z-index: 800;
       transition: all 0.3s ease;
-      font-size: 1.2rem; 
+      font-size: 0.9rem; /* [CHANGED] Half size */
       font-weight: bold; 
     }
     a.contact-fab:hover {
@@ -644,9 +643,9 @@
     }
     
     .fab-svg-icon {
-      width: 28px; 
-      height: 28px; 
-      margin-right: 0.8rem; 
+      width: 20px; /* [CHANGED] Half size */
+      height: 20px; /* [CHANGED] Half size */
+      margin-right: 0.5rem; /* [CHANGED] Half size */
       fill: #fff; 
       transition: fill 0.3s ease; 
     }
@@ -959,7 +958,7 @@
                 cartToggle.style.display = isCartActive ? 'none' : 'flex'; 
             }
             // === END NEW FIX ===
-
+            
             if (overlay) overlay.classList.toggle('active');
 
             if (isCartActive && !payPalButtonsRendered) {
@@ -1071,7 +1070,6 @@
 
         // === [NEW] SHIPPING LOGIC ===
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        // Free shipping if subtotal is $65 or more. $20 flat rate if (subtotal is > 0) AND (subtotal < 65)
         const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
         const grandTotal = subtotal + shippingFee;
 
@@ -1093,7 +1091,7 @@
         
         const paypalContainer = document.getElementById('paypal-button-container');
         if (paypalContainer) {
-          paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED] based on subtotal
+          paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
         }
       }
       
@@ -1203,7 +1201,7 @@
       // === [NEW] SCROLL LISTENER FOR FAB ===
       window.addEventListener('scroll', handleFabPosition);
       // === END SCROLL LISTENER ===
-
+      
       // --- Initial Load ---
       loadCart();
       handleFabPosition(); // [NEW] Run on load
