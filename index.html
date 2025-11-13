@@ -229,11 +229,11 @@
     /* --- MENU & OVERLAY --- */
     .menu-toggle-btn {
       position: fixed;
-      top: 64px; /* [THE FIX] */
+      top: 64px; 
       right: 20px;
       width: 40px;
       height: 40px;
-      background: #111; /* [CHANGED] */
+      background: #111; 
       border: 1px solid rgba(255,255,255,0.3); 
       border-radius: 5px;
       cursor: pointer;
@@ -291,7 +291,6 @@
       margin-top: 60px;
     }
     
-    /* === NEW MOBILE NAV LINKS (THE FIX) === */
     .mobile-nav-links {
       list-style: none;
       padding: 0;
@@ -317,7 +316,6 @@
     .mobile-nav-links a:hover {
       color: #00ffff;
     }
-    /* === END NEW MOBILE NAV LINKS === */
     
     .info-box {
       background: rgba(0,0,0,0.3);
@@ -363,11 +361,11 @@
     /* --- CART STYLES --- */
     .cart-toggle-btn {
       position: fixed;
-      top: 64px; /* [THE FIX] */
+      top: 64px; 
       left: 20px;
       width: 40px;
       height: 40px;
-      background: #111; /* [CHANGED] */
+      background: #111; 
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 5px;
       cursor: pointer;
@@ -375,6 +373,10 @@
       font-size: 1.2rem;
       color: white;
       padding: 0;
+      /* [NEW] Add display:flex for proper default */
+      display: flex; 
+      align-items: center;
+      justify-content: center;
     }
     .cart-counter {
       position: absolute;
@@ -950,6 +952,14 @@
         }
         if (slideCart) {
             const isCartActive = slideCart.classList.toggle('active');
+            
+            // === [NEW FIX] Hide/show cart button ===
+            if (cartToggle) {
+                // Use 'flex' as that's what we set in the CSS
+                cartToggle.style.display = isCartActive ? 'none' : 'flex'; 
+            }
+            // === END NEW FIX ===
+
             if (overlay) overlay.classList.toggle('active');
 
             if (isCartActive && !payPalButtonsRendered) {
