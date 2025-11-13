@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>SKULL FOOD™ - Sweet Spreads</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+ 
   <meta name="description" content="Shop SKULL FOOD™: Rebellious, clean-label, and flavor-forward sweet spreads." />
   <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, healthy" />
   <meta name="author" content="SKULL FOOD LLC" />
@@ -32,7 +32,7 @@
       color: #000; /* Override default p styles */
     }
     /* === END SHIPPING BAR STYLES === */
-    
+   
     /* === NEW NAV BAR STYLES === */
     .main-header {
       background: rgba(10, 10, 10, 0.9);
@@ -114,7 +114,7 @@
     }
     .container {
       max-width: 900px;
-      margin: 3rem auto;  
+      margin: 3rem auto; 
       padding: 2.5rem 2rem;
       text-align: center;
       position: relative;
@@ -122,7 +122,7 @@
       /* [NEW] Make container grow to push footer */
       flex-grow: 1;
     }
-    
+   
     .page-title {
       font-size: 2.5rem;
       margin-bottom: 2rem;
@@ -192,19 +192,19 @@
       margin-top: 1rem;
       text-shadow: none;
     }
-    
+   
     .product-price .price-amount {
       font-size: 1.2rem;
       font-weight: bold;
       color: #fff;
     }
-    
+   
     .product-price .price-unit {
       font-size: 0.9rem;
       font-weight: normal;
       color: #aaa;
     }
-    
+   
     .price-wrapper {
       display: flex;
       flex-direction: column;
@@ -233,7 +233,7 @@
       font-weight: bold;
       color: #00ffff;
     }
-    
+   
 
     .add-to-cart-btn {
       background: #00ffff;
@@ -253,7 +253,7 @@
       background: #fff;
       box-shadow: 0 0 10px #00ffff;
     }
-    
+   
     .waitlist-btn {
       background: #00ffff;
       color: #000;
@@ -285,9 +285,10 @@
       text-shadow: 0 0 3px #00ffff, 0 0 5px #00ffff;
     }
 
-    .product-placeholder {
+    /* === [NEW] Product Image Styles === */
+    .product-image-container {
       width: 100%;
-      height: 180px;
+      aspect-ratio: 4 / 3; /* Responsive aspect ratio */
       background: #333;
       border-radius: 5px;
       display: flex;
@@ -297,8 +298,21 @@
       color: #888;
       font-size: 0.9rem;
       margin-bottom: 1rem;
+      overflow: hidden; /* To contain the image */
     }
     
+    .product-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures image fills the box, cropping as needed */
+      transition: transform 0.3s ease; /* Nice hover effect */
+    }
+
+    .product-card:hover .product-image-container img {
+        transform: scale(1.05); /* Zoom effect on card hover */
+    }
+    /* === END Product Image Styles === */
+   
     /* --- ALL CART & MENU STYLES --- */
     .menu-toggle-btn {
       position: fixed;
@@ -324,7 +338,7 @@
     .slide-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #111; z-index: 1000; padding: 2rem; box-sizing: border-box; transition: right 0.3s ease; overflow-y: auto; }
     .slide-menu.active { right: 0; }
     .info-container { margin-top: 60px; }
-    
+   
     /* === NEW MOBILE NAV LINKS (THE FIX) === */
     .mobile-nav-links {
       list-style: none;
@@ -352,7 +366,7 @@
       color: #00ffff;
     }
     /* === END NEW MOBILE NAV LINKS === */
-    
+   
     .info-box { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
     .info-box h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 0; border-bottom: 2px solid #00ffff; padding-bottom: 0.5rem; }
     .info-box p { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #eee; text-shadow: none; }
@@ -387,12 +401,24 @@
     .cart-items { margin-top: 1rem; }
     .cart-empty { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #aaa; text-shadow: none; text-align: center; margin-top: 2rem; }
     .cart-item { display: flex; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #333; }
+    
+    /* === [NEW] Cart Item Image Style === */
+    .cart-item-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      object-fit: cover;
+      border: 1px solid #444;
+      flex-shrink: 0; /* Prevents image from shrinking */
+    }
+    /* === END Cart Item Image Style === */
+
     .cart-item-info { flex-grow: 1; margin-left: 1rem; }
     .cart-item-info h4 { font-size: 1rem; color: #fff; margin: 0 0 5px 0; font-weight: bold; }
     .cart-item-info p { font-size: 0.9rem; color: #aaa; margin: 0; font-weight: normal; text-shadow: none; }
     .remove-item-btn { background: none; border: none; color: #ff00ff; font-size: 1.1rem; font-weight: bold; cursor: pointer; padding: 5px; }
     .remove-item-btn:hover { color: #fff; }
-    
+   
     .cart-summary {
       border-top: 1px solid #444;
       padding-top: 1rem;
@@ -405,7 +431,7 @@
       font-weight: bold;
       margin-bottom: 1rem;
     }
-    
+   
     /* === [NEW] CSS For Shipping Cart === */
     .cart-total.grand-total {
       font-size: 1.3rem;
@@ -414,9 +440,9 @@
       margin-top: 0.5rem;
     }
     /* === END NEW CSS === */
-    
+   
     #paypal-button-container { margin-top: 1rem; z-index: 100; position: relative; min-height: 250px; }
-    
+   
     /* Modal styles */
     .modal-overlay {
       position: fixed;
@@ -514,7 +540,7 @@
       background: #fff;
       box-shadow: 0 0 10px #00ffff;
     }
-    
+   
     .modal-container.thank-you {
       text-align: center;
     }
@@ -565,7 +591,7 @@
       text-shadow: none;
     }
     /* === END FOOTER STYLES === */
-    
+   
     /* === NEW CONTACT FORM STYLES === */
     a.contact-fab { 
       position: fixed;
@@ -591,7 +617,7 @@
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6);
       transform: scale(1.05);
     }
-    
+   
     .fab-svg-icon {
       width: 20px; /* [CHANGED] Half size */
       height: 20px; /* [CHANGED] Half size */
@@ -599,7 +625,7 @@
       fill: #fff; 
       transition: fill 0.3s ease; 
     }
-    
+   
     a.contact-fab:hover .fab-svg-icon {
       fill: #000; 
     }
@@ -655,7 +681,7 @@
       text-align: right;
       margin-top: 4px;
     }
-    
+   
     /* [NEW] New class for contact submit button */
     .contact-submit-btn {
       background: #00ffff;
@@ -712,7 +738,7 @@
 
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
-    
+   
       <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Sweet Spreads</a></li>
@@ -747,7 +773,7 @@
       <div class="cart-items" id="cartItems">
         <p class="cart-empty">Your cart is empty.</p>
       </div>
-      
+     
       <div class="cart-summary">
         <div class="cart-total" id="cartSubtotalRow">
           <strong>Subtotal:</strong>
@@ -807,66 +833,102 @@
   </div>
 
   <div class="container">
-    
+   
     <h1 class="page-title">SWEET SPREADS</h1>
 
     <div class="product-section">
       <div class="product-grid">
-        
+       
+        <!-- Product 1 -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
+          <div class="product-image-container">
+            <img src="https://placehold.co/600x400/00FFFF/000000?text=WILD+N+POPPERS" 
+                 alt="WILD N POPPERS Sweet Spread">
+          </div>
           <h3>WILD N POPPERS™</h3>
           <p class="product-desc">Berry to the core, berry on the crown. WILD N POPPERS™ is SKULL FOOD™’s unapologetically bold sweet spread made entirely from real Cranberry .No sugar, no oil, no fluff. Just pure fruit power.</p>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          <button class="add-to-cart-btn" data-id="1" data-name="WILD N POPPERS" data-price="13.99">
+          <button class="add-to-cart-btn" 
+                  data-id="1" 
+                  data-name="WILD N POPPERS" 
+                  data-price="13.99"
+                  data-image="https://placehold.co/600x400/00FFFF/000000?text=WILD+N+POPPERS">
             Add to Cart
           </button>
         </div>
-        
+       
+        <!-- Product 2 -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
+          <div class="product-image-container">
+            <img src="https://placehold.co/600x400/00FFFF/000000?text=WILD+N+MANGO" 
+                 alt="WILD N MANGO Sweet Spread">
+          </div>
           <h3>WILD N MANGO™</h3>
           <p class="product-desc">Sunshine in a jar, crowned with mango. WILD N MANGO™ is SKULL FOOD™’s tropical twist on the no-sugar, no-oil, no-fluff fruit spread — made entirely from real mangoes and topped with lush mango chunks for that extra pop.</p>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          <button class="add-to-cart-btn" data-id="2" data-name="WILD N MANGO" data-price="13.99">
+          <button class="add-to-cart-btn" 
+                  data-id="2" 
+                  data-name="WILD N MANGO" 
+                  data-price="13.99"
+                  data-image="https://placehold.co/600x400/00FFFF/000000?text=WILD+N+MANGO">
             Add to Cart
           </button>
         </div>
 
+        <!-- Product 3 -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
+          <div class="product-image-container">
+            <img src="https://placehold.co/600x400/00FFFF/000000?text=WILD+N+BERRIES" 
+                 alt="WILD N BERRIES Sweet Spread">
+          </div>
           <h3>WILD N BERRIES™</h3>
           <p class="product-desc">Feels like midnight in the middle of the day. WILD N BERRIES™ is SKULL FOOD™’s deep, dreamy sweet spread made from midnight-blue berries and swirled with velvety coconut butter — no sugar, no oil, no fluff.</p>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          <button class="add-to-cart-btn" data-id="3" data-name="WILD N BERRIES" data-price="13.99">
+          <button class="add-to-cart-btn" 
+                  data-id="3" 
+                  data-name="WILD N BERRIES" 
+                  data-price="13.99"
+                  data-image="httpsS://placehold.co/600x400/00FFFF/000000?text=WILD+N+BERRIES">
             Add to Cart
           </button>
         </div>
 
+        <!-- Product 4 -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
+          <div class="product-image-container">
+            <img src="https://placehold.co/600x400/00FFFF/000000?text=SKULL+BURN" 
+                 alt="SKULL BURN Sweet Spread">
+          </div>
           <h3>SKULL BURN™</h3>
           <p class="product-desc">Bold like espresso, wild like fruit,. SKULL BURN™ is the ultimate sensory mashup — a sweet spread that fuses coffee grounds, coconut butter, and a riot of mango, berries, and cranberry. No sugar. No oil. No fluff. Just pure, rebellious intensity.</p>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          <button class="add-to-cart-btn" data-id="4" data-name="SKULL BURN" data-price="13.99">
+          <button class="add-to-cart-btn" 
+                  data-id="4" 
+                  data-name="SKULL BURN" 
+                  data-price="13.99"
+                  data-image="https://placehold.co/600x400/00FFFF/000000?text=SKULL+BURN">
             Add to Cart
           </button>
         </div>
 
+        <!-- Product 5 (Bundle) -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
+          <div class="product-image-container">
+            <img src="https://placehold.co/600x400/00FFFF/000000?text=SKULL+SWEET+SIX" 
+                 alt="SKULL SWEET SIX Bundle">
+          </div>
           <h3>SKULL SWEET SIX™</h3>
           <p class="product-desc">A full-force lineup of SKULL FOOD™’s wildest sweet spreads. No sugar. No oil. No fluff. Just six jars of pure, rebellious flavor:
             <ul>
@@ -884,20 +946,28 @@
             </div>
             <span class="sale-price">$45.00</span>
           </div>
-          <button class="add-to-cart-btn" data-id="5" data-name="SKULL SWEET SIX" data-price="45.00">
+          <button class="add-to-cart-btn" 
+                  data-id="5" 
+                  data-name="SKULL SWEET SIX" 
+                  data-price="45.00"
+                  data-image="https://placehold.co/600x400/00FFFF/000000?text=SKULL+SWEET+SIX">
             Add to Cart
           </button>
         </div>
 
+        <!-- Product 6 (Waitlist) -->
         <div class="product-card">
-          <div class="product-placeholder">[Image]</div>
+          <div class="product-image-container">
+            <img src="https://placehold.co/600x400/00FFFF/000000?text=WILD+N+MATCHA" 
+                 alt="WILD N MATCHA Sweet Spread (Coming Soon)">
+          </div>
           <h3>WILD N MATCHA™</h3>
           <p class="product-desc">Zen meets rebellion. WILD N MATCHA™ is SKULL FOOD™’s bold green sweet spread made from ceremonial-grade matcha and velvety coconut butter. No sugar. No oil. No fluff. Just pure, plant-powered calm with a creamy kick.</p>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          
+         
           <p class="coming-soon-text">COMING SOON</p>
           <button class="waitlist-btn" id="waitlistBtn">
             JOIN THE WAITING LIST
@@ -906,9 +976,9 @@
 
       </div>
     </div>
-    
+   
   </div>
-  
+ 
   <div class="modal-overlay" id="contactModal">
     <div class="modal-container">
       <button class="modal-close-icon" id="contactModalClose">&times;</button>
@@ -942,7 +1012,7 @@
           <textarea id="message" name="Message" maxlength="300" required></textarea>
           <div class="char-counter" id="charCounter">300 characters remaining</div>
         </div>
-        
+       
         <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
         <input type="hidden" name="_replyto" value="email">
         <button type="submit" class="submit-btn contact-submit-btn">Send Message</button> </form>
@@ -979,24 +1049,24 @@
       const slideCart = document.getElementById('slideCart');
       const cartCloseBtn = document.getElementById('cartCloseBtn');
       const overlay = document.getElementById('overlay');
-      
+     
       const cartItemsContainer = document.getElementById('cartItems');
       const cartTotalEl = document.getElementById('cartTotal');
       const cartCounterEl = document.getElementById('cartCounter');
-      
+     
       // === [NEW] SHIPPING JS ELEMENTS ===
       const cartSubtotalEl = document.getElementById('cartSubtotal');
       const cartShippingEl = document.getElementById('cartShipping');
       // === END NEW SHIPPING JS ===
-      
+     
       const waitlistModal = document.getElementById('waitlistModal');
       const modalClose = document.getElementById('modalClose');
       const waitlistButton = document.getElementById('waitlistBtn');
-      
+     
       const thankYouModal = document.getElementById('thankYouModal');
       const modalCloseBtn = document.getElementById('modalCloseBtn');
       const payerNameEl = document.getElementById('payerName');
-      
+     
       const allAddToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 
       // === NEW CONTACT FORM ELEMENTS ===
@@ -1031,14 +1101,14 @@
         }
         if (slideCart) {
             const isCartActive = slideCart.classList.toggle('active');
-            
+           
             // === [NEW FIX] Hide/show cart button ===
             if (cartToggle) {
                 // Use 'flex' as that's what we set in the CSS
                 cartToggle.style.display = isCartActive ? 'none' : 'flex'; 
             }
             // === END NEW FIX ===
-            
+           
             if (overlay) overlay.classList.toggle('active');
 
             if (isCartActive && !payPalButtonsRendered) {
@@ -1091,13 +1161,13 @@
       // === [NEW] FOOTER AVOIDANCE FUNCTION ===
       function handleFabPosition() {
         if (!contactFab || !mainFooter) return; // Exit if elements don't exist
-        
+       
         const footerTop = mainFooter.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
         const fabMargin = 30; // 30px
-        
+       
         const overlap = windowHeight - footerTop;
-        
+       
         if (overlap > 0) {
           // Footer is in view, move button up
           contactFab.style.bottom = (overlap + fabMargin) + 'px';
@@ -1119,7 +1189,7 @@
         localStorage.setItem('skullfoodCart', JSON.stringify(cart));
         renderCartUI();
       }
-      
+     
       function clearCart() {
         cart = [];
         localStorage.removeItem('skullfoodCart');
@@ -1128,20 +1198,22 @@
 
       function addToCart(event) {
         if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
-        
+       
         const button = event.currentTarget; // Get the button that was clicked/touched
         const id = button.dataset.id;
         const name = button.dataset.name;
         const price = parseFloat(button.dataset.price);
+        const image = button.dataset.image; // [NEW] Get image URL
 
         const existingItem = cart.find(item => item.id === id);
         if (existingItem) {
           existingItem.quantity++;
         } else {
-          cart.push({ id, name, price: price, quantity: 1 });
+          // [MODIFIED] Add image to the new cart item
+          cart.push({ id, name, price: price, quantity: 1, image: image });
         }
         saveCart();
-        
+       
         if (slideCart && !slideCart.classList.contains('active')) {
           if (slideMenu && slideMenu.classList.contains('active')) {
             toggleMenu();
@@ -1169,7 +1241,9 @@
             cart.forEach(item => {
               const itemEl = document.createElement('div');
               itemEl.classList.add('cart-item');
+              // [MODIFIED] Added cart item image
               itemEl.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
                 <div class="cart-item-info">
                   <h4>${item.name}</h4>
                   <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
@@ -1201,13 +1275,13 @@
         if (cartCounterEl) {
           cartCounterEl.textContent = totalQuantity;
         }
-        
+       
         const paypalContainer = document.getElementById('paypal-button-container');
         if (paypalContainer) {
           paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
         }
       }
-      
+     
       function renderPayPalButtons() {
           if (!window.paypal) {
             console.error("PayPal SDK script not loaded.");
@@ -1221,7 +1295,7 @@
               const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
               const grandTotal = subtotal + shippingFee;
               // === END PAYPAL TOTAL ===
-              
+             
               return actions.order.create({
                 purchase_units: [{
                   amount: {
@@ -1253,7 +1327,7 @@
       }
 
       // --- [FIX] Event Listeners for Mobile + Desktop ---
-      
+     
       if (menuToggle) {
           menuToggle.addEventListener('click', toggleMenu);
           menuToggle.addEventListener('touchstart', toggleMenu);
@@ -1263,12 +1337,12 @@
           cartToggle.addEventListener('click', toggleCart);
           cartToggle.addEventListener('touchstart', toggleCart);
       }
-      
+     
       if (cartCloseBtn) {
           cartCloseBtn.addEventListener('click', toggleCart);
           cartCloseBtn.addEventListener('touchstart', toggleCart);
       }
-      
+     
       function closeModals(event) {
           if(event) event.preventDefault();
           if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
@@ -1276,7 +1350,7 @@
           if (waitlistModal && waitlistModal.classList.contains('active')) closeWaitlistModal();
           if (contactModal && contactModal.classList.contains('active')) closeContactModal(); // [NEW] Close contact modal
       }
-      
+     
       if (overlay) {
           overlay.addEventListener('click', closeModals);
           overlay.addEventListener('touchstart', closeModals);
@@ -1286,17 +1360,17 @@
         // This listener is for dynamic content, 'click' is more stable here
         cartItemsContainer.addEventListener('click', handleCartClick);
       }
-      
+     
       if (modalClose) {
         modalClose.addEventListener('click', closeWaitlistModal);
         modalClose.addEventListener('touchstart', closeWaitlistModal);
       }
-      
+     
       function closeThankYou(event) {
         if(event) event.preventDefault();
         if (thankYouModal) thankYouModal.classList.remove('active');
       }
-      
+     
       if (modalCloseBtn) {
           modalCloseBtn.addEventListener('click', closeThankYou);
           modalCloseBtn.addEventListener('touchstart', closeThankYou);
@@ -1312,7 +1386,7 @@
         waitlistButton.addEventListener('click', openWaitlistModal);
         waitlistButton.addEventListener('touchstart', openWaitlistModal); // [FIX] Added touchstart
       }
-      
+     
       // === NEW CONTACT FORM LISTENERS ===
       if (contactFab) {
         contactFab.addEventListener('click', openContactModal);
@@ -1335,7 +1409,7 @@
       // --- Initial Load ---
       loadCart();
       handleFabPosition(); // [NEW] Run on load
-      
+     
     }); // End of DOMContentLoaded
   </script>
 
