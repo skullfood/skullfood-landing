@@ -11,6 +11,27 @@
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
   <style>
+    /* === NEW SHIPPING BAR STYLES === */
+    .shipping-bar {
+      background: #00ffff; /* Your site's cyan color */
+      color: #000;
+      text-align: center;
+      padding: 0.75rem 1rem; /* Approx 12px */
+      position: sticky;
+      top: 0;
+      z-index: 950; /* Above the header (900) but below modals (1000+) */
+      box-sizing: border-box;
+    }
+    .shipping-bar p {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1rem; /* Approx 16px */
+      line-height: 1.2; /* Tighter line height */
+      text-shadow: none; /* Override default p styles */
+      color: #000; /* Override default p styles */
+    }
+    /* === END SHIPPING BAR STYLES === */
+    
     /* === NEW NAV BAR STYLES === */
     .main-header {
       background: rgba(10, 10, 10, 0.9);
@@ -18,7 +39,7 @@
       padding: 1rem 0;
       width: 100%;
       position: sticky;
-      top: 0;
+      top: 44px; /* [CHANGED] */
       z-index: 900; /* Below slide-out menus (1000) */
       box-sizing: border-box;
     }
@@ -66,6 +87,9 @@
       }
       .nav-container-new {
         justify-content: center; /* Center the logo on mobile */
+      }
+      .main-header {
+        top: 44px; /* [CHANGED] */
       }
     }
     /* === END NEW NAV BAR STYLES === */
@@ -212,11 +236,11 @@
     /* --- MENU & OVERLAY --- */
     .menu-toggle-btn {
       position: fixed;
-      top: 20px;
+      top: 64px; /* [CHANGED] */
       right: 20px;
       width: 40px;
       height: 40px;
-      background: rgba(0,0,0,0.3); 
+      background: #111; /* [CHANGED] */
       border: 1px solid rgba(255,255,255,0.3); 
       border-radius: 5px;
       cursor: pointer;
@@ -347,11 +371,11 @@
     /* --- CART STYLES --- */
     .cart-toggle-btn {
       position: fixed;
-      top: 20px;
+      top: 64px; /* [CHANGED] */
       left: 20px;
       width: 40px;
       height: 40px;
-      background: rgba(0,0,0,0.3);
+      background: #111; /* [CHANGED] */
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 5px;
       cursor: pointer;
@@ -706,6 +730,9 @@
 </head>
 <body>
 
+  <div class="shipping-bar">
+    <p>Free Nationwide Shipping on Orders $65+</p>
+  </div>
   <header class="main-header">
     <div class="nav-container-new">
       <a href="index.html" class="nav-logo">SKULL FOOD&trade;</a>
