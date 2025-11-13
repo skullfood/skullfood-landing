@@ -163,26 +163,54 @@
       color: #ff4136;
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      /* [REMOVED] white-space, overflow, text-overflow */
     }
+    
+    /* === [NEW] Product Desc Styles === */
     .product-card .product-desc {
       font-size: 0.95rem;
       font-weight: normal;
       color: #ccc;
       text-shadow: none;
-      min-height: 60px;
+      min-height: auto; /* [CHANGED] */
       flex-grow: 1;
+    }
+    .product-desc .tagline-desc {
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .product-desc h4 {
+      color: #fff;
+      font-weight: bold;
+      margin: 1rem 0 0.5rem 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
     }
     .product-desc ul {
       padding-left: 20px;
-      margin-top: 10px;
+      margin: 0.5rem 0;
       color: #ccc;
+      font-size: 0.9rem;
     }
     .product-desc li {
       margin-bottom: 5px;
     }
+    .product-note {
+      font-size: 0.85rem !important;
+      font-weight: normal !important;
+      color: #ffc2b3 !important; /* Light red */
+      margin-top: 1rem;
+      border-top: 1px solid #555;
+      padding-top: 1rem;
+      text-shadow: none !important;
+    }
+    .product-note.torros {
+      color: #b3ffff !important; /* Light cyan */
+    }
+    /* === END Product Desc Styles === */
+    
     .product-card .product-price {
       display: flex;
       justify-content: flex-end;
@@ -730,65 +758,157 @@
         
         <div class="product-card">
           <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 1]</h3>
-          <p class="product-desc">[Description for the first pepper spread. Bold, smoky, and rebellious.]</p>
+          <h3>WILD N TANGOS™</h3>
+          <div class="product-desc">
+            <p class="tagline-desc">Tangy. Nutty. Mildly wild.</p>
+            <p>A daring fusion of Southern and Mexican peppers, pomegranate molasses, and rich nut butter, WILD N TANGOS™ delivers a tangy kick with a smooth, nutty finish. This spread dances between cultures and textures bright, earthy, and just spicy enough to keep things interesting (heat level: 3/10).</p>
+            <h4>Perfect for:</h4>
+            <ul>
+              <li>Crackers, pretzels, pasta, rice bowls, grilled meats, roasted veggies or anything that needs a flavor lift.</li>
+            </ul>
+            <h4>Why it hits different:</h4>
+            <ul>
+              <li>No added oils, gums, or preservatives</li>
+              <li>Shelf-stable and clean-label</li>
+              <li>Multicultural roots with rebellious soul</li>
+            </ul>
+            <p class="product-note">❄️ <strong>SHIPPED COLD:</strong> This product must be kept refrigerated. Please contact our support team if you reside outside California to place an order.</p>
+          </div>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          <button class="add-to-cart-btn" data-id="p1" data-name="Pepper Flavor 1" data-price="13.99">
+          <button class="add-to-cart-btn" data-id="p1-tangos" data-name="WILD N TANGOS" data-price="13.99">
             Add to Cart
           </button>
         </div>
         
         <div class="product-card">
           <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 2]</h3>
-          <p class="product-desc">[Description for the second pepper spread. A bright, citrusy heat.]</p>
+          <h3>WILD N NYCTHOS™</h3>
+          <div class="product-desc">
+            <p class="tagline-desc">Misspelled. Tastes styled.</p>
+            <p>The signature SKULL FOOD™ cheddar blend—100% organic cheese powder (no fake flavors, ever), swirled with nut butter, umami mushroom, and orange peel for a tangy, earthy, nutty punch. It’s comfort food with a rebellious twist.</p>
+            <h4>Flavor Notes:</h4>
+            <ul>
+              <li>Tangy cheddar meets earthy mushroom</li>
+              <li>Nutty richness with a citrusy spark</li>
+              <li>Heat Level: 5/10 — a gentle burn that builds</li>
+            </ul>
+            <h4>Perfect for:</h4>
+            <ul>
+              <li>Pasta, pizza, tacos, rice bowls, and of course—NYCTHOS™.</li>
+            </ul>
+            <p class="product-note">❄️ <strong>SHIPPED COLD:</strong> This product must be kept refrigerated. Please contact our support team if you reside outside California to place an order.</p>
+          </div>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          <button class="add-to-cart-btn" data-id="p2" data-name="Pepper Flavor 2" data-price="13.99">
+          <button class="add-to-cart-btn" data-id="p2-nycthos" data-name="WILD N NYCTHOS" data-price="13.99">
             Add to Cart
           </button>
         </div>
 
         <div class="product-card">
           <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 3]</h3>
-          <p class="product-desc">[Description for the third pepper spread. Deep, dark, and complex flavor.]</p>
+          <h3>WILD N TEJAA™</h3>
+          <div class="product-desc">
+            <p class="tagline-desc">Dare the flare. Spread the dread.</p>
+            <p>This is SKULL FOOD™’s fiercest flavor yet a fire spread made for the bold. Real Carolina Reaper (no fake flavors, ever) meets serrano, habanero, and dried chilis, roasted at 500°F and blended into a nut-based spread that’s smoky, spicy, and dangerously delicious.</p>
+            <h4>Flavor Notes:</h4>
+            <ul>
+              <li>Deep roasted heat</li>
+              <li>Nutty body with smoky layers</li>
+              <li>Heat Level: 1M/10 — not for the faint of taste</li>
+            </ul>
+            <h4>Perfect for:</h4>
+            <ul>
+              <li>Crackers, tacos, grilled meats, rice bowls, pizza, pasta—anything that dares to be devoured.</li>
+            </ul>
+            <p class="product-note">❄️ <strong>SHIPPED COLD:</strong> This product must be kept refrigerated. Please contact our support team if you reside outside California to place an order.</p>
+          </div>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          <button class="add-to-cart-btn" data-id="p3" data-name="Pepper Flavor 3" data-price="13.99">
+          <button class="add-to-cart-btn" data-id="p3-tejaa" data-name="WILD N TEJAA" data-price="13.99">
             Add to Cart
           </button>
         </div>
 
         <div class="product-card">
           <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 4]</h3>
-          <p class="product-desc">[Description for the fourth pepper spread. A green, herby, and vibrant heat.]</g>
+          <h3>WILD N PISTACHIO™</h3>
+          <div class="product-desc">
+            <p class="tagline-desc">Hot pistachio? We made it happen.</p>
+            <p>SKULL FOOD™ is the first to craft a savory umami spread from pistachios, no oil, no fillers, just pure nut-powered flavor. Roasted under 500°F pressure with a mix of 10 peppers and 3 nuts, this green rebel brings heat, depth, and nutty richness to your plate.</p>
+            <h4>Flavor Notes:</h4>
+            <ul>
+              <li>Earthy pistachio base</li>
+              <li>Tangy umami from pepper blend</li>
+              <li>Nutty finish with a gentle burn</li>
+              <li>Heat Level: 2/10 — mild but mighty</li>
+            </ul>
+            <h4>Perfect for:</h4>
+            <ul>
+              <li>Crackers, pretzels, pasta, rice, grilled meats, tacos, and anything craving savory swagger.</li>
+            </ul>
+            <p class="product-note">❄️ <strong>SHIPPED COLD:</strong> This product must be kept refrigerated. Please contact our support team if you reside outside California to place an order.</p>
+          </div>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          <button class="add-to-cart-btn" data-id="p4" data-name="Pepper Flavor 4" data-price="13.99">
+          <button class="add-to-cart-btn" data-id="p4-pistachio" data-name="WILD N PISTACHIO" data-price="13.99">
             Add to Cart
           </button>
         </div>
 
         <div class="product-card">
           <div class="product-placeholder"></div>
-          <h3>[Pepper Flavor 5]</h3>
-          <p class="product-desc">[Description for the fifth pepper spread. The hottest one in the lineup. Unapologetic.]</g>
+          <h3>WILD N TORROS™</h3>
+          <div class="product-desc">
+            <p class="tagline-desc">Elegance disguised. Flavor untamed.</p>
+            <p>SKULL FOOD™ proudly introduces the first-ever smoky, earthy, umami-rich black spread in the U.S. A culinary rebel made from BLACK TRUFFLE, BLACK GARLIC, BLACK TEA, BLACK CUMIN, BLACK PEPPER, BLACK SESAME, and a secret blend of black spices. It’s a deep, layered flavor experience wrapped in a clean-label attitude.</p>
+            <h4>Flavor Notes:</h4>
+            <ul>
+              <li>Smoky and earthy with umami depth</li>
+              <li>Truffle-forward with subtle spice</li>
+              <li>Heat Level: 1/10 — just a whisper of warmth</li>
+            </ul>
+            <h4>Perfect for:</h4>
+            <ul>
+              <li>Aged cheese, caviar, aged beef, crackers, pasta, and luxe bites that deserve bold elegance.</li>
+            </ul>
+            <p class="product-note torros">Shelf life is 3 months and doesn't require refrigeration.</p>
+          </div>
           <div class="product-price">
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-          <button class="add-to-cart-btn" data-id="p5" data-name="Pepper Flavor 5" data-price="13.99">
+          <button class="add-to-cart-btn" data-id="p5-torros" data-name="WILD N TORROS" data-price="13.99">
+            Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-placeholder"></div>
+          <h3>WILD N TORROS™ BUNDLE (3-PACK)</h3>
+          <div class="product-desc">
+            <p class="tagline-desc">Stock up on the darkness.</p>
+            <p>Get three 10 Oz jars of our signature WILD N TORROS™. Shelf life is 3 months and doesn't require refrigeration.</p>
+            <p class="product-note torros">Shelf life is 3 months and doesn't require refrigeration.</p>
+          </div>
+          <div class="price-wrapper">
+            <span class="price-unit">10 Oz x 3 Units</span>
+            <div>
+              <span class="original-price">$41.97</span>
+              <span class="sale-badge">(Save 28%)</span>
+            </div>
+            <span class="sale-price">$30.00</span>
+          </div>
+          <button class="add-to-cart-btn" data-id="p6-torros-bundle" data-name="WILD N TORROS BUNDLE" data-price="30.00">
             Add to Cart
           </button>
         </div>
