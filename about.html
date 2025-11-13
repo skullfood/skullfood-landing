@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>About Us - SKULL FOOD™</title> <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - SKULL FOOD™</title> <!-- Changed title -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
+  <!-- SEO Tags -->
   <meta name="description" content="Learn about SKULL FOOD™: Rebellious, clean-label, and flavor-forward. Born from a chemist and a chef." />
   <meta name="keywords" content="SKULL FOOD, about us, clean label, rebellious food, healthy" />
   <meta name="author" content="SKULL FOOD LLC" />
 
+  <!-- PayPal Script (Copied from index) -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
+  <!-- ALL CSS STYLES (Copied from index) -->
   <style>
     /* === NEW SHIPPING BAR STYLES === */
     .shipping-bar {
@@ -383,6 +387,9 @@
       font-size: 1.2rem;
       color: white;
       padding: 0;
+      display: flex; 
+      align-items: center;
+      justify-content: center;
     }
     .cart-counter {
       position: absolute;
@@ -518,6 +525,15 @@
       font-weight: bold;
       margin-bottom: 1rem;
     }
+    
+    /* === [NEW] CSS For Shipping Cart === */
+    .cart-total.grand-total {
+      font-size: 1.3rem;
+      border-top: 1px solid #444;
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    /* === END NEW CSS === */
 
     #paypal-button-container {
       margin-top: 1rem;
@@ -730,9 +746,13 @@
 </head>
 <body>
 
+  <!-- === NEW SHIPPING BAR === -->
   <div class="shipping-bar">
     <p>Free Nationwide Shipping on Orders $65+</p>
   </div>
+  <!-- === END SHIPPING BAR === -->
+
+  <!-- === NAVIGATION HEADER (Copied from index) === -->
   <header class="main-header">
     <div class="nav-container-new">
       <a href="index.html" class="nav-logo">SKULL FOOD&trade;</a>
@@ -746,6 +766,10 @@
       </nav>
     </div>
   </header>
+  <!-- === END NEW HEADER === -->
+
+
+  <!-- ALL MENU/CART/OVERLAY HTML (Copied from index) -->
   <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
     <div class="bar"></div>
     <div class="bar"></div>
@@ -759,12 +783,15 @@
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
     
+      <!-- === [NEW] MOBILE NAV LINKS === -->
       <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Sweet Spreads</a></li>
         <li><a href="pepper-spreads.html">Pepper Spreads</a></li>
         <li><a href="about.html">About Us</a></li>
       </ul>
+      <!-- === END NEW MOBILE NAV LINKS === -->
+    
       <div class="info-box">
         <h2>FIND US</h2>
         <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
@@ -792,13 +819,25 @@
       <div class="cart-items" id="cartItems">
         <p class="cart-empty">Your cart is empty.</p>
       </div>
+      
+      <!-- === [NEW] CART SUMMARY HTML === -->
       <div class="cart-summary">
+        <div class="cart-total" id="cartSubtotalRow">
+          <strong>Subtotal:</strong>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
         <div class="cart-total">
+          <strong>Shipping:</strong>
+          <span id="cartShipping">$0.00</span>
+        </div>
+        <div class="cart-total grand-total">
           <strong>Total:</strong>
           <span id="cartTotal">$0.00</span>
         </div>
         <div id="paypal-button-container"></div>
       </div>
+      <!-- === END CART SUMMARY HTML === -->
+      
     </div>
   </aside>
   <div class="modal-overlay" id="thankYouModal">
@@ -808,6 +847,10 @@
       <button class="modal-close-btn" id="modalCloseBtn">Close</button>
     </div>
   </div>
+  <!-- END MENU/CART/OVERLAY HTML -->
+
+
+  <!-- === NEW ABOUT US PAGE CONTENT === -->
   <div class="container">
     <h1 data-text="ABOUT US">ABOUT US</h1>
     
@@ -819,6 +862,9 @@
 
     <strong class="rebellion-text">Join the rebellion.</strong>
   </div>
+  <!-- === END ABOUT US CONTENT === -->
+
+  <!-- === NEW CONTACT MODAL === -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-container">
       <button class="modal-close-icon" id="contactModalClose">&times;</button>
@@ -853,18 +899,27 @@
           <div class="char-counter" id="charCounter">300 characters remaining</div>
         </div>
         
+        <!-- FormSubmit.co settings -->
         <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
         <input type="hidden" name="_replyto" value="email">
         <button type="submit" class="submit-btn">Send Message</button>
       </form>
     </div>
   </div>
+  <!-- === END CONTACT MODAL === -->
+
+
+  <!-- === NEW CONTACT FAB === -->
   <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us"> 
     <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
     </svg>
     <span class="fab-text">Chat with us</span>
   </a>
+  <!-- === END CONTACT FAB === -->
+
+
+  <!-- === FOOTER (Copied from index) === -->
   <footer class="main-footer">
     <div class="footer-container">
       <div class="social-links">
@@ -875,6 +930,10 @@
       <p class="footer-copyright">&copy; 2025 SKULL FOOD LLC. All rights reserved.</p>
     </div>
   </footer>
+  <!-- === END FOOTER === -->
+
+
+  <!-- ALL JAVASCRIPT (Copied from index) -->
   <script>
     // --- State ---
     let cart = [];
@@ -894,6 +953,11 @@
       const cartItemsContainer = document.getElementById('cartItems');
       const cartTotalEl = document.getElementById('cartTotal');
       const cartCounterEl = document.getElementById('cartCounter');
+      
+      // === [NEW] SHIPPING JS ELEMENTS ===
+      const cartSubtotalEl = document.getElementById('cartSubtotal');
+      const cartShippingEl = document.getElementById('cartShipping');
+      // === END NEW SHIPPING JS ===
       
       const thankYouModal = document.getElementById('thankYouModal');
       const modalCloseBtn = document.getElementById('modalCloseBtn');
@@ -931,6 +995,14 @@
         }
         if (slideCart) {
             const isCartActive = slideCart.classList.toggle('active');
+            
+            // === [NEW FIX] Hide/show cart button ===
+            if (cartToggle) {
+                // Use 'flex' as that's what we set in the CSS
+                cartToggle.style.display = isCartActive ? 'none' : 'flex'; 
+            }
+            // === END NEW FIX ===
+            
             if (overlay) overlay.classList.toggle('active');
 
             if (isCartActive && !payPalButtonsRendered) {
@@ -1039,10 +1111,21 @@
           }
         }
 
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        if (cartTotalEl) {
-          cartTotalEl.textContent = `$${total.toFixed(2)}`;
+        // === [NEW] SHIPPING LOGIC ===
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
+        const grandTotal = subtotal + shippingFee;
+
+        if (cartSubtotalEl) {
+          cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
         }
+        if (cartShippingEl) {
+          cartShippingEl.textContent = `$${shippingFee.toFixed(2)}`;
+        }
+        if (cartTotalEl) {
+          cartTotalEl.textContent = `$${grandTotal.toFixed(2)}`;
+        }
+        // === END SHIPPING LOGIC ===
 
         const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
         if (cartCounterEl) {
@@ -1051,7 +1134,7 @@
         
         const paypalContainer = document.getElementById('paypal-button-container');
         if (paypalContainer) {
-          paypalContainer.style.display = total > 0 ? 'block' : 'none';
+          paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
         }
       }
       
@@ -1063,11 +1146,16 @@
 
           paypal.Buttons({
             createOrder: function(data, actions) {
-              const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+              // === [NEW] RECALCULATE TOTAL FOR PAYPAL ===
+              const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+              const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
+              const grandTotal = subtotal + shippingFee;
+              // === END PAYPAL TOTAL ===
+              
               return actions.order.create({
                 purchase_units: [{
                   amount: {
-                    value: total.toFixed(2),
+                    value: grandTotal.toFixed(2), // [CHANGED]
                     currency_code: 'USD'
                   }
                 }]
