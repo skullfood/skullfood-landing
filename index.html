@@ -40,8 +40,6 @@
       padding: 1rem 0;
       width: 100%;
       position: sticky;
-      /* [CHANGED] This value is the height of the shipping bar */
-      /* (0.75rem * 2) padding + 1rem * 1.2 line-height = approx 43px */
       top: 44px; 
       z-index: 900; 
       box-sizing: border-box;
@@ -91,9 +89,8 @@
       .nav-container-new {
         justify-content: center; /* Center the logo on mobile */
       }
-      /* [NEW] Adjust header top position after shipping bar on mobile */
       .main-header {
-        top: 44px; /* You might need to adjust this if bar height is different on mobile */
+        top: 44px; 
       }
     }
     /* === END NEW NAV BAR STYLES === */
@@ -112,7 +109,6 @@
       background-attachment: fixed;
       min-height: 100vh;
       box-sizing: border-box;
-      /* [NEW] Add flex to push footer down */
       display: flex;
       flex-direction: column;
     }
@@ -123,7 +119,6 @@
       text-align: center;
       position: relative;
       z-index: 10;
-      /* [NEW] Make container grow to push footer */
       flex-grow: 1;
     }
     h1 {
@@ -234,11 +229,11 @@
     /* --- MENU & OVERLAY --- */
     .menu-toggle-btn {
       position: fixed;
-      top: 64px; /* [CHANGED] 20px + 44px shipping bar */
+      top: 64px; /* [THE FIX] */
       right: 20px;
       width: 40px;
       height: 40px;
-      background: #111; /* [CHANGED] Solid background */
+      background: #111; /* [CHANGED] */
       border: 1px solid rgba(255,255,255,0.3); 
       border-radius: 5px;
       cursor: pointer;
@@ -368,11 +363,11 @@
     /* --- CART STYLES --- */
     .cart-toggle-btn {
       position: fixed;
-      top: 64px; /* [CHANGED] 20px + 44px shipping bar */
+      top: 64px; /* [THE FIX] */
       left: 20px;
       width: 40px;
       height: 40px;
-      background: #111; /* [CHANGED] Solid background */
+      background: #111; /* [CHANGED] */
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 5px;
       cursor: pointer;
@@ -453,7 +448,6 @@
     }
     
     .cart-items {
-      /* [FIX] Removed flex-grow and overflow-y */
       margin-top: 1rem;
     }
     .cart-empty {
@@ -505,7 +499,7 @@
     .cart-summary {
       border-top: 1px solid #444;
       padding-top: 1rem;
-      margin-top: auto; /* [FIX] Pushes to bottom of flex container */
+      margin-top: auto; 
     }
     .cart-total {
       display: flex;
@@ -514,6 +508,15 @@
       font-weight: bold;
       margin-bottom: 1rem;
     }
+    
+    /* === [NEW] CSS For Shipping Cart === */
+    .cart-total.grand-total {
+      font-size: 1.3rem;
+      border-top: 1px solid #444;
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    /* === END NEW CSS === */
 
     #paypal-button-container {
       margin-top: 1rem;
@@ -534,8 +537,8 @@
       display: none;
       align-items: center;
       justify-content: center;
-      overflow-y: auto; /* [NEW] Allow modal to scroll on small screens */
-      padding: 1rem 0; /* [NEW] Add padding for scrolling */
+      overflow-y: auto; 
+      padding: 1rem 0; 
     }
     .modal-overlay.active {
       display: flex;
@@ -550,7 +553,7 @@
       position: relative;
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
       text-align: center;
-      margin: auto; /* [NEW] Ensure it's centered when scrolling */
+      margin: auto; 
     }
     .modal-container h2 {
       font-family: Georgia, 'Times New Roman', serif;
@@ -613,22 +616,22 @@
     /* === END FOOTER STYLES === */
 
     /* === NEW CONTACT FORM STYLES === */
-    a.contact-fab { /* [CHANGED] More specific selector */
+    a.contact-fab { 
       position: fixed;
       bottom: 30px; 
       right: 30px; 
       background: #00ffff;
-      color: #fff !important; /* [FIXED] Set white color */
-      padding: 1rem 1.4rem; /* [CHANGED] Reduced size */
+      color: #fff !important; 
+      padding: 1rem 1.4rem; 
       border-radius: 30px; 
       display: flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none !important; /* [FIXED] Remove underline */
+      text-decoration: none !important; 
       box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
       z-index: 800;
       transition: all 0.3s ease;
-      font-size: 1.2rem; /* [CHANGED] Reduced size */
+      font-size: 1.2rem; 
       font-weight: bold; 
     }
     a.contact-fab:hover {
@@ -639,10 +642,10 @@
     }
     
     .fab-svg-icon {
-      width: 28px; /* [CHANGED] Reduced size */
-      height: 28px; /* [CHANGED] Reduced size */
-      margin-right: 0.8rem; /* [CHANGED] Reduced size */
-      fill: #fff; /* [FIXED] Set fill color */
+      width: 28px; 
+      height: 28px; 
+      margin-right: 0.8rem; 
+      fill: #fff; 
       transition: fill 0.3s ease; 
     }
     
@@ -791,14 +794,23 @@
       <div class="cart-items" id="cartItems">
         <p class="cart-empty">Your cart is empty.</p>
       </div>
+      
       <div class="cart-summary">
+        <div class="cart-total" id="cartSubtotalRow">
+          <strong>Subtotal:</strong>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
         <div class="cart-total">
+          <strong>Shipping:</strong>
+          <span id="cartShipping">$0.00</span>
+        </div>
+        <div class="cart-total grand-total">
           <strong>Total:</strong>
           <span id="cartTotal">$0.00</span>
         </div>
         <div id="paypal-button-container"></div>
       </div>
-    </div>
+      </div>
   </aside>
 
   <div class="modal-overlay" id="thankYouModal">
@@ -895,6 +907,11 @@
       const cartItemsContainer = document.getElementById('cartItems');
       const cartTotalEl = document.getElementById('cartTotal');
       const cartCounterEl = document.getElementById('cartCounter');
+      
+      // === [NEW] SHIPPING JS ELEMENTS ===
+      const cartSubtotalEl = document.getElementById('cartSubtotal');
+      const cartShippingEl = document.getElementById('cartShipping');
+      // === END NEW SHIPPING JS ===
       
       const thankYouModal = document.getElementById('thankYouModal');
       const modalCloseBtn = document.getElementById('modalCloseBtn');
@@ -1042,10 +1059,22 @@
           }
         }
 
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        if (cartTotalEl) {
-          cartTotalEl.textContent = `$${total.toFixed(2)}`;
+        // === [NEW] SHIPPING LOGIC ===
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        // Free shipping if subtotal is $65 or more. $20 flat rate if (subtotal is > 0) AND (subtotal < 65)
+        const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
+        const grandTotal = subtotal + shippingFee;
+
+        if (cartSubtotalEl) {
+          cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
         }
+        if (cartShippingEl) {
+          cartShippingEl.textContent = `$${shippingFee.toFixed(2)}`;
+        }
+        if (cartTotalEl) {
+          cartTotalEl.textContent = `$${grandTotal.toFixed(2)}`;
+        }
+        // === END SHIPPING LOGIC ===
 
         const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
         if (cartCounterEl) {
@@ -1054,7 +1083,7 @@
         
         const paypalContainer = document.getElementById('paypal-button-container');
         if (paypalContainer) {
-          paypalContainer.style.display = total > 0 ? 'block' : 'none';
+          paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED] based on subtotal
         }
       }
       
@@ -1066,11 +1095,16 @@
 
           paypal.Buttons({
             createOrder: function(data, actions) {
-              const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+              // === [NEW] RECALCULATE TOTAL FOR PAYPAL ===
+              const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+              const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
+              const grandTotal = subtotal + shippingFee;
+              // === END PAYPAL TOTAL ===
+              
               return actions.order.create({
                 purchase_units: [{
                   amount: {
-                    value: total.toFixed(2),
+                    value: grandTotal.toFixed(2), // [CHANGED]
                     currency_code: 'USD'
                   }
                 }]
