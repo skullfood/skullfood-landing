@@ -234,7 +234,7 @@
     /* --- MENU & OVERLAY --- */
     .menu-toggle-btn {
       position: fixed;
-      top: 20px;
+      top: 64px; /* [CHANGED] 20px + 44px shipping bar */
       right: 20px;
       width: 40px;
       height: 40px;
@@ -368,7 +368,7 @@
     /* --- CART STYLES --- */
     .cart-toggle-btn {
       position: fixed;
-      top: 20px;
+      top: 64px; /* [CHANGED] 20px + 44px shipping bar */
       left: 20px;
       width: 40px;
       height: 40px;
@@ -1159,7 +1159,7 @@
       // === [NEW] SCROLL LISTENER FOR FAB ===
       window.addEventListener('scroll', handleFabPosition);
       // === END SCROLL LISTENER ===
-      
+
       // --- Initial Load ---
       loadCart();
       handleFabPosition(); // [NEW] Run on load
