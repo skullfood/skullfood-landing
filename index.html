@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>SKULL FOOD™ - Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+ 
   <meta name="description" content="SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations. Born from a chemist and a chef. Find us in California." />
   <meta name="keywords" content="SKULL FOOD, clean label, rebellious food, healthy, farmers market, California, chef-made" />
   <meta name="author" content="SKULL FOOD LLC" />
@@ -32,7 +32,7 @@
       color: #000; /* Override default p styles */
     }
     /* === END SHIPPING BAR STYLES === */
-    
+   
     /* === NEW NAV BAR STYLES === */
     .main-header {
       background: rgba(10, 10, 10, 0.9);
@@ -114,7 +114,7 @@
     }
     .container {
       max-width: 700px;
-      margin: 3rem auto;  
+      margin: 3rem auto; 
       padding: 2.5rem 2rem;
       text-align: center;
       position: relative;
@@ -127,10 +127,10 @@
       font-family: Georgia, 'Times New Roman', serif;
       color: #fff;
       position: relative;
-      text-shadow: none;  
+      text-shadow: none; 
       animation: none;
     }
-    
+   
     h1::before,
     h1::after {
       content: attr(data-text);
@@ -144,13 +144,13 @@
 
     h1::before {
       color: #00ffff;
-      opacity: 0.7;  
+      opacity: 0.7; 
       animation: glitch-anim-1 0.15s infinite linear alternate;
     }
 
     h1::after {
       color: #ff00ff;
-      opacity: 0.7;  
+      opacity: 0.7; 
       animation: glitch-anim-2 0.2s infinite linear alternate-reverse;
     }
 
@@ -172,19 +172,19 @@
       font-weight: bold;
       text-shadow: 0 1px 3px rgba(0,0,0,0.8);
     }
-    
+   
     .tagline, .rebellion-text {
       font-weight: bold;
       font-size: 1.2rem;
       margin-bottom: 2rem;
       color: #fff;
       text-shadow: 
-        -1px -1px 0 #057386,  
+        -1px -1px 0 #057386, 
          1px -1px 0 #057386,
         -1px  1px 0 #057386,
          1px  1px 0 #057386;
     }
-    
+   
     .rebellion-text {
       display: block;
       margin-top: 2rem;
@@ -215,7 +215,7 @@
       background: #fff;
       box-shadow: 0 0 15px #00ffff;
     }
-    
+   
     .shop-now-btn.pepper-theme {
         background: #ff4136;
         color: #fff;
@@ -290,7 +290,7 @@
     .info-container {
       margin-top: 60px;
     }
-    
+   
     .mobile-nav-links {
       list-style: none;
       padding: 0;
@@ -316,7 +316,7 @@
     .mobile-nav-links a:hover {
       color: #00ffff;
     }
-    
+   
     .info-box {
       background: rgba(0,0,0,0.3);
       border-radius: 8px;
@@ -347,7 +347,7 @@
     .info-box a:hover {
       text-decoration: underline;
     }
-    
+   
     .ig-link {
       background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
       -webkit-background-clip: text;
@@ -357,7 +357,7 @@
       font-weight: bold;
       text-decoration: none;
     }
-    
+   
     /* --- CART STYLES --- */
     .cart-toggle-btn {
       position: fixed;
@@ -413,7 +413,7 @@
     .slide-cart.active {
       left: 0;
     }
-    
+   
     .cart-content {
         padding: 1.5rem;
         display: flex;
@@ -447,7 +447,7 @@
       border-bottom: 2px solid #00ffff;
       padding-bottom: 0.5rem;
     }
-    
+   
     .cart-items {
       margin-top: 1rem;
     }
@@ -460,6 +460,18 @@
       text-align: center;
       margin-top: 2rem;
     }
+    
+    /* === [NEW] Cart Item Image Style === */
+    .cart-item-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      object-fit: cover;
+      border: 1px solid #444;
+      flex-shrink: 0; /* Prevents image from shrinking */
+    }
+    /* === END Cart Item Image Style === */
+    
     .cart-item {
       display: flex;
       align-items: center;
@@ -496,7 +508,7 @@
     .remove-item-btn:hover {
       color: #fff;
     }
-    
+   
     .cart-summary {
       border-top: 1px solid #444;
       padding-top: 1rem;
@@ -509,7 +521,7 @@
       font-weight: bold;
       margin-bottom: 1rem;
     }
-    
+   
     /* === [NEW] CSS For Shipping Cart === */
     .cart-total.grand-total {
       font-size: 1.3rem;
@@ -525,7 +537,7 @@
       position: relative;
       min-height: 250px; 
     }
-    
+   
     /* --- MODAL STYLES --- */
     .modal-overlay {
       position: fixed;
@@ -583,7 +595,7 @@
     .modal-close-btn:hover {
       background: #fff;
     }
-    
+   
     /* === NEW FOOTER STYLES === */
     .main-footer {
       background: rgba(10, 10, 10, 0.9);
@@ -641,7 +653,7 @@
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6);
       transform: scale(1.05);
     }
-    
+   
     .fab-svg-icon {
       width: 20px; /* [CHANGED] Half size */
       height: 20px; /* [CHANGED] Half size */
@@ -649,7 +661,7 @@
       fill: #fff; 
       transition: fill 0.3s ease; 
     }
-    
+   
     a.contact-fab:hover .fab-svg-icon {
       fill: #000; 
     }
@@ -795,7 +807,7 @@
       <div class="cart-items" id="cartItems">
         <p class="cart-empty">Your cart is empty.</p>
       </div>
-      
+     
       <div class="cart-summary">
         <div class="cart-total" id="cartSubtotalRow">
           <strong>Subtotal:</strong>
@@ -825,7 +837,7 @@
 
   <div class="container">
     <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
-    
+   
     <p class="tagline">Rebellious. Clean-label. Flavor-forward. Coming soon to your taste buds.</p>
 
     <p>SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
@@ -866,7 +878,7 @@
           <textarea id="message" name="Message" maxlength="300" required></textarea>
           <div class="char-counter" id="charCounter">300 characters remaining</div>
         </div>
-        
+       
         <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
         <input type="hidden" name="_replyto" value="email">
         <button type="submit" class="submit-btn">Send Message</button>
@@ -896,7 +908,7 @@
 
     // --- [FIX] Wait for DOM to be loaded ---
     document.addEventListener('DOMContentLoaded', () => {
-    
+   
       // --- DOM Elements ---
       const menuToggle = document.getElementById('menuToggle');
       const slideMenu = document.getElementById('slideMenu');
@@ -904,16 +916,16 @@
       const slideCart = document.getElementById('slideCart');
       const cartCloseBtn = document.getElementById('cartCloseBtn');
       const overlay = document.getElementById('overlay');
-      
+     
       const cartItemsContainer = document.getElementById('cartItems');
       const cartTotalEl = document.getElementById('cartTotal');
       const cartCounterEl = document.getElementById('cartCounter');
-      
+     
       // === [NEW] SHIPPING JS ELEMENTS ===
       const cartSubtotalEl = document.getElementById('cartSubtotal');
       const cartShippingEl = document.getElementById('cartShipping');
       // === END NEW SHIPPING JS ===
-      
+     
       const thankYouModal = document.getElementById('thankYouModal');
       const modalCloseBtn = document.getElementById('modalCloseBtn');
       const payerNameEl = document.getElementById('payerName');
@@ -926,7 +938,7 @@
       const charCounter = document.getElementById('charCounter');
       const mainFooter = document.querySelector('.main-footer'); // [NEW] Get footer
 
-      
+     
       // --- All Functions Defined Inside DOMContentLoaded ---
 
       function toggleMenu(event) {
@@ -951,14 +963,14 @@
         }
         if (slideCart) {
             const isCartActive = slideCart.classList.toggle('active');
-            
+           
             // === [NEW FIX] Hide/show cart button ===
             if (cartToggle) {
                 // Use 'flex' as that's what we set in the CSS
                 cartToggle.style.display = isCartActive ? 'none' : 'flex'; 
             }
             // === END NEW FIX ===
-            
+           
             if (overlay) overlay.classList.toggle('active');
 
             if (isCartActive && !payPalButtonsRendered) {
@@ -1002,13 +1014,13 @@
       // === [NEW] FOOTER AVOIDANCE FUNCTION ===
       function handleFabPosition() {
         if (!contactFab || !mainFooter) return; // Exit if elements don't exist
-        
+       
         const footerTop = mainFooter.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
         const fabMargin = 30; // 30px
-        
+       
         const overlap = windowHeight - footerTop;
-        
+       
         if (overlap > 0) {
           // Footer is in view, move button up
           contactFab.style.bottom = (overlap + fabMargin) + 'px';
@@ -1030,7 +1042,7 @@
         localStorage.setItem('skullfoodCart', JSON.stringify(cart));
         renderCartUI();
       }
-      
+     
       function clearCart() {
         cart = [];
         localStorage.removeItem('skullfoodCart');
@@ -1056,13 +1068,21 @@
             cart.forEach(item => {
               const itemEl = document.createElement('div');
               itemEl.classList.add('cart-item');
+              
+              // === [MODIFIED] Added image logic to cart rendering ===
+              // Use item.image if it exists, otherwise a fallback
+              const itemImage = item.image || 'https://placehold.co/60x60/333/888?text=SKULL'; 
+              
               itemEl.innerHTML = `
+                <img src="${itemImage}" alt="${item.name}" class="cart-item-image">
                 <div class="cart-item-info">
                   <h4>${item.name}</h4>
                   <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
                 </div>
                 <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
               `;
+              // === [END MODIFICATION] ===
+              
               cartItemsContainer.appendChild(itemEl);
             });
           }
@@ -1088,13 +1108,13 @@
         if (cartCounterEl) {
           cartCounterEl.textContent = totalQuantity;
         }
-        
+       
         const paypalContainer = document.getElementById('paypal-button-container');
         if (paypalContainer) {
           paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
         }
       }
-      
+     
       function renderPayPalButtons() {
           if (!window.paypal) {
             console.error("PayPal SDK script not loaded.");
@@ -1108,7 +1128,7 @@
               const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
               const grandTotal = subtotal + shippingFee;
               // === END PAYPAL TOTAL ===
-              
+             
               return actions.order.create({
                 purchase_units: [{
                   amount: {
@@ -1150,19 +1170,19 @@
           cartToggle.addEventListener('click', toggleCart);
           cartToggle.addEventListener('touchstart', toggleCart);
       }
-      
+     
       if (cartCloseBtn) {
           cartCloseBtn.addEventListener('click', toggleCart);
           cartCloseBtn.addEventListener('touchstart', toggleCart);
       }
-      
+     
       function closeModals(event) {
           if(event) event.preventDefault();
           if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
           if (slideCart && slideCart.classList.contains('active')) toggleCart();
           if (contactModal && contactModal.classList.contains('active')) closeContactModal(); // [NEW] Close contact modal on overlay click
       }
-      
+     
       if (overlay) {
           overlay.addEventListener('click', closeModals);
           overlay.addEventListener('touchstart', closeModals);
@@ -1172,17 +1192,17 @@
         // This listener is for dynamic content, 'click' is more stable here
         cartItemsContainer.addEventListener('click', handleCartClick);
       }
-      
+     
       function closeThankYou(event) {
         if(event) event.preventDefault();
         if (thankYouModal) thankYouModal.classList.remove('active');
       }
-      
+     
       if (modalCloseBtn) {
           modalCloseBtn.addEventListener('click', closeThankYou);
           modalCloseBtn.addEventListener('touchstart', closeThankYou);
       }
-      
+     
       // === NEW CONTACT FORM LISTENERS ===
       if (contactFab) {
         contactFab.addEventListener('click', openContactModal);
@@ -1201,11 +1221,11 @@
       // === [NEW] SCROLL LISTENER FOR FAB ===
       window.addEventListener('scroll', handleFabPosition);
       // === END SCROLL LISTENER ===
-      
+     
       // --- Initial Load ---
       loadCart();
       handleFabPosition(); // [NEW] Run on load
-    
+     
     }); // End of DOMContentLoaded
   </script>
 
