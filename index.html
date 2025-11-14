@@ -31,6 +31,19 @@
       text-shadow: none; /* Override default p styles */
       color: #000; /* Override default p styles */
     }
+    
+    /* === [NEW] Mobile fix for shipping bar === */
+    .shipping-bar-divider,
+    .browser-recommendation {
+        opacity: 0.7;
+    }
+
+    @media (max-width: 640px) {
+      .browser-recommendation,
+      .shipping-bar-divider {
+        display: none; /* Hide on mobile */
+      }
+    }
     /* === END SHIPPING BAR STYLES === */
    
     /* === NEW NAV BAR STYLES === */
@@ -743,7 +756,8 @@
 <body>
 
   <div class="shipping-bar">
-    <p>Free Nationwide Shipping on Orders $65+ <span style="opacity: 0.7;">|</span> For the best experience, we recommend using Chrome or Edge.</p>
+    <!-- === [STEP 1] The HTML for the shipping bar === -->
+    <p>Free Nationwide Shipping on Orders $65+<span class="shipping-bar-divider"> | </span><span class="browser-recommendation">For the best experience, we recommend using Chrome or Edge.</span></p>
   </div>
   <header class="main-header">
     <div class="nav-container-new">
