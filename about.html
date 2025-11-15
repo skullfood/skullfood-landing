@@ -240,7 +240,7 @@
       right: 20px;
       width: 40px;
       height: 40px;
-  S   background: #111; /* [CHANGED] */
+      background: #111; /* [CHANGED] */
       border: 1px solid rgba(255,255,255,0.3); 
       border-radius: 5px;
       cursor: pointer;
@@ -496,7 +496,7 @@
     }
     .cart-item-info h4 {
       font-size: 1rem;
-  S   color: #fff;
+      color: #fff;
       margin: 0 0 5px 0;
       font-weight: bold;
     }
@@ -531,7 +531,7 @@
       justify-content: space-between;
       font-size: 1.2rem;
       font-weight: bold;
-S     margin-bottom: 1rem;
+  t   margin-bottom: 1rem;
     }
    
     /* === [NEW] CSS For Shipping Cart === */
@@ -570,7 +570,7 @@ S     margin-bottom: 1rem;
     }
     .modal-container {
       background: #111;
-      border: 1px solid #00ffff;
+    t border: 1px solid #00ffff;
       border-radius: 8px;
       padding: 2rem;
       width: 90%;
@@ -592,14 +592,14 @@ S     margin-bottom: 1rem;
       text-shadow: none;
       margin-bottom: 1.5rem;
       text-align: center; /* Keep modal text centered */
-    }
+s   }
     .modal-close-btn {
       background: #00ffff;
       color: #000;
       border: none;
       padding: 0.8rem 1.5rem;
       font-size: 1rem;
-Note     font-weight: bold;
+      font-weight: bold;
       text-transform: uppercase;
       border-radius: 5px;
       cursor: pointer;
@@ -622,9 +622,9 @@ Note     font-weight: bold;
       max-width: 700px; /* Match your main container width */
       margin: 0 auto;
       padding: 0 2rem; /* Match your main container padding */
-      text-align: center;
+  *   text-align: center;
     }
-s   .social-links {
+    .social-links {
       margin-bottom: 1.5rem;
     }
     .social-links a {
@@ -669,7 +669,7 @@ s     font-weight: bold; 
    
     .fab-svg-icon {
       width: 20px; /* [CHANGED] Half size */
-Ind     height: 20px; /* [CHANGED] Half size */
+      height: 20px; /* [CHANGED] Half size */
       margin-right: 0.5rem; /* [CHANGED] Half size */
       fill: #fff; 
       transition: fill 0.3s ease; 
@@ -684,7 +684,7 @@ Ind     height: 20px; /* [CHANGED] Half size */
       top: 15px;
       right: 15px;
       background: none;
-IND     border: none;
+      border: none;
       color: #fff;
       font-size: 2.5rem;
       font-weight: bold;
@@ -699,7 +699,7 @@ IND     border: none;
     .form-group {
       margin-bottom: 1.25rem;
       text-align: left;
-  Note }
+  s }
     .form-group label {
       display: block;
       margin-bottom: 0.5rem;
@@ -713,7 +713,7 @@ IND     border: none;
       width: 100%;
       padding: 0.75rem;
       background: #222;
-      border: 1px solid #444;
+s     border: 1px solid #444;
       border-radius: 5px;
       color: #fff;
       font-size: 1rem;
@@ -727,7 +727,7 @@ IND     border: none;
     .form-group .char-counter {
       font-size: 0.8rem;
       color: #888;
-      text-align: right;
+s     text-align: right;
       margin-top: 4px;
     }
     .submit-btn {
@@ -747,7 +747,7 @@ s     font-size: 1rem;
     .submit-btn:hover {
       background: #fff;
       box-shadow: 0 0 10px #00ffff;
-  m }
+    }
     /* === END CONTACT FORM STYLES === */
 
         .founders-container {
@@ -757,7 +757,7 @@ s     font-size: 1rem;
         flex-wrap: wrap; /* Wraps on mobile */
         gap: 1.5rem; /* Space between images */
         margin: 2.5rem 0; /* Space above/below */
-s   }
+    }
     .founder-img-wrapper {
         text-align: center;
         flex-basis: 150px; /* Starting size */
@@ -770,8 +770,8 @@ s   }
         aspect-ratio: 1 / 1; /* Ensures it's perfectly square, so radius works */
         border-radius: 50%; /* Makes it a circle */
         border: 3px solid #00ffff; /* Matches your brand's cyan */
-        object-fit: contain; /* <-- CHANGED from 'cover' to 'contain' to prevent cropping */
-        background-color: transparent; /* <-- CHANGED from '#333' */
+        object-fit: contain; /* This prevents cropping */
+        background-color: transparent; /* No bg color */
         box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
       </style>
@@ -816,7 +816,7 @@ s   }
       <div class="info-box">
         <h2>FIND US</h2>
         <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
-S       <p>Follow our social media for weekly locations and weekly gives away!</p>
+s     <p>Follow our social media for weekly locations and weekly gives away!</p>
         <p>
           <span class="ig-link">Instagram:</span>
           <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
@@ -835,7 +835,7 @@ S       <p>Follow our social media for weekly locations and weekly gives away
   </nav>
   <aside class="slide-cart" id="slideCart">
     <button class="close-btn" id="cartCloseBtn">&times;</button>
-Ind   <div class="cart-content">
+    <div class="cart-content">
       <h2>Your Cart</h2>
       <div class="cart-items" id="cartItems">
         <p class="cart-empty">Your cart is empty.</p>
@@ -869,14 +869,14 @@ Ind   <div class="cart-content">
     <div class="container">
     <h1 data-text="ABOUT US">ABOUT US</h1>
    
-        <p><strong>Bored of Bland? Good. So Were We.</strong></p>
+        <p style="text-align: center;"><strong>Bored of Bland? Good. So Were We.</strong></p>
    
     <p>SKULL FOOD™ is what happens when a chef gets fed up and a chemist knows exactly why.</p>
 
         <div class="founders-container">
       <div class="founder-img-wrapper">
                 <img src="NICK.jpg" alt="Nick, Co-Founder of SKULL FOOD" class="founder-img">
-Note     </div>
+      </div>
       <div class="founder-img-wrapper">
                 <img src="FAITH.jpg" alt="Faith, Co-Founder of SKULL FOOD" class="founder-img">
       </div>
@@ -902,7 +902,7 @@ Note     </div>
    
     <p>SKULL FOOD™ is their manifesto. It’s built on a simple, almost crazy idea: what if food was just... food?</p>
 
-    Note <p style="margin-top: 2rem; margin-bottom: 2rem;">
+        <p style="margin-top: 2rem; margin-bottom: 2rem;">
       <strong>100% REAL INGREDIENTS.</strong> (Shocking, we know.)<br>
       <strong>NO GUMS. NO PRESERVATIVES.</strong> We’re not into that.<br>
       <strong>NO FAKE-WEIGHT FILLERS.</strong> We're not ripping you off.<br>
@@ -930,14 +930,14 @@ s  
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-Additional         <input type="email" id="email" name="Email" required>
+          <input type="email" id="email" name="Email" required>
         </div>
         <div class="form-group">
           <label for="subject">Subject</label>
-          <select id="subject" name="Subject" required>
+s       <select id="subject" name="Subject" required>
             <option value="">Please choose an option...</option>
             <option value="Placing an order">Placing an order</option>
-OS         <option value="Issue with cart">Issue with cart</option>
+            <option value="Issue with cart">Issue with cart</option>
             <option value="Tracking an order">Tracking an order</option>
             <option value="Refund">Refund</option>
             <option value="Other">Other</option>
@@ -949,13 +949,13 @@ OS         <option value="Issue with cart">Issue with cart</option>
           <div class="char-counter" id="charCounter">300 characters remaining</div>
         </div>
        
-  s     <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
-        <input type="hidden" name="_replyto" value="email">
+        <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
+s     <input type="hidden" name="_replyto" value="email">
         <button type="submit" class="submit-btn">Send Message</button>
       </form>
     </div>
   </div>
-  <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us">Ind 
+  <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us">s
     <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
     </svg>
@@ -997,17 +997,17 @@ s   document.addEventListener('DOMContentLoaded', () => {
       // === END NEW SHIPPING JS ===
      
       const thankYouModal = document.getElementById('thankYouModal');
-      const modalCloseBtn = document.getElementById('modalCloseBtn');
+s     const modalCloseBtn = document.getElementById('modalCloseBtn');
       const payerNameEl = document.getElementById('payerName');
 
       // === NEW CONTACT FORM ELEMENTS ===
       const contactFab = document.getElementById('contact-fab');
       const contactModal = document.getElementById('contactModal');
-Ind     const contactModalClose = document.getElementById('contactModalClose');
+      const contactModalClose = document.getElementById('contactModalClose');
       const messageTextarea = document.getElementById('message');
       const charCounter = document.getElementById('charCounter');
       const mainFooter = document.querySelector('.main-footer'); // [NEW] Get footer
-     
+s    
       // --- All Functions Defined Inside DOMContentLoaded ---
 
       function toggleMenu(event) {
@@ -1024,12 +1024,12 @@ Ind     const contactModalClose = document.getElementById('contactModalClose')
 
       function toggleCart(event) {
         if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
-s       if (slideMenu && slideMenu.classList.contains('active')) {
+        if (slideMenu && slideMenu.classList.contains('active')) {
           toggleMenu(); // Close menu if open
         }
         if (contactModal && contactModal.classList.contains('active')) {
           closeContactModal(); // Close contact modal if open
-        }
+      .
         if (slideCart) {
             const isCartActive = slideCart.classList.toggle('active');
            
@@ -1042,7 +1042,7 @@ s       if (slideMenu && slideMenu.classList.contains('active')) {
            
             if (overlay) overlay.classList.toggle('active');
 
-            if (isCartActive && !payPalButtonsRendered) {
+Note         if (isCartActive && !payPalButtonsRendered) {
               renderPayPalButtons();
               payPalButtonsRendered = true;
             }
@@ -1059,8 +1059,8 @@ s       if (slideMenu && slideMenu.classList.contains('active')) {
           toggleCart(); // Close cart if open
         }
         if(contactModal) contactModal.classList.add('active');
-Ind       if(overlay) overlay.classList.add('active');
-      }
+        if(overlay) overlay.classList.add('active');
+s   }
 
       function closeContactModal(event) {
         if(event) event.preventDefault();
@@ -1073,7 +1073,7 @@ Ind       if(overlay) overlay.classList.add('active');
 
       function updateCharCounter() {
         if (!messageTextarea) return; // [FIX] Check if element exists
-        const maxLength = messageTextarea.maxLength;
+s       const maxLength = messageTextarea.maxLength;
         const currentLength = messageTextarea.value.length;
         const charsRemaining = maxLength - currentLength;
         charCounter.textContent = `${charsRemaining} characters remaining`;
@@ -1089,10 +1089,10 @@ Ind       if(overlay) overlay.classList.add('active');
         const fabMargin = 30; // 30px
        
         const overlap = windowHeight - footerTop;
-s       
+       
         if (overlap > 0) {
           // Footer is in view, move button up
-          contactFab.style.bottom = (overlap + fabMargin) + 'px';
+s         contactFab.style.bottom = (overlap + fabMargin) + 'px';
         } else {
           // Footer is not in view, reset button
           contactFab.style.bottom = fabMargin + 'px';
@@ -1100,7 +1100,7 @@ s      
       }
       // === END FOOTER AVOIDANCE FUNCTION ===
 
-      function loadCart() {
+s   function loadCart() {
         const storedCart = localStorage.getItem('skullfoodCart');
         cart = storedCart ? JSON.parse(storedCart) : [];
         renderCartUI();
@@ -1130,23 +1130,23 @@ s      
       function renderCartUI() {
         if (cartItemsContainer) {
           cartItemsContainer.innerHTML = '';
-          if (cart.length === 0) {
+s         if (cart.length === 0) {
             cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
           } else {
             cart.forEach(item => {
               const itemEl = document.createElement('div');
-  s           itemEl.classList.add('cart-item');
+              itemEl.classList.add('cart-item');
               
               // [MODIFIED] Added image logic to cart rendering
               const itemImage = item.image || 'https://placehold.co/60x60/333/888?text=SKULL'; // Fallback image
               
               itemEl.innerHTML = `
                 <img src="${itemImage}" alt="${item.name}" class="cart-item-image">
-                <div class="cart-item-info">
+s               <div class="cart-item-info">
                   <h4>${item.name}</h4>
                   <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
                 </div>
-  Additional           <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
+                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
               `;
               cartItemsContainer.appendChild(itemEl);
             });
@@ -1155,18 +1155,18 @@ s      
 
         // === [NEW] SHIPPING LOGIC ===
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-OS       const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
-        const grandTotal = subtotal + shippingFee;
+        const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
+s       const grandTotal = subtotal + shippingFee;
 
         if (cartSubtotalEl) {
           cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
         }
         if (cartShippingEl) {
           cartShippingEl.textContent = `$${shippingFee.toFixed(2)}`;
-A       }
+        }
         if (cartTotalEl) {
           cartTotalEl.textContent = `$${grandTotal.toFixed(2)}`;
-        }
+Note     }
         // === END SHIPPING LOGIC ===
 
         const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -1175,16 +1175,16 @@ A       }
         }
        
         const paypalContainer = document.getElementById('paypal-button-container');
-        if (paypalContainer) {
+s       if (paypalContainer) {
           paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
         }
       }
      
       function renderPayPalButtons() {
           if (!window.paypal) {
-  L         console.error("PayPal SDK script not loaded.");
+            console.error("PayPal SDK script not loaded.");
             return;
-          }
+s         }
 
           paypal.Buttons({
             createOrder: function(data, actions) {
@@ -1194,11 +1194,11 @@ A       }
               const grandTotal = subtotal + shippingFee;
               // === END PAYPAL TOTAL ===
              
-              return actions.order.create({
+s             return actions.order.create({
                 purchase_units: [{
                   amount: {
                     value: grandTotal.toFixed(2), // [CHANGED]
-I                 currency_code: 'USD'
+s                 currency_code: 'USD'
                   }
                 }]
               });
@@ -1206,21 +1206,22 @@ I                 currency_code: 'USD'
             onApprove: function(data, actions) {
               return actions.order.capture().then(function(details) {
                 const payerName = details.payer.name.given_name || 'Rebel';
-Ind             if (payerNameEl) payerNameEl.textContent = payerName;
+                if (payerNameEl) payerNameEl.textContent = payerName;
                 if (thankYouModal) thankYouModal.classList.add('active');
-                if (slideCart.classList.contains('active')) {
-                togg               }
+Ind             if (slideCart.classList.contains('active')) {
+                  toggleCart();
+                }
                 clearCart();
               });
             },
             onCancel: function(data) {
-S             console.log('Payment cancelled:', data);
+s             console.log('Payment cancelled:', data);
             },
             onError: function(err) {
               console.error('An error occurred with the PayPal payment:', err);
            
-              alert('An error occurred. Please try again.');
-Additional           }
+  Ind         alert('An error occurred. Please try again.');
+            }
           }).render('#paypal-button-container');
       }
 
@@ -1228,25 +1229,25 @@ Additional           }
 
       if (menuToggle) {
           menuToggle.addEventListener('click', toggleMenu);
-          menuToggle.addEventListener('touchstart', toggleMenu);
-s     }
+Note       menuToggle.addEventListener('touchstart', toggleMenu);
+      }
 
       if (cartToggle) {
           cartToggle.addEventListener('click', toggleCart);
-s         cartToggle.addEventListener('touchstart', toggleCart);
+          cartToggle.addEventListener('touchstart', toggleCart);
       }
      
       if (cartCloseBtn) {
           cartCloseBtn.addEventListener('click', toggleCart);
-OS         cartCloseBtn.addEventListener('touchstart', toggleCart);
-      }
+s         cartCloseBtn.addEventListener('touchstart', toggleCart);
+s     }
      
       function closeModals(event) {
           if(event) event.preventDefault();
           if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
           if (slideCart && slideCart.classList.contains('active')) toggleCart();
           if (contactModal && contactModal.classList.contains('active')) closeContactModal(); // [NEW] Close contact modal on overlay click
-      }
+s     }
      
       if (overlay) {
           overlay.addEventListener('click', closeModals);
@@ -1255,8 +1256,8 @@ OS         cartCloseBtn.addEventListener('touchstart', toggleCart);
 
       if (cartItemsContainer) {
         // This listener is for dynamic content, 'click' is more stable here
-Services       cartItemsContainer.addEventListener('click', handleCartClick);
-      }
+s       cartItemsContainer.addEventListener('click', handleCartClick);
+end   }
      
       function closeThankYou(event) {
         if(event) event.preventDefault();
@@ -1265,8 +1266,8 @@ Services       cartItemsContainer.addEventListener('click', handleCartClick);
      
       if (modalCloseBtn) {
           modalCloseBtn.addEventListener('click', closeThankYou);
-s         modalCloseBtn.addEventListener('touchstart', closeThankYou);
-Ind   }
+ind       modalCloseBtn.addEventListener('touchstart', closeThankYou);
+      }
      
       // === NEW CONTACT FORM LISTENERS ===
       if (contactFab) {
@@ -1274,12 +1275,12 @@ Ind   }
         contactFab.addEventListener('touchstart', openContactModal);
       }
       if (contactModalClose) {
-    Note   contactModalClose.addEventListener('click', closeContactModal);
-Ind       contactModalClose.addEventListener('touchstart', closeContactModal);
+        contactModalClose.addEventListener('click', closeContactModal);
+        contactModalClose.addEventListener('touchstart', closeContactModal);
       }
       if (messageTextarea) {
         messageTextarea.addEventListener('input', updateCharCounter);
-        updateCharCounter(); // Run on load
+s       updateCharCounter(); // Run on load
       }
       // === END CONTACT FORM LISTENERS ===
 
@@ -1288,7 +1289,7 @@ Ind       contactModalClose.addEventListener('touchstart', closeContactModal)
       // === END SCROLL LISTENER ===
      
       // --- Initial Load ---
-S     loadCart();
+      loadCart();
       handleFabPosition(); // [NEW] Run on load
      
     }); // End of DOMContentLoaded
