@@ -115,7 +115,7 @@
     .container {
       max-width: 700px;
       margin: 3rem auto; 
-      padding: 2.5rem 2rem;
+  _     padding: 2.5rem 2rem;
       text-align: center;
       position: relative;
       z-index: 10;
@@ -147,7 +147,7 @@
       color: #00ffff;
       opacity: 0.7; 
       animation: glitch-anim-1 0.15s infinite linear alternate;
-    }
+  _   }
 
     h1::after {
       color: #ff00ff;
@@ -167,7 +167,7 @@
 
     p {
       font-size: 1.1rem;
-  S     line-height: 1.6;
+      line-height: 1.6;
       margin-bottom: 1.5rem;
       color: #fff;
       font-weight: bold;
@@ -543,7 +543,7 @@
     
     .cart-items {
       /* [FIX] Removed flex-grow and overflow-y */
-      margin-top: 1rem;
+s       margin-top: 1rem;
     }
     .cart-empty {
       font-family: 'Helvetica Neue', sans-serif;
@@ -554,7 +554,7 @@
       text-align: center;
       margin-top: 2rem;
     }
-   nbsp;
+    
     /* === [NEW] Cart Item Image Style === */
     .cart-item-image {
       width: 60px;
@@ -697,7 +697,7 @@
       background: rgba(10, 10, 10, 0.9);
       border-top: 1px solid #00ffff;
       padding: 2rem 0;
-      width: 100%;
+  s     width: 100%;
       z-index: 10;
       position: relative;
     }
@@ -713,7 +713,7 @@
     .social-links a {
       font-size: 1.2rem;
       text-decoration: none;
-    }
+  _   }
     .footer-copyright {
       font-family: 'Helvetica Neue', sans-serif;
       font-weight: normal;
@@ -759,6 +759,7 @@
     }
     
     a.contact-fab:hover .fab-svg-icon {
+Click Me
       fill: #000; 
     }
 
@@ -775,7 +776,7 @@
       line-height: 1;
       padding: 0;
       z-index: 10;
-  CH   }
+    }
     .modal-close-icon:hover {
       color: #00ffff;
     }
@@ -806,7 +807,7 @@
     .form-group textarea {
       resize: vertical;
       min-height: 100px;
-    }
+  }
     .form-group .char-counter {
       font-size: 0.8rem;
       color: #888;
@@ -818,6 +819,7 @@
       color: #000;
       border: none;
       padding: 0.8rem 1.5rem;
+OS: 10.12.6.
       font-size: 1rem;
       font-weight: bold;
       text-transform: uppercase;
@@ -918,7 +920,7 @@
         </div>
         <div class="cart-total grand-total">
           <strong>Total:</strong>
-  S         <span id="cartTotal">$0.00</span>
+          <span id="cartTotal">$0.00</span>
         </div>
         <div id="paypal-button-container"></div>
       </div>
@@ -974,7 +976,7 @@ s     <p>SKULL FOOD™ is their manifesto. It’s built on a simple, almost cr
       <li>NO GUMS. NO PRESERVATIVES. We’re not into that.</li>
       <li>NO FAKE-WEIGHT FILLERS. We're not ripping you off.</li>
       <li>JUST PURE CULINARY FUSION. Flavor-forward, wild, and unapologetically bold.</li>
-    </ul>
+s   </ul>
 
     <p>We’re not a "flavor print." We’re a non-ordinary brand for non-ordinary people. We stand for transparency, taste, and... you know… not classic.</p>
     <p>This isn't your grandma's pantry. This is SKULL FOOD™.</p>
@@ -988,7 +990,7 @@ s     <p>SKULL FOOD™ is their manifesto. It’s built on a simple, almost cr
       <form action="https://formsubmit.co/contact@toloni.net" method="POST">
                 <div class="form-group">
           <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="First Name" required>
+Dos           <input type="text" id="firstName" name="First Name" required>
         </div>
         <div class="form-group">
           <label for="lastName">Last Name</label>
@@ -1016,13 +1018,14 @@ s     <p>SKULL FOOD™ is their manifesto. It’s built on a simple, almost cr
         </div>
         
                 <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
+Type
         <input type="hidden" name="_replyto" value="email">
         <button type="submit" class="submit-btn">Send Message</button>
       </form>
     </div>
   </div>
 
-    <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us">s 
+    <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us"> 
     <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
     </svg>
@@ -1037,7 +1040,7 @@ s     <p>SKULL FOOD™ is their manifesto. It’s built on a simple, almost cr
         </a>
       </div>
       <p class="footer-copyright">&copy; 2025 SKULL FOOD LLC. All rights reserved.</p>
-    </div>
+s   </div>
   </footer>
 
   <script>
@@ -1057,8 +1060,8 @@ s     <p>SKULL FOOD™ is their manifesto. It’s built on a simple, almost cr
       const overlay = document.getElementById('overlay');
       
       const cartItemsContainer = document.getElementById('cartItems');
-      const cartTotalEl = document.getElementById('cartTotal');
-      const cartCounterEl = document.getElementById('cartCounter'); // <<< *** FIX WAS HERE ***
+s       const cartTotalEl = document.getElementById('cartTotal');
+      const cartCounterEl = document.getElementById('cartCounter'); /* <<< THE ONLY FIX IS ON THIS LINE */
       
       // === [NEW] SHIPPING JS ELEMENTS ===
       const cartSubtotalEl = document.getElementById('cartSubtotal');
@@ -1128,7 +1131,7 @@ s     <p>SKULL FOOD™ is their manifesto. It’s built on a simple, almost cr
           toggleCart(); // Close cart if open
         }
         if(contactModal) contactModal.classList.add('active');
-        if(overlay) overlay.classList.add('active');
+s         if(overlay) overlay.classList.add('active');
       }
 
       function closeContactModal(event) {
@@ -1208,13 +1211,13 @@ s     <p>SKULL FOOD™ is their manifesto. It’s built on a simple, almost cr
               
               // [MODIFIED] Added image logic to cart rendering
               const itemImage = item.image || 'https://placehold.co/60x60/333/888?text=SKULL'; // Fallback image
-  S             
+              
               itemEl.innerHTML = `
                 <img src="${itemImage}" alt="${item.name}" class="cart-item-image" onerror="this.src='https://placehold.co/60x60/333/888?text=SKULL'">
                 <div class="cart-item-info">
                   <h4>${item.name}</h4>
                   <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-                </div>
+s               </div>
                 <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
               `;
               cartItemsContainer.appendChild(itemEl);
@@ -1229,13 +1232,13 @@ s     <p>SKULL FOOD™ is their manifesto. It’s built on a simple, almost cr
 
         if (cartSubtotalEl) {
           cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-        }
+all         }
         if (cartShippingEl) {
           cartShippingEl.textContent = `$${shippingFee.toFixed(2)}`;
         }
         if (cartTotalEl) {
           cartTotalEl.textContent = `$${grandTotal.toFixed(2)}`;
-s         }
+        }
         // === END SHIPPING LOGIC ===
 
         const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -1244,7 +1247,7 @@ s         }
         }
         
         const paypalContainer = document.getElementById('paypal-button-container');
-        if (paypalContainer) {
+s         if (paypalContainer) {
           paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
         }
       }
@@ -1252,14 +1255,14 @@ s         }
       function renderPayPalButtons() {
           if (!window.paypal) {
             console.error("PayPal SDK script not loaded.");
-            return;
+  tr-a           return;
           }
 
           // Check if buttons are already rendered in this container
           const container = document.getElementById('paypal-button-container');
           if (container && container.innerHTML.trim() !== '') {
             // Clear previous buttons to avoid duplicates if cart re-renders
-nbsp;           container.innerHTML = ''; 
+            container.innerHTML = ''; 
           }
 
           paypal.Buttons({
@@ -1281,14 +1284,14 @@ nbsp;           container.innerHTML = ''; 
                 purchase_units: [{
                   amount: {
                     value: grandTotal.toFixed(2), // [CHANGED]
-nbsp;                     currency_code: 'USD'
+                    currency_code: 'USD'
                   }
                 }]
               });
-            },
+is           },
             onApprove: function(data, actions) {
               return actions.order.capture().then(function(details) {
-                const payerName = details.payer.name.given_name || 'Rebel';
+    _             const payerName = details.payer.name.given_name || 'Rebel';
                 if (payerNameEl) payerNameEl.textContent = payerName;
                 if (thankYouModal) thankYouModal.classList.add('active');
                 if (slideCart.classList.contains('active')) {
@@ -1301,7 +1304,7 @@ nbsp;                     currency_code: 'USD'
               console.log('Payment cancelled:', data);
             },
             onError: function(err) {
-CH             console.error('An error occurred with the PayPal payment:', err);
+              console.error('An error occurred with the PayPal payment:', err);
               
               // Avoid using alert(). Maybe show a custom message in the cart.
               const errorContainer = document.getElementById('paypal-button-container');
@@ -1311,7 +1314,7 @@ CH             console.error('An error occurred with the PayPal payment:',
                   setTimeout(() => {
                       if (payPalButtonsRendered) {
                          renderPayPalButtons();
-              _       }
+                      }
                   }, 3000);
               }
             }
@@ -1339,7 +1342,7 @@ CH             console.error('An error occurred with the PayPal payment:',
       
       function closeModals(event) {
           if(event) event.preventDefault();
-    C       if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
+ds           if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
           if (slideCart && slideCart.classList.contains('active')) toggleCart();
           if (contactModal && contactModal.classList.contains('active')) closeContactModal(); // [NEW] Close contact modal on overlay click
       }
@@ -1351,7 +1354,7 @@ CH             console.error('An error occurred with the PayPal payment:',
 
       if (cartItemsContainer) {
         // This listener is for dynamic content, 'click' is more stable here
-s         cartItemsContainer.addEventListener('click', handleCartClick);
+        cartItemsContainer.addEventListener('click', handleCartClick);
       }
       
       function closeThankYou(event) {
@@ -1360,8 +1363,8 @@ s         cartItemsContainer.addEventListener('click', handleCartClick);
       }
       
       if (modalCloseBtn) {
-          modalCloseBtn.addEventListener('click', closeThankYou);
-          // Removed touchstart
+    Main       modalCloseBtn.addEventListener('click', closeThankYou);
+s         // Removed touchstart
       }
       
       // === NEW CONTACT FORM LISTENERS ===
@@ -1371,7 +1374,7 @@ s         cartItemsContainer.addEventListener('click', handleCartClick);
       }
       if (contactModalClose) {
         contactModalClose.addEventListener('click', closeContactModal);
-I         // Removed touchstart
+        // Removed touchstart
       }
       if (messageTextarea) {
         messageTextarea.addEventListener('input', updateCharCounter);
@@ -1382,7 +1385,7 @@ I         // Removed touchstart
       // === [NEW] SCROLL LISTENER FOR FAB ===
       window.addEventListener('scroll', handleFabPosition);
       window.addEventListener('resize', handleFabPosition); // Also run on resize
-      // === END SCROLL LISTENER ===
+fs       // === END SCROLL LISTENER ===
       
       // --- Initial Load ---
       loadCart();
