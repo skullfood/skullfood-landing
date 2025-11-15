@@ -185,7 +185,8 @@
         height: 150px;
         border-radius: 50%; /* Makes it a circle */
         border: 2px solid #00ffff;
-        object-fit: cover;
+        object-fit: cover; /* Ensures image covers the area */
+        object-position: center; /* Centers the image within the circle */
         margin: 0 auto 1rem auto;
         display: block;
     }
@@ -836,13 +837,11 @@
 </head>
 <body>
 
-  <!-- Shipping Bar -->
-  <div class="shipping-bar">
+  <!-- Shipping Bar --><div class="shipping-bar">
     <p>Free Nationwide Shipping on Orders $65+</p>
   </div>
 
-  <!-- Header -->
-  <header class="main-header">
+  <!-- Header --><header class="main-header">
     <div class="nav-container-new">
       <a href="index.html" class="nav-logo">SKULL FOOD&trade;</a>
       <nav class="main-nav">
@@ -856,36 +855,30 @@
     </div>
   </header>
 
-  <!-- Mobile Menu Toggle -->
-  <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
+  <!-- Mobile Menu Toggle --><button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </button>
 
-  <!-- Cart Toggle -->
-  <button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
+  <!-- Cart Toggle --><button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
     🛒
     <span class="cart-counter" id="cartCounter">0</span>
   </button>
 
-  <!-- Overlay -->
-  <div class="overlay" id="overlay"></div>
+  <!-- Overlay --><div class="overlay" id="overlay"></div>
 
-  <!-- Slide-out Menu -->
-  <nav class="slide-menu" id="slideMenu">
+  <!-- Slide-out Menu --><nav class="slide-menu" id="slideMenu">
     <div class="info-container">
     
-      <!-- Mobile Nav Links -->
-      <ul class="mobile-nav-links">
+      <!-- Mobile Nav Links --><ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Sweet Spreads</a></li>
         <li><a href="pepper-spreads.html">Pepper Spreads</a></li>
         <li><a href="about.html">About Us</a></li>
       </ul>
       
-      <!-- Info Boxes -->
-      <div class="info-box">
+      <!-- Info Boxes --><div class="info-box">
         <h2>FIND US</h2>
         <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
         <p>Follow our social media for weekly locations and weekly gives away!</p>
@@ -906,8 +899,7 @@
     </div>
   </nav>
 
-  <!-- Slide-out Cart -->
-  <aside class="slide-cart" id="slideCart">
+  <!-- Slide-out Cart --><aside class="slide-cart" id="slideCart">
     <button class="close-btn" id="cartCloseBtn">&times;</button>
     <div class="cart-content">
       <h2>Your Cart</h2>
@@ -915,8 +907,7 @@
         <p class="cart-empty">Your cart is empty.</p>
       </div>
       
-      <!-- Cart Summary -->
-      <div class="cart-summary">
+      <!-- Cart Summary --><div class="cart-summary">
         <div class="cart-total" id="cartSubtotalRow">
           <strong>Subtotal:</strong>
           <span id="cartSubtotal">$0.00</span>
@@ -934,8 +925,7 @@
       </div>
   </aside>
 
-  <!-- Thank You Modal -->
-  <div class="modal-overlay" id="thankYouModal">
+  <!-- Thank You Modal --><div class="modal-overlay" id="thankYouModal">
     <div class="modal-container">
       <h2>Thank You!</h2>
       <p>Your order is confirmed. Thanks for joining the rebellion, <span id="payerName"></span>!</p>
@@ -943,8 +933,7 @@
     </div>
   </div>
 
-  <!-- Main Content -->
-  <div class="container">
+  <!-- Main Content --><div class="container">
     <h1 data-text="ABOUT US">ABOUT US</h1>
     
     <h2>Bored of Bland? Good. So Were We.</h2>
@@ -992,14 +981,12 @@
     <strong class="rebellion-text">Join the Rebellion.</strong>
   </div>
 
-  <!-- Contact Modal -->
-  <div class="modal-overlay" id="contactModal">
+  <!-- Contact Modal --><div class="modal-overlay" id="contactModal">
     <div class="modal-container">
       <button class="modal-close-icon" id="contactModalClose">&times;</button>
       <h2>Contact Us</h2>
       <form action="https://formsubmit.co/contact@toloni.net" method="POST">
-        <!-- Form Fields -->
-        <div class="form-group">
+        <!-- Form Fields --><div class="form-group">
           <label for="firstName">First Name</label>
           <input type="text" id="firstName" name="First Name" required>
         </div>
@@ -1028,24 +1015,21 @@
           <div class="char-counter" id="charCounter">300 characters remaining</div>
         </div>
         
-        <!-- FormSubmit Hidden Fields -->
-        <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
+        <!-- FormSubmit Hidden Fields --><input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
         <input type="hidden" name="_replyto" value="email">
         <button type="submit" class="submit-btn">Send Message</button>
       </form>
     </div>
   </div>
 
-  <!-- Contact FAB -->
-  <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us"> 
+  <!-- Contact FAB --><a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us"> 
     <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
     </svg>
     <span class="fab-text">Chat with us</span>
   </a>
 
-  <!-- Footer -->
-  <footer class="main-footer">
+  <!-- Footer --><footer class="main-footer">
     <div class="footer-container">
       <div class="social-links">
         <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
@@ -1074,7 +1058,7 @@
       
       const cartItemsContainer = document.getElementById('cartItems');
       const cartTotalEl = document.getElementById('cartTotal');
-      const cartCounterEl = document.getElementById('cartCounter');
+      const cartCounterEl = document('cartCounter');
       
       // === [NEW] SHIPPING JS ELEMENTS ===
       const cartSubtotalEl = document.getElementById('cartSubtotal');
