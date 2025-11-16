@@ -1,0 +1,11 @@
+# File for secret keys. NEVER commit this.
+.env
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Node.js dependencies (if you ever use it)
+node_modules
