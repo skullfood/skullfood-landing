@@ -4,12 +4,27 @@
   <meta charset="UTF-8" />
   <title>SKULL FOOD™ - Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
-  <meta name="description" content="SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations. Born from a chemist and a chef. Find us in California." />
-  <meta name="keywords" content="SKULL FOOD, clean label, rebellious food, healthy, farmers market, California, chef-made" />
+
+  <meta
+    name="description"
+    content="SKULL FOOD™: Rebellious, clean-label, and flavor-forward culinary creations. Born from a chemist and a chef. Find us in California."
+  />
+  <meta
+    name="keywords"
+    content="SKULL FOOD, clean label, rebellious food, healthy, farmers market, California, chef-made"
+  />
   <meta name="author" content="SKULL FOOD LLC" />
 
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2TT2FY3FX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K2TT2FY3FX');
+  </script>
 
   <style>
     /* === NEW SHIPPING BAR STYLES === */
@@ -31,11 +46,11 @@
       text-shadow: none; /* Override default p styles */
       color: #000; /* Override default p styles */
     }
-    
+
     /* === [NEW] Mobile fix for shipping bar === */
     .shipping-bar-divider,
     .browser-recommendation {
-        opacity: 0.7;
+      opacity: 0.7;
     }
 
     @media (max-width: 640px) {
@@ -45,7 +60,7 @@
       }
     }
     /* === END SHIPPING BAR STYLES === */
-   
+
     /* === NEW NAV BAR STYLES === */
     .main-header {
       background: rgba(10, 10, 10, 0.9);
@@ -53,8 +68,8 @@
       padding: 1rem 0;
       width: 100%;
       position: sticky;
-      top: 44px; 
-      z-index: 900; 
+      top: 44px;
+      z-index: 900;
       box-sizing: border-box;
     }
     .nav-container-new {
@@ -103,7 +118,7 @@
         justify-content: center; /* Center the logo on mobile */
       }
       .main-header {
-        top: 44px; 
+        top: 44px;
       }
     }
     /* === END NEW NAV BAR STYLES === */
@@ -128,7 +143,7 @@
     }
     .container {
       max-width: 700px;
-      margin: 3rem auto; 
+      margin: 3rem auto;
       padding: 2.5rem 2rem;
       text-align: center;
       position: relative;
@@ -141,10 +156,10 @@
       font-family: Georgia, 'Times New Roman', serif;
       color: #fff;
       position: relative;
-      text-shadow: none; 
+      text-shadow: none;
       animation: none;
     }
-   
+
     h1::before,
     h1::after {
       content: attr(data-text);
@@ -158,24 +173,32 @@
 
     h1::before {
       color: #00ffff;
-      opacity: 0.7; 
+      opacity: 0.7;
       animation: glitch-anim-1 0.15s infinite linear alternate;
     }
 
     h1::after {
       color: #ff00ff;
-      opacity: 0.7; 
+      opacity: 0.7;
       animation: glitch-anim-2 0.2s infinite linear alternate-reverse;
     }
 
     @keyframes glitch-anim-1 {
-      0% { transform: translate(3px, 2px); }
-      100% { transform: translate(-3px, -2px); }
+      0% {
+        transform: translate(3px, 2px);
+      }
+      100% {
+        transform: translate(-3px, -2px);
+      }
     }
 
     @keyframes glitch-anim-2 {
-      0% { transform: translate(-2px, -3px); }
-      100% { transform: translate(2px, 3px); }
+      0% {
+        transform: translate(-2px, -3px);
+      }
+      100% {
+        transform: translate(2px, 3px);
+      }
     }
 
     p {
@@ -184,21 +207,19 @@
       margin-bottom: 1.5rem;
       color: #fff;
       font-weight: bold;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
     }
-   
-    .tagline, .rebellion-text {
+
+    .tagline,
+    .rebellion-text {
       font-weight: bold;
       font-size: 1.2rem;
       margin-bottom: 2rem;
       color: #fff;
-      text-shadow: 
-        -1px -1px 0 #057386, 
-         1px -1px 0 #057386,
-        -1px  1px 0 #057386,
-         1px  1px 0 #057386;
+      text-shadow: -1px -1px 0 #057386, 1px -1px 0 #057386,
+        -1px 1px 0 #057386, 1px 1px 0 #057386;
     }
-   
+
     .rebellion-text {
       display: block;
       margin-top: 2rem;
@@ -229,26 +250,26 @@
       background: #fff;
       box-shadow: 0 0 15px #00ffff;
     }
-   
+
     .shop-now-btn.pepper-theme {
-        background: #ff4136;
-        color: #fff;
+      background: #ff4136;
+      color: #fff;
     }
     .shop-now-btn.pepper-theme:hover {
-        background: #fff;
-        color: #000;
-        box-shadow: 0 0 15px #ff4136;
+      background: #fff;
+      color: #000;
+      box-shadow: 0 0 15px #ff4136;
     }
 
     /* --- MENU & OVERLAY --- */
     .menu-toggle-btn {
       position: fixed;
-      top: 64px; 
+      top: 64px;
       right: 20px;
       width: 40px;
       height: 40px;
-      background: #111; 
-      border: 1px solid rgba(255,255,255,0.3); 
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 5px;
       cursor: pointer;
       display: flex;
@@ -262,10 +283,10 @@
     .menu-toggle-btn .bar {
       width: 100%;
       height: 3px;
-      background-color: #ffffff; 
+      background-color: #ffffff;
       border-radius: 2px;
-      opacity: 1; 
-      box-shadow: 0 0 3px rgba(255,255,255,0.5);
+      opacity: 1;
+      box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
     }
 
     .overlay {
@@ -274,7 +295,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       z-index: 999;
       opacity: 0;
       visibility: hidden;
@@ -304,7 +325,7 @@
     .info-container {
       margin-top: 60px;
     }
-   
+
     .mobile-nav-links {
       list-style: none;
       padding: 0;
@@ -330,13 +351,13 @@
     .mobile-nav-links a:hover {
       color: #00ffff;
     }
-   
+
     .info-box {
-      background: rgba(0,0,0,0.3);
+      background: rgba(0, 0, 0, 0.3);
       border-radius: 8px;
       padding: 1.5rem;
       margin-bottom: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .info-box h2 {
       font-family: Georgia, 'Times New Roman', serif;
@@ -361,9 +382,16 @@
     .info-box a:hover {
       text-decoration: underline;
     }
-   
+
     .ig-link {
-      background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      background: -webkit-linear-gradient(
+        45deg,
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
+        #bc1888 100%
+      );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -371,23 +399,23 @@
       font-weight: bold;
       text-decoration: none;
     }
-   
+
     /* --- CART STYLES --- */
     .cart-toggle-btn {
       position: fixed;
-      top: 64px; 
+      top: 64px;
       left: 20px;
       width: 40px;
       height: 40px;
-      background: #111; 
-      border: 1px solid rgba(255,255,255,0.3);
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 5px;
       cursor: pointer;
       z-index: 1001;
       font-size: 1.2rem;
       color: white;
       padding: 0;
-      display: flex; 
+      display: flex;
       align-items: center;
       justify-content: center;
     }
@@ -427,12 +455,12 @@
     .slide-cart.active {
       left: 0;
     }
-   
+
     .cart-content {
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
 
     .close-btn {
@@ -461,7 +489,7 @@
       border-bottom: 2px solid #00ffff;
       padding-bottom: 0.5rem;
     }
-   
+
     .cart-items {
       margin-top: 1rem;
     }
@@ -474,7 +502,7 @@
       text-align: center;
       margin-top: 2rem;
     }
-   
+
     /* === [NEW] Cart Item Image Style === */
     .cart-item-image {
       width: 60px;
@@ -485,7 +513,7 @@
       flex-shrink: 0; /* Prevents image from shrinking */
     }
     /* === END Cart Item Image Style === */
-   
+
     .cart-item {
       display: flex;
       align-items: center;
@@ -522,11 +550,11 @@
     .remove-item-btn:hover {
       color: #fff;
     }
-   
+
     .cart-summary {
       border-top: 1px solid #444;
       padding-top: 1rem;
-      margin-top: auto; 
+      margin-top: auto;
     }
     .cart-total {
       display: flex;
@@ -535,7 +563,7 @@
       font-weight: bold;
       margin-bottom: 1rem;
     }
-   
+
     /* === [NEW] CSS For Shipping Cart === */
     .cart-total.grand-total {
       font-size: 1.3rem;
@@ -549,9 +577,9 @@
       margin-top: 1rem;
       z-index: 100;
       position: relative;
-      min-height: 250px; 
+      min-height: 250px;
     }
-   
+
     /* --- MODAL STYLES --- */
     .modal-overlay {
       position: fixed;
@@ -564,8 +592,8 @@
       display: none;
       align-items: center;
       justify-content: center;
-      overflow-y: auto; 
-      padding: 1rem 0; 
+      overflow-y: auto;
+      padding: 1rem 0;
     }
     .modal-overlay.active {
       display: flex;
@@ -580,7 +608,7 @@
       position: relative;
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
       text-align: center;
-      margin: auto; 
+      margin: auto;
     }
     .modal-container h2 {
       font-family: Georgia, 'Times New Roman', serif;
@@ -609,7 +637,7 @@
     .modal-close-btn:hover {
       background: #fff;
     }
-   
+
     /* === NEW FOOTER STYLES === */
     .main-footer {
       background: rgba(10, 10, 10, 0.9);
@@ -643,41 +671,41 @@
     /* === END FOOTER STYLES === */
 
     /* === NEW CONTACT FORM STYLES === */
-    a.contact-fab { 
+    a.contact-fab {
       position: fixed;
-      bottom: 30px; 
-      right: 30px; 
+      bottom: 30px;
+      right: 30px;
       background: #00ffff;
-      color: #fff !important; 
+      color: #fff !important;
       padding: 0.6rem 1rem; /* [CHANGED] Half size */
-      border-radius: 30px; 
+      border-radius: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none !important; 
+      text-decoration: none !important;
       box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
       z-index: 800;
       transition: all 0.3s ease;
       font-size: 0.9rem; /* [CHANGED] Half size */
-      font-weight: bold; 
+      font-weight: bold;
     }
     a.contact-fab:hover {
       background: #fff;
-      color: #000 !important; 
+      color: #000 !important;
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6);
       transform: scale(1.05);
     }
-   
+
     .fab-svg-icon {
       width: 20px; /* [CHANGED] Half size */
       height: 20px; /* [CHANGED] Half size */
       margin-right: 0.5rem; /* [CHANGED] Half size */
-      fill: #fff; 
-      transition: fill 0.3s ease; 
+      fill: #fff;
+      transition: fill 0.3s ease;
     }
-   
+
     a.contact-fab:hover .fab-svg-icon {
-      fill: #000; 
+      fill: #000;
     }
 
     .modal-close-icon {
@@ -750,14 +778,21 @@
       box-shadow: 0 0 10px #00ffff;
     }
     /* === END CONTACT FORM STYLES === */
-
   </style>
 </head>
 <body>
-
   <div class="shipping-bar">
     <!-- === [STEP 1] The HTML for the shipping bar === -->
-    <p>Free Nationwide Shipping on Orders $65+<span class="shipping-bar-divider"> | </span><span class="browser-recommendation">For the best experience, we recommend using Chrome or Edge.</span></p>
+    <p>
+      Free Nationwide Shipping on Orders $65+<span
+        class="shipping-bar-divider"
+      >
+        |
+      </span>
+      <span class="browser-recommendation"
+        >For the best experience, we recommend using Chrome or Edge.</span
+      >
+    </p>
   </div>
   <header class="main-header">
     <div class="nav-container-new">
@@ -772,7 +807,11 @@
       </nav>
     </div>
   </header>
-  <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
+  <button
+    class="menu-toggle-btn"
+    id="menuToggle"
+    aria-label="Open Menu"
+  >
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
@@ -787,7 +826,6 @@
 
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
-
       <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Sweet Spreads</a></li>
@@ -796,11 +834,20 @@
       </ul>
       <div class="info-box">
         <h2>FIND US</h2>
-        <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
-        <p>Follow our social media for weekly locations and weekly gives away!</p>
+        <p>
+          Find SKULL FOOD™ products at select farmers' markets across
+          California.
+        </p>
+        <p>
+          Follow our social media for weekly locations and weekly gives away!
+        </p>
         <p>
           <span class="ig-link">Instagram:</span>
-          <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
+          <a
+            href="https://www.instagram.com/skullfood.us"
+            target="_blank"
+            class="ig-link"
+          >
             @skullfood.us
           </a>
         </p>
@@ -822,7 +869,7 @@
       <div class="cart-items" id="cartItems">
         <p class="cart-empty">Your cart is empty.</p>
       </div>
-     
+
       <div class="cart-summary">
         <div class="cart-total" id="cartSubtotalRow">
           <strong>Subtotal:</strong>
@@ -838,24 +885,32 @@
         </div>
         <div id="paypal-button-container"></div>
       </div>
-      </div>
+    </div>
   </aside>
 
   <div class="modal-overlay" id="thankYouModal">
     <div class="modal-container">
       <h2>Thank You!</h2>
-      <p>Your order is confirmed. Thanks for joining the rebellion, <span id="payerName"></span>!</p>
+      <p>
+        Your order is confirmed. Thanks for joining the rebellion,
+        <span id="payerName"></span>!
+      </p>
       <button class="modal-close-btn" id="modalCloseBtn">Close</button>
     </div>
   </div>
 
-
   <div class="container">
     <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
-   
-    <p class="tagline">Rebellious. Clean-label. Flavor-forward. Coming soon to your taste buds.</p>
 
-    <p>SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary brand. We stand for transparency, taste, and you know… not classic.</p>
+    <p class="tagline">
+      Rebellious. Clean-label. Flavor-forward. Coming soon to your taste
+      buds.
+    </p>
+
+    <p>
+      SKULL FOOD™ isn’t just a flavor print. It’s a rebellion. A non-ordinary
+      brand. We stand for transparency, taste, and you know… not classic.
+    </p>
 
     <strong class="rebellion-text">Join the rebellion.</strong>
   </div>
@@ -867,15 +922,15 @@
       <form action="https://formsubmit.co/contact@toloni.net" method="POST">
         <div class="form-group">
           <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="First Name" required>
+          <input type="text" id="firstName" name="First Name" required />
         </div>
         <div class="form-group">
           <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="Last Name" required>
+          <input type="text" id="lastName" name="Last Name" required />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="Email" required>
+          <input type="email" id="email" name="Email" required />
         </div>
         <div class="form-group">
           <label for="subject">Subject</label>
@@ -890,30 +945,58 @@
         </div>
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" name="Message" maxlength="300" required></textarea>
-          <div class="char-counter" id="charCounter">300 characters remaining</div>
+          <textarea
+            id="message"
+            name="Message"
+            maxlength="300"
+            required
+          ></textarea>
+          <div class="char-counter" id="charCounter">
+            300 characters remaining
+          </div>
         </div>
-       
-        <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
-        <input type="hidden" name="_replyto" value="email">
+
+        <input
+          type="hidden"
+          name="_subject"
+          value="New SKULL FOOD Contact Form!"
+        />
+        <input type="hidden" name="_replyto" value="email" />
         <button type="submit" class="submit-btn">Send Message</button>
       </form>
     </div>
   </div>
-  <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us"> 
-    <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
+  <a
+    href="#"
+    id="contact-fab"
+    class="contact-fab"
+    aria-label="Contact Us"
+  >
+    <svg
+      class="fab-svg-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"
+      />
     </svg>
     <span class="fab-text">Chat with us</span>
   </a>
   <footer class="main-footer">
     <div class="footer-container">
       <div class="social-links">
-        <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
+        <a
+          href="https://www.instagram.com/skullfood.us"
+          target="_blank"
+          class="ig-link"
+        >
           Instagram: @skullfood.us
         </a>
       </div>
-      <p class="footer-copyright">&copy; 2025 SKULL FOOD LLC. All rights reserved.</p>
+      <p class="footer-copyright">
+        &copy; 2025 SKULL FOOD LLC. All rights reserved.
+      </p>
     </div>
   </footer>
   <script>
@@ -923,7 +1006,6 @@
 
     // --- [FIX] Wait for DOM to be loaded ---
     document.addEventListener('DOMContentLoaded', () => {
-   
       // --- DOM Elements ---
       const menuToggle = document.getElementById('menuToggle');
       const slideMenu = document.getElementById('slideMenu');
@@ -931,16 +1013,16 @@
       const slideCart = document.getElementById('slideCart');
       const cartCloseBtn = document.getElementById('cartCloseBtn');
       const overlay = document.getElementById('overlay');
-     
+
       const cartItemsContainer = document.getElementById('cartItems');
       const cartTotalEl = document.getElementById('cartTotal');
       const cartCounterEl = document.getElementById('cartCounter');
-     
+
       // === [NEW] SHIPPING JS ELEMENTS ===
       const cartSubtotalEl = document.getElementById('cartSubtotal');
       const cartShippingEl = document.getElementById('cartShipping');
       // === END NEW SHIPPING JS ===
-     
+
       const thankYouModal = document.getElementById('thankYouModal');
       const modalCloseBtn = document.getElementById('modalCloseBtn');
       const payerNameEl = document.getElementById('payerName');
@@ -953,11 +1035,10 @@
       const charCounter = document.getElementById('charCounter');
       const mainFooter = document.querySelector('.main-footer'); // [NEW] Get footer
 
-     
       // --- All Functions Defined Inside DOMContentLoaded ---
 
       function toggleMenu(event) {
-        if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
+        if (event) event.preventDefault(); // [FIX] Prevent ghost clicks
         if (slideCart && slideCart.classList.contains('active')) {
           toggleCart(); // Close cart if open
         }
@@ -969,7 +1050,7 @@
       }
 
       function toggleCart(event) {
-        if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
+        if (event) event.preventDefault(); // [FIX] Prevent ghost clicks
         if (slideMenu && slideMenu.classList.contains('active')) {
           toggleMenu(); // Close menu if open
         }
@@ -977,43 +1058,46 @@
           closeContactModal(); // Close contact modal if open
         }
         if (slideCart) {
-            const isCartActive = slideCart.classList.toggle('active');
-           
-            // === [NEW FIX] Hide/show cart button ===
-            if (cartToggle) {
-                // Use 'flex' as that's what we set in the CSS
-                cartToggle.style.display = isCartActive ? 'none' : 'flex'; 
-            }
-            // === END NEW FIX ===
-           
-            if (overlay) overlay.classList.toggle('active');
+          const isCartActive = slideCart.classList.toggle('active');
 
-            if (isCartActive && !payPalButtonsRendered) {
-              renderPayPalButtons();
-              payPalButtonsRendered = true;
-            }
+          // === [NEW FIX] Hide/show cart button ===
+          if (cartToggle) {
+            // Use 'flex' as that's what we set in the CSS
+            cartToggle.style.display = isCartActive ? 'none' : 'flex';
+          }
+          // === END NEW FIX ===
+
+          if (overlay) overlay.classList.toggle('active');
+
+          if (isCartActive && !payPalButtonsRendered) {
+            renderPayPalButtons();
+            payPalButtonsRendered = true;
+          }
         }
       }
 
       // === NEW CONTACT MODAL FUNCTIONS ===
       function openContactModal(event) {
-        if(event) event.preventDefault();
+        if (event) event.preventDefault();
         if (slideMenu && slideMenu.classList.contains('active')) {
           toggleMenu(); // Close menu if open
         }
         if (slideCart && slideCart.classList.contains('active')) {
           toggleCart(); // Close cart if open
         }
-        if(contactModal) contactModal.classList.add('active');
-        if(overlay) overlay.classList.add('active');
+        if (contactModal) contactModal.classList.add('active');
+        if (overlay) overlay.classList.add('active');
       }
 
       function closeContactModal(event) {
-        if(event) event.preventDefault();
-        if(contactModal) contactModal.classList.remove('active');
+        if (event) event.preventDefault();
+        if (contactModal) contactModal.classList.remove('active');
         // Only remove overlay if menu and cart are also closed
-        if (!slideMenu.classList.contains('active') && !slideCart.classList.contains('active')) {
-            if(overlay) overlay.classList.remove('active');
+        if (
+          !slideMenu.classList.contains('active') &&
+          !slideCart.classList.contains('active')
+        ) {
+          if (overlay) overlay.classList.remove('active');
         }
       }
 
@@ -1029,23 +1113,22 @@
       // === [NEW] FOOTER AVOIDANCE FUNCTION ===
       function handleFabPosition() {
         if (!contactFab || !mainFooter) return; // Exit if elements don't exist
-       
+
         const footerTop = mainFooter.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
         const fabMargin = 30; // 30px
-       
+
         const overlap = windowHeight - footerTop;
-       
+
         if (overlap > 0) {
           // Footer is in view, move button up
-          contactFab.style.bottom = (overlap + fabMargin) + 'px';
+          contactFab.style.bottom = overlap + fabMargin + 'px';
         } else {
           // Footer is not in view, reset button
           contactFab.style.bottom = fabMargin + 'px';
         }
       }
       // === END FOOTER AVOIDANCE FUNCTION ===
-
 
       function loadCart() {
         const storedCart = localStorage.getItem('skullfoodCart');
@@ -1057,7 +1140,7 @@
         localStorage.setItem('skullfoodCart', JSON.stringify(cart));
         renderCartUI();
       }
-     
+
       function clearCart() {
         cart = [];
         localStorage.removeItem('skullfoodCart');
@@ -1069,7 +1152,7 @@
         if (removeButton) {
           event.preventDefault(); // Stop click from bubbling up
           const id = removeButton.dataset.id;
-          cart = cart.filter(item => item.id !== id);
+          cart = cart.filter((item) => item.id !== id);
           saveCart();
         }
       }
@@ -1078,16 +1161,19 @@
         if (cartItemsContainer) {
           cartItemsContainer.innerHTML = '';
           if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+            cartItemsContainer.innerHTML =
+              '<p class="cart-empty">Your cart is empty.</p>';
           } else {
-            cart.forEach(item => {
+            cart.forEach((item) => {
               const itemEl = document.createElement('div');
               itemEl.classList.add('cart-item');
-             
+
               // === [MODIFIED] Added image logic to cart rendering ===
               // Use item.image if it exists, otherwise a fallback
-              const itemImage = item.image || 'https://placehold.co/60x60/333/888?text=SKULL'; 
-             
+              const itemImage =
+                item.image ||
+                'https://placehold.co/60x60/333/888?text=SKULL';
+
               itemEl.innerHTML = `
                 <img src="${itemImage}" alt="${item.name}" class="cart-item-image">
                 <div class="cart-item-info">
@@ -1097,15 +1183,18 @@
                 <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
               `;
               // === [END MODIFICATION] ===
-             
+
               cartItemsContainer.appendChild(itemEl);
             });
           }
         }
 
         // === [NEW] SHIPPING LOGIC ===
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
+        const subtotal = cart.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        );
+        const shippingFee = subtotal > 0 && subtotal < 65 ? 20.0 : 0.0;
         const grandTotal = subtotal + shippingFee;
 
         if (cartSubtotalEl) {
@@ -1119,42 +1208,54 @@
         }
         // === END SHIPPING LOGIC ===
 
-        const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalQuantity = cart.reduce(
+          (sum, item) => sum + item.quantity,
+          0
+        );
         if (cartCounterEl) {
           cartCounterEl.textContent = totalQuantity;
         }
-       
-        const paypalContainer = document.getElementById('paypal-button-container');
+
+        const paypalContainer = document.getElementById(
+          'paypal-button-container'
+        );
         if (paypalContainer) {
           paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
         }
       }
-     
-      function renderPayPalButtons() {
-          if (!window.paypal) {
-            console.error("PayPal SDK script not loaded.");
-            return;
-          }
 
-          paypal.Buttons({
-            createOrder: function(data, actions) {
+      function renderPayPalButtons() {
+        if (!window.paypal) {
+          console.error('PayPal SDK script not loaded.');
+          return;
+        }
+
+        paypal
+          .Buttons({
+            createOrder: function (data, actions) {
               // === [NEW] RECALCULATE TOTAL FOR PAYPAL ===
-              const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-              const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
+              const subtotal = cart.reduce(
+                (sum, item) => sum + item.price * item.quantity,
+                0
+              );
+              const shippingFee =
+                subtotal > 0 && subtotal < 65 ? 20.0 : 0.0;
               const grandTotal = subtotal + shippingFee;
               // === END PAYPAL TOTAL ===
-             
+
               return actions.order.create({
-                purchase_units: [{
-                  amount: {
-                    value: grandTotal.toFixed(2), // [CHANGED]
-                    currency_code: 'USD'
-                  }
-                }]
+                purchase_units: [
+                  {
+                    amount: {
+                      value: grandTotal.toFixed(2), // [CHANGED]
+                      currency_code: 'USD',
+                    },
+                  },
+                ],
               });
             },
-            onApprove: function(data, actions) {
-              return actions.order.capture().then(function(details) {
+            onApprove: function (data, actions) {
+              return actions.order.capture().then(function (details) {
                 const payerName = details.payer.name.given_name || 'Rebel';
                 if (payerNameEl) payerNameEl.textContent = payerName;
                 if (thankYouModal) thankYouModal.classList.add('active');
@@ -1164,60 +1265,67 @@
                 clearCart();
               });
             },
-            onCancel: function(data) {
+            onCancel: function (data) {
               console.log('Payment cancelled:', data);
             },
-            onError: function(err) {
-              console.error('An error occurred with the PayPal payment:', err);
+            onError: function (err) {
+              console.error(
+                'An error occurred with the PayPal payment:',
+                err
+              );
               alert('An error occurred. Please try again.');
-            }
-          }).render('#paypal-button-container');
+            },
+          })
+          .render('#paypal-button-container');
       }
 
       // --- [FIX] Event Listeners for Mobile + Desktop ---
 
       if (menuToggle) {
-          menuToggle.addEventListener('click', toggleMenu);
-          menuToggle.addEventListener('touchstart', toggleMenu);
+        menuToggle.addEventListener('click', toggleMenu);
+        menuToggle.addEventListener('touchstart', toggleMenu);
       }
 
       if (cartToggle) {
-          cartToggle.addEventListener('click', toggleCart);
-          cartToggle.addEventListener('touchstart', toggleCart);
+        cartToggle.addEventListener('click', toggleCart);
+        cartToggle.addEventListener('touchstart', toggleCart);
       }
-     
+
       if (cartCloseBtn) {
-          cartCloseBtn.addEventListener('click', toggleCart);
-          cartCloseBtn.addEventListener('touchstart', toggleCart);
+        cartCloseBtn.addEventListener('click', toggleCart);
+        cartCloseBtn.addEventListener('touchstart', toggleCart);
       }
-     
+
       function closeModals(event) {
-          if(event) event.preventDefault();
-          if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
-          if (slideCart && slideCart.classList.contains('active')) toggleCart();
-          if (contactModal && contactModal.classList.contains('active')) closeContactModal(); // [NEW] Close contact modal on overlay click
+        if (event) event.preventDefault();
+        if (slideMenu && slideMenu.classList.contains('active'))
+          toggleMenu();
+        if (slideCart && slideCart.classList.contains('active'))
+          toggleCart();
+        if (contactModal && contactModal.classList.contains('active'))
+          closeContactModal(); // [NEW] Close contact modal on overlay click
       }
-     
+
       if (overlay) {
-          overlay.addEventListener('click', closeModals);
-          overlay.addEventListener('touchstart', closeModals);
+        overlay.addEventListener('click', closeModals);
+        overlay.addEventListener('touchstart', closeModals);
       }
 
       if (cartItemsContainer) {
         // This listener is for dynamic content, 'click' is more stable here
         cartItemsContainer.addEventListener('click', handleCartClick);
       }
-     
+
       function closeThankYou(event) {
-        if(event) event.preventDefault();
+        if (event) event.preventDefault();
         if (thankYouModal) thankYouModal.classList.remove('active');
       }
-     
+
       if (modalCloseBtn) {
-          modalCloseBtn.addEventListener('click', closeThankYou);
-          modalCloseBtn.addEventListener('touchstart', closeThankYou);
+        modalCloseBtn.addEventListener('click', closeThankYou);
+        modalCloseBtn.addEventListener('touchstart', closeThankYou);
       }
-     
+
       // === NEW CONTACT FORM LISTENERS ===
       if (contactFab) {
         contactFab.addEventListener('click', openContactModal);
@@ -1236,13 +1344,11 @@
       // === [NEW] SCROLL LISTENER FOR FAB ===
       window.addEventListener('scroll', handleFabPosition);
       // === END SCROLL LISTENER ===
-     
+
       // --- Initial Load ---
       loadCart();
       handleFabPosition(); // [NEW] Run on load
-     
     }); // End of DOMContentLoaded
   </script>
-
 </body>
 </html>
