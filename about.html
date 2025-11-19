@@ -914,6 +914,65 @@
       box-shadow: 0 0 10px #00ffff;
     }
     /* === END CONTACT FORM STYLES === */
+
+    /* === [NEW] FIND US SECTION STYLES === */
+    .find-us-section {
+      background: rgba(10, 10, 10, 0.9);
+      border-top: 1px solid #ff00ff; /* Magenta border */
+      padding: 2.5rem 2rem;
+      width: 100%;
+      z-index: 10;
+      position: relative;
+      box-sizing: border-box; /* Ensure padding is included */
+    }
+
+    .find-us-container {
+      max-width: 700px; /* Match your main container width */
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .find-us-container h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.8rem;
+      color: #ff00ff; /* Magenta title */
+      text-align: center;
+      margin: 0 0 1.5rem 0;
+      text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+    }
+
+    .find-us-container p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      text-align: center; /* Center text in this section */
+    }
+
+    .map-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      border: 2px solid #00ffff; /* Cyan border */
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      background: #222; /* Background color while map loads */
+    }
+
+    .map-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    /* === END FIND US SECTION STYLES === */
   </style>
 </head>
 <body>
