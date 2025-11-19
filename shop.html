@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>SKULL FOOD™ - Sweet Spreads</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
+  
   <meta name="description" content="Shop SKULL FOOD™: Rebellious, clean-label, and flavor-forward sweet spreads." />
   <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, healthy" />
   <meta name="author" content="SKULL FOOD LLC" />
@@ -32,7 +32,7 @@
       color: #000; /* Override default p styles */
     }
     /* === END SHIPPING BAR STYLES === */
-   
+    
     /* === NEW NAV BAR STYLES === */
     .main-header {
       background: rgba(10, 10, 10, 0.9);
@@ -122,7 +122,7 @@
       /* [NEW] Make container grow to push footer */
       flex-grow: 1;
     }
-   
+    
     .page-title {
       font-size: 2.5rem;
       margin-bottom: 2rem;
@@ -192,19 +192,19 @@
       margin-top: 1rem;
       text-shadow: none;
     }
-   
+    
     .product-price .price-amount {
       font-size: 1.2rem;
       font-weight: bold;
       color: #fff;
     }
-   
+    
     .product-price .price-unit {
       font-size: 0.9rem;
       font-weight: normal;
       color: #aaa;
     }
-   
+    
     .price-wrapper {
       display: flex;
       flex-direction: column;
@@ -233,7 +233,7 @@
       font-weight: bold;
       color: #00ffff;
     }
-   
+    
 
     .add-to-cart-btn {
       background: #00ffff;
@@ -253,7 +253,7 @@
       background: #fff;
       box-shadow: 0 0 10px #00ffff;
     }
-   
+    
     .waitlist-btn {
       background: #00ffff;
       color: #000;
@@ -300,7 +300,7 @@
       margin-bottom: 1rem;
       overflow: hidden; /* To contain the image */
     }
-    
+     
     .product-image-container img {
       width: 100%;
       height: 100%;
@@ -312,7 +312,62 @@
         transform: scale(1.05); /* Zoom effect on card hover */
     }
     /* === END Product Image Styles === */
-   
+    
+    /* --- NEW COUPON FIELD STYLES START --- */
+    .coupon-section {
+      padding-bottom: 1rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #333;
+    }
+    .coupon-input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .coupon-input-group input {
+      flex-grow: 1;
+      padding: 0.5rem;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    .coupon-input-group button {
+      padding: 0.5rem 1rem;
+      background: #ff00ff; /* Magenta for the button */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .coupon-input-group button:hover {
+      background: #d400d4;
+    }
+    .coupon-message {
+      font-size: 0.85rem;
+      font-weight: normal;
+      text-align: center;
+      text-shadow: none;
+    }
+    .coupon-message.success {
+      color: #00ffff;
+    }
+    .coupon-message.error {
+      color: #ff4136;
+    }
+    .cart-discount {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ff00ff; /* Magenta discount text */
+      margin-bottom: 0.5rem;
+    }
+    /* --- END COUPON FIELD STYLES --- */
+
     /* --- ALL CART & MENU STYLES --- */
     .menu-toggle-btn {
       position: fixed;
@@ -338,7 +393,7 @@
     .slide-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #111; z-index: 1000; padding: 2rem; box-sizing: border-box; transition: right 0.3s ease; overflow-y: auto; }
     .slide-menu.active { right: 0; }
     .info-container { margin-top: 60px; }
-   
+    
     /* === NEW MOBILE NAV LINKS (THE FIX) === */
     .mobile-nav-links {
       list-style: none;
@@ -366,7 +421,7 @@
       color: #00ffff;
     }
     /* === END NEW MOBILE NAV LINKS === */
-   
+    
     .info-box { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
     .info-box h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 0; border-bottom: 2px solid #00ffff; padding-bottom: 0.5rem; }
     .info-box p { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #eee; text-shadow: none; }
@@ -418,7 +473,7 @@
     .cart-item-info p { font-size: 0.9rem; color: #aaa; margin: 0; font-weight: normal; text-shadow: none; }
     .remove-item-btn { background: none; border: none; color: #ff00ff; font-size: 1.1rem; font-weight: bold; cursor: pointer; padding: 5px; }
     .remove-item-btn:hover { color: #fff; }
-   
+    
     .cart-summary {
       border-top: 1px solid #444;
       padding-top: 1rem;
@@ -431,7 +486,7 @@
       font-weight: bold;
       margin-bottom: 1rem;
     }
-   
+    
     /* === [NEW] CSS For Shipping Cart === */
     .cart-total.grand-total {
       font-size: 1.3rem;
@@ -440,9 +495,9 @@
       margin-top: 0.5rem;
     }
     /* === END NEW CSS === */
-   
+    
     #paypal-button-container { margin-top: 1rem; z-index: 100; position: relative; min-height: 250px; }
-   
+    
     /* Modal styles */
     .modal-overlay {
       position: fixed;
@@ -540,7 +595,7 @@
       background: #fff;
       box-shadow: 0 0 10px #00ffff;
     }
-   
+    
     .modal-container.thank-you {
       text-align: center;
     }
@@ -591,13 +646,13 @@
       text-shadow: none;
     }
     /* === END FOOTER STYLES === */
-   
+    
     /* === NEW CONTACT FORM STYLES === */
     a.contact-fab { 
       position: fixed;
       bottom: 30px; 
       right: 30px; 
-      background: #00ffff;
+      background: #00ffff; 
       color: #fff !important; 
       padding: 0.6rem 1rem; /* [CHANGED] Half size */
       border-radius: 30px; 
@@ -617,7 +672,7 @@
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6);
       transform: scale(1.05);
     }
-   
+    
     .fab-svg-icon {
       width: 20px; /* [CHANGED] Half size */
       height: 20px; /* [CHANGED] Half size */
@@ -625,7 +680,7 @@
       fill: #fff; 
       transition: fill 0.3s ease; 
     }
-   
+    
     a.contact-fab:hover .fab-svg-icon {
       fill: #000; 
     }
@@ -681,7 +736,7 @@
       text-align: right;
       margin-top: 4px;
     }
-   
+    
     /* [NEW] New class for contact submit button */
     .contact-submit-btn {
       background: #00ffff;
@@ -738,7 +793,7 @@
 
   <nav class="slide-menu" id="slideMenu">
     <div class="info-container">
-   
+    
       <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Sweet Spreads</a></li>
@@ -773,11 +828,23 @@
       <div class="cart-items" id="cartItems">
         <p class="cart-empty">Your cart is empty.</p>
       </div>
-     
+    
+    <div class="coupon-section">
+      <div class="coupon-input-group">
+        <input type="text" id="couponCode" placeholder="Enter Coupon Code" />
+        <button id="applyCouponBtn">Apply</button>
+      </div>
+      <p id="couponMessage" class="coupon-message"></p>
+    </div>
+          
       <div class="cart-summary">
         <div class="cart-total" id="cartSubtotalRow">
           <strong>Subtotal:</strong>
           <span id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="cart-total cart-discount" id="cartDiscountRow" style="display: none;">
+            <strong>Discount:</strong>
+            <span id="cartDiscount">-$0.00</span>
         </div>
         <div class="cart-total">
           <strong>Shipping:</strong>
@@ -833,14 +900,13 @@
   </div>
 
   <div class="container">
-   
+    
     <h1 class="page-title">SWEET SPREADS</h1>
 
     <div class="product-section">
       <div class="product-grid">
-       
-        <!-- Product 1 -->
-        <div class="product-card">
+        
+                <div class="product-card">
           <div class="product-image-container">
             <img src="https://skullfood.github.io/skullfood-landing/poppers.jpg" 
                  alt="WILD N POPPERS Sweet Spread">
@@ -854,14 +920,13 @@
           <button class="add-to-cart-btn" 
                   data-id="1" 
                   data-name="WILD N POPPERS" 
-                  data-price="13.99"
+                  data-price="13.99" 
                   data-image="https://skullfood.github.io/skullfood-landing/poppers.jpg">
             Add to Cart
           </button>
         </div>
-       
-        <!-- Product 2 -->
-        <div class="product-card">
+        
+                <div class="product-card">
           <div class="product-image-container">
             <img src="https://skullfood.github.io/skullfood-landing/mango.jpg" 
                  alt="WILD N MANGO Sweet Spread">
@@ -875,14 +940,13 @@
           <button class="add-to-cart-btn" 
                   data-id="2" 
                   data-name="WILD N MANGO" 
-                  data-price="13.99"
+                  data-price="13.99" 
                   data-image="https://skullfood.github.io/skullfood-landing/mango.jpg">
             Add to Cart
           </button>
         </div>
 
-        <!-- Product 3 -->
-        <div class="product-card">
+                <div class="product-card">
           <div class="product-image-container">
             <img src="https://skullfood.github.io/skullfood-landing/berries.jpg" 
                  alt="WILD N BERRIES Sweet Spread">
@@ -896,14 +960,13 @@
           <button class="add-to-cart-btn" 
                   data-id="3" 
                   data-name="WILD N BERRIES" 
-                  data-price="13.99"
+                  data-price="13.99" 
                   data-image="https://skullfood.github.io/skullfood-landing/berries.jpg">
             Add to Cart
           </button>
         </div>
 
-        <!-- Product 4 -->
-        <div class="product-card">
+                <div class="product-card">
           <div class="product-image-container">
             <img src="https://placehold.co/600x400/000000/FFFFFF?text=STAY+TUNED!!&font=helvetica&bold=true" 
                  alt="SKULL BURN Sweet Spread">
@@ -917,14 +980,13 @@
           <button class="add-to-cart-btn" 
                   data-id="4" 
                   data-name="SKULL BURN" 
-                  data-price="13.99"
+                  data-price="13.99" 
                   data-image="https://placehold.co/600x400/000000/FFFFFF?text=STAY+TUNED!!&font=helvetica&bold=true">
             Add to Cart
           </button>
         </div>
 
-        <!-- Product 5 (Bundle) -->
-        <div class="product-card">
+                <div class="product-card">
           <div class="product-image-container">
             <img src="https://skullfood.github.io/skullfood-landing/bundel%20sweet%20spread.jpg" 
                  alt="SKULL SWEET SIX Bundle">
@@ -948,14 +1010,13 @@
           <button class="add-to-cart-btn" 
                   data-id="5" 
                   data-name="SKULL SWEET SIX" 
-                  data-price="60.00"
+                  data-price="60.00" 
                   data-image="https://skullfood.github.io/skullfood-landing/bundel%20sweet%20spread.jpg">
             Add to Cart
           </button>
         </div>
 
-        <!-- Product 6 (Waitlist) -->
-        <div class="product-card">
+                <div class="product-card">
           <div class="product-image-container">
             <img src="https://placehold.co/600x400/000000/FFFFFF?text=STAY+TUNED!!&font=helvetica&bold=true" 
                  alt="WILD N MATCHA Sweet Spread (Coming Soon)">
@@ -966,7 +1027,7 @@
             <span class="price-unit">10 Oz</span>
             <span class="price-amount">$13.99</span>
           </div>
-         
+          
           <p class="coming-soon-text">COMING SOON</p>
           <button class="waitlist-btn" id="waitlistBtn">
             JOIN THE WAITING LIST
@@ -975,7 +1036,7 @@
 
       </div>
     </div>
-   
+    
   </div>
  
   <div class="modal-overlay" id="contactModal">
@@ -1011,7 +1072,7 @@
           <textarea id="message" name="Message" maxlength="300" required></textarea>
           <div class="char-counter" id="charCounter">300 characters remaining</div>
         </div>
-       
+        
         <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
         <input type="hidden" name="_replyto" value="email">
         <button type="submit" class="submit-btn contact-submit-btn">Send Message</button> </form>
@@ -1038,6 +1099,15 @@
     let cart = [];
     let payPalButtonsRendered = false;
 
+    // --- [NEW] COUPON STATE AND RULE START ---
+    let appliedDiscount = 0.00; // Stores the calculated discount amount
+    const couponRule = {
+        code: "SKULL10", // <-- EDIT THIS CODE MANUALLY FOR NEW COUPONS
+        discountPercentage: 0.10, // 10% discount (0.10 for 10%)
+        minimumSubtotal: 20.00 // Minimum subtotal required for the discount
+    };
+    // --- [NEW] COUPON STATE AND RULE END ---
+
     // --- [FIX] Wait for DOM to be loaded ---
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -1048,24 +1118,32 @@
       const slideCart = document.getElementById('slideCart');
       const cartCloseBtn = document.getElementById('cartCloseBtn');
       const overlay = document.getElementById('overlay');
-     
+      
       const cartItemsContainer = document.getElementById('cartItems');
       const cartTotalEl = document.getElementById('cartTotal');
       const cartCounterEl = document.getElementById('cartCounter');
-     
+      
       // === [NEW] SHIPPING JS ELEMENTS ===
       const cartSubtotalEl = document.getElementById('cartSubtotal');
       const cartShippingEl = document.getElementById('cartShipping');
       // === END NEW SHIPPING JS ===
-     
+      
+      // === [NEW] COUPON JS ELEMENTS START ===
+      const couponInput = document.getElementById('couponCode');
+      const applyCouponBtn = document.getElementById('applyCouponBtn');
+      const couponMessageEl = document.getElementById('couponMessage');
+      const cartDiscountRow = document.getElementById('cartDiscountRow');
+      const cartDiscountEl = document.getElementById('cartDiscount');
+      // === [NEW] COUPON JS ELEMENTS END ===
+
       const waitlistModal = document.getElementById('waitlistModal');
       const modalClose = document.getElementById('modalClose');
       const waitlistButton = document.getElementById('waitlistBtn');
-     
+      
       const thankYouModal = document.getElementById('thankYouModal');
       const modalCloseBtn = document.getElementById('modalCloseBtn');
       const payerNameEl = document.getElementById('payerName');
-     
+      
       const allAddToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 
       // === NEW CONTACT FORM ELEMENTS ===
@@ -1077,6 +1155,41 @@
       const mainFooter = document.querySelector('.main-footer'); // [NEW] Get footer
 
       // --- All Functions Defined Inside DOMContentLoaded ---
+
+      // --- [NEW] COUPON APPLICATION LOGIC START ---
+      function applyCoupon() {
+          const enteredCode = couponInput.value.trim().toUpperCase();
+          const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+          appliedDiscount = 0.00; // Reset discount
+          
+          if (!couponMessageEl || !couponInput) return;
+
+          couponMessageEl.classList.remove('success', 'error');
+
+          if (enteredCode === couponRule.code) {
+              if (subtotal >= couponRule.minimumSubtotal) {
+                  appliedDiscount = subtotal * couponRule.discountPercentage;
+                  couponMessageEl.textContent = `${couponRule.discountPercentage * 100}% discount applied!`;
+                  couponMessageEl.classList.add('success');
+              } else {
+                  couponMessageEl.textContent = `Minimum $${couponRule.minimumSubtotal.toFixed(2)} purchase required.`;
+                  couponMessageEl.classList.add('error');
+              }
+          } else if (enteredCode === '') {
+              couponMessageEl.textContent = '';
+          } else {
+              couponMessageEl.textContent = 'Invalid coupon code.';
+              couponMessageEl.classList.add('error');
+          }
+          
+          // Re-render the cart UI to show the new totals
+          renderCartUI(); 
+          // Re-render PayPal buttons in case the price changed
+          if (payPalButtonsRendered) {
+              renderPayPalButtons();
+          }
+      }
+      // --- [NEW] COUPON APPLICATION LOGIC END ---
 
       function toggleMenu(event) {
         if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
@@ -1100,14 +1213,14 @@
         }
         if (slideCart) {
             const isCartActive = slideCart.classList.toggle('active');
-           
+            
             // === [NEW FIX] Hide/show cart button ===
             if (cartToggle) {
                 // Use 'flex' as that's what we set in the CSS
                 cartToggle.style.display = isCartActive ? 'none' : 'flex'; 
             }
             // === END NEW FIX ===
-           
+            
             if (overlay) overlay.classList.toggle('active');
 
             if (isCartActive && !payPalButtonsRendered) {
@@ -1160,13 +1273,13 @@
       // === [NEW] FOOTER AVOIDANCE FUNCTION ===
       function handleFabPosition() {
         if (!contactFab || !mainFooter) return; // Exit if elements don't exist
-       
+        
         const footerTop = mainFooter.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
         const fabMargin = 30; // 30px
-       
+        
         const overlap = windowHeight - footerTop;
-       
+        
         if (overlap > 0) {
           // Footer is in view, move button up
           contactFab.style.bottom = (overlap + fabMargin) + 'px';
@@ -1188,16 +1301,19 @@
         localStorage.setItem('skullfoodCart', JSON.stringify(cart));
         renderCartUI();
       }
-     
+      
       function clearCart() {
         cart = [];
+        appliedDiscount = 0.00; // Reset discount on clear
+        if (couponInput) couponInput.value = ''; // Clear coupon input
+        if (couponMessageEl) couponMessageEl.textContent = ''; // Clear coupon message
         localStorage.removeItem('skullfoodCart');
         renderCartUI();
       }
 
       function addToCart(event) {
         if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
-       
+        
         const button = event.currentTarget; // Get the button that was clicked/touched
         const id = button.dataset.id;
         const name = button.dataset.name;
@@ -1212,7 +1328,7 @@
           cart.push({ id, name, price: price, quantity: 1, image: image });
         }
         saveCart();
-       
+        
         if (slideCart && !slideCart.classList.contains('active')) {
           if (slideMenu && slideMenu.classList.contains('active')) {
             toggleMenu();
@@ -1228,6 +1344,8 @@
           const id = removeButton.dataset.id;
           cart = cart.filter(item => item.id !== id);
           saveCart();
+          // Recalculate coupon just in case removal drops subtotal below minimum
+          applyCoupon();
         }
       }
 
@@ -1241,8 +1359,12 @@
               const itemEl = document.createElement('div');
               itemEl.classList.add('cart-item');
               // [MODIFIED] Added cart item image
+              const itemImage =
+                item.image ||
+                'https://placehold.co/60x60/333/888?text=SKULL';
+
               itemEl.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <img src="${itemImage}" alt="${item.name}" class="cart-item-image">
                 <div class="cart-item-info">
                   <h4>${item.name}</h4>
                   <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
@@ -1254,51 +1376,93 @@
           }
         }
 
-        // === [NEW] SHIPPING LOGIC ===
+        // === [MODIFIED] SHIPPING & DISCOUNT LOGIC START ===
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
-        const grandTotal = subtotal + shippingFee;
+
+        // 1. Calculate Discount
+        let discountAmount = 0.00;
+        // Only attempt to calculate if a coupon was successfully applied previously OR if the input has a code entered
+        const couponEntered = couponInput ? couponInput.value.trim().toUpperCase() : '';
+        
+        if (appliedDiscount > 0.00 || couponEntered === couponRule.code) {
+             if (subtotal >= couponRule.minimumSubtotal) {
+                 discountAmount = subtotal * couponRule.discountPercentage;
+                 discountAmount = Math.min(discountAmount, subtotal); 
+             } else {
+                 appliedDiscount = 0.00; // Reset state if subtotal fell below minimum
+                 if (couponMessageEl && couponEntered !== '') {
+                     couponMessageEl.textContent = `Coupon requires minimum $${couponRule.minimumSubtotal.toFixed(2)} purchase.`;
+                     couponMessageEl.classList.remove('success');
+                     couponMessageEl.classList.add('error');
+                 }
+             }
+        }
+        
+        const discountedSubtotal = subtotal - discountAmount;
+        
+        // 2. Calculate Shipping (based on discounted subtotal)
+        const shippingFee = (discountedSubtotal > 0 && discountedSubtotal < 65) ? 20.00 : 0.00;
+        const grandTotal = discountedSubtotal + shippingFee;
 
         if (cartSubtotalEl) {
-          cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
         }
+        
+        // 3. Display Discount Row
+        if (cartDiscountRow && cartDiscountEl) {
+            if (discountAmount > 0) {
+                cartDiscountEl.textContent = `-$${discountAmount.toFixed(2)}`;
+                cartDiscountRow.style.display = 'flex';
+            } else {
+                cartDiscountRow.style.display = 'none';
+            }
+        }
+
         if (cartShippingEl) {
           cartShippingEl.textContent = `$${shippingFee.toFixed(2)}`;
         }
         if (cartTotalEl) {
           cartTotalEl.textContent = `$${grandTotal.toFixed(2)}`;
         }
-        // === END SHIPPING LOGIC ===
+        // === [MODIFIED] SHIPPING & DISCOUNT LOGIC END ===
 
         const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
         if (cartCounterEl) {
           cartCounterEl.textContent = totalQuantity;
         }
-       
+        
         const paypalContainer = document.getElementById('paypal-button-container');
         if (paypalContainer) {
           paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
         }
       }
-     
+      
       function renderPayPalButtons() {
           if (!window.paypal) {
             console.error("PayPal SDK script not loaded.");
             return;
           }
 
+          // Recalculate final grand total for PayPal
+          const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+          let discountAmount = 0.00;
+          if (appliedDiscount > 0.00 && subtotal >= couponRule.minimumSubtotal) {
+               discountAmount = subtotal * couponRule.discountPercentage;
+               discountAmount = Math.min(discountAmount, subtotal);
+          }
+          const discountedSubtotal = subtotal - discountAmount;
+          
+          const shippingFee = (discountedSubtotal > 0 && discountedSubtotal < 65) ? 20.00 : 0.00;
+          const grandTotal = discountedSubtotal + shippingFee;
+          
           paypal.Buttons({
             createOrder: function(data, actions) {
-              // === [NEW] RECALCULATE TOTAL FOR PAYPAL ===
-              const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-              const shippingFee = (subtotal > 0 && subtotal < 65) ? 20.00 : 0.00;
-              const grandTotal = subtotal + shippingFee;
-              // === END PAYPAL TOTAL ===
-             
+              
               return actions.order.create({
                 purchase_units: [{
                   amount: {
-                    value: grandTotal.toFixed(2), // [CHANGED]
+                    value: grandTotal.toFixed(2), // Use the calculated grandTotal
                     currency_code: 'USD'
                   }
                 }]
@@ -1326,7 +1490,7 @@
       }
 
       // --- [FIX] Event Listeners for Mobile + Desktop ---
-     
+      
       if (menuToggle) {
           menuToggle.addEventListener('click', toggleMenu);
           menuToggle.addEventListener('touchstart', toggleMenu);
@@ -1336,12 +1500,12 @@
           cartToggle.addEventListener('click', toggleCart);
           cartToggle.addEventListener('touchstart', toggleCart);
       }
-     
+      
       if (cartCloseBtn) {
           cartCloseBtn.addEventListener('click', toggleCart);
           cartCloseBtn.addEventListener('touchstart', toggleCart);
       }
-     
+      
       function closeModals(event) {
           if(event) event.preventDefault();
           if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
@@ -1349,7 +1513,7 @@
           if (waitlistModal && waitlistModal.classList.contains('active')) closeWaitlistModal();
           if (contactModal && contactModal.classList.contains('active')) closeContactModal(); // [NEW] Close contact modal
       }
-     
+      
       if (overlay) {
           overlay.addEventListener('click', closeModals);
           overlay.addEventListener('touchstart', closeModals);
@@ -1359,17 +1523,17 @@
         // This listener is for dynamic content, 'click' is more stable here
         cartItemsContainer.addEventListener('click', handleCartClick);
       }
-     
+      
       if (modalClose) {
         modalClose.addEventListener('click', closeWaitlistModal);
         modalClose.addEventListener('touchstart', closeWaitlistModal);
       }
-     
+      
       function closeThankYou(event) {
         if(event) event.preventDefault();
         if (thankYouModal) thankYouModal.classList.remove('active');
       }
-     
+      
       if (modalCloseBtn) {
           modalCloseBtn.addEventListener('click', closeThankYou);
           modalCloseBtn.addEventListener('touchstart', closeThankYou);
@@ -1385,7 +1549,14 @@
         waitlistButton.addEventListener('click', openWaitlistModal);
         waitlistButton.addEventListener('touchstart', openWaitlistModal); // [FIX] Added touchstart
       }
-     
+      
+      // === NEW COUPON LISTENER START ===
+      if (applyCouponBtn) {
+          applyCouponBtn.addEventListener('click', applyCoupon);
+          applyCouponBtn.addEventListener('touchstart', applyCoupon);
+      }
+      // === NEW COUPON LISTENER END ===
+
       // === NEW CONTACT FORM LISTENERS ===
       if (contactFab) {
         contactFab.addEventListener('click', openContactModal);
@@ -1408,7 +1579,7 @@
       // --- Initial Load ---
       loadCart();
       handleFabPosition(); // [NEW] Run on load
-     
+      
     }); // End of DOMContentLoaded
   </script>
 
