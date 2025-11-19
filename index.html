@@ -17,8 +17,7 @@
 
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2TT2FY3FX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2TT2FY3FX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -551,6 +550,62 @@
       color: #fff;
     }
 
+    /* --- NEW COUPON FIELD STYLES --- */
+    .coupon-section {
+      padding-bottom: 1rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #333;
+    }
+    .coupon-input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .coupon-input-group input {
+      flex-grow: 1;
+      padding: 0.5rem;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    .coupon-input-group button {
+      padding: 0.5rem 1rem;
+      background: #ff00ff; /* Magenta for the button */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .coupon-input-group button:hover {
+      background: #d400d4;
+    }
+    .coupon-message {
+      font-size: 0.85rem;
+      font-weight: normal;
+      text-align: center;
+      text-shadow: none;
+    }
+    .coupon-message.success {
+      color: #00ffff;
+    }
+    .coupon-message.error {
+      color: #ff4136;
+    }
+    .cart-discount {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ff00ff; /* Magenta discount text */
+      margin-bottom: 0.5rem;
+    }
+    /* --- END COUPON FIELD STYLES --- */
+
+
     .cart-summary {
       border-top: 1px solid #444;
       padding-top: 1rem;
@@ -782,8 +837,7 @@
 </head>
 <body>
   <div class="shipping-bar">
-    <!-- === [STEP 1] The HTML for the shipping bar === -->
-    <p>
+        <p>
       Free Nationwide Shipping on Orders $65+<span
         class="shipping-bar-divider"
       >
@@ -831,7 +885,7 @@
         <li><a href="shop.html">Sweet Spreads</a></li>
         <li><a href="pepper-spreads.html">Pepper Spreads</a></li>
         <li><a href="about.html">About Us</a></li>
-      </ul>
+        </ul>
       <div class="info-box">
         <h2>FIND US</h2>
         <p>
@@ -869,11 +923,22 @@
       <div class="cart-items" id="cartItems">
         <p class="cart-empty">Your cart is empty.</p>
       </div>
-
-      <div class="cart-summary">
+    
+    <div class="coupon-section">
+      <div class="coupon-input-group">
+        <input type="text" id="couponCode" placeholder="Enter Coupon Code" />
+        <button id="applyCouponBtn">Apply</button>
+      </div>
+      <p id="couponMessage" class="coupon-message"></p>
+    </div>
+          <div class="cart-summary">
         <div class="cart-total" id="cartSubtotalRow">
           <strong>Subtotal:</strong>
           <span id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="cart-total cart-discount" id="cartDiscountRow" style="display: none;">
+            <strong>Discount:</strong>
+            <span id="cartDiscount">-$0.00</span>
         </div>
         <div class="cart-total">
           <strong>Shipping:</strong>
@@ -897,7 +962,7 @@
       </p>
       <button class="modal-close-btn" id="modalCloseBtn">Close</button>
     </div>
-  </div>
+    </div>
 
   <div class="container">
     <h1 data-text="SKULL FOOD™">SKULL FOOD™</h1>
@@ -913,7 +978,7 @@
     </p>
 
     <strong class="rebellion-text">Join the rebellion.</strong>
-  </div>
+    </div>
 
   <div class="modal-overlay" id="contactModal">
     <div class="modal-container">
@@ -1004,6 +1069,15 @@
     let cart = [];
     let payPalButtonsRendered = false;
 
+    // --- [NEW] COUPON STATE AND RULE START ---
+    let appliedDiscount = 0.00; // Stores the calculated discount amount
+    const couponRule = {
+        code: "SKULL10", // <-- EDIT THIS CODE MANUALLY FOR NEW COUPONS
+        discountPercentage: 0.10, // 10% discount (0.10)
+        minimumSubtotal: 20.00 // Minimum subtotal required for the discount
+    };
+    // --- [NEW] COUPON STATE AND RULE END ---
+
     // --- [FIX] Wait for DOM to be loaded ---
     document.addEventListener('DOMContentLoaded', () => {
       // --- DOM Elements ---
@@ -1023,6 +1097,14 @@
       const cartShippingEl = document.getElementById('cartShipping');
       // === END NEW SHIPPING JS ===
 
+      // === [NEW] COUPON JS ELEMENTS START ===
+      const couponInput = document.getElementById('couponCode');
+      const applyCouponBtn = document.getElementById('applyCouponBtn');
+      const couponMessageEl = document.getElementById('couponMessage');
+      const cartDiscountRow = document.getElementById('cartDiscountRow');
+      const cartDiscountEl = document.getElementById('cartDiscount');
+      // === [NEW] COUPON JS ELEMENTS END ===
+
       const thankYouModal = document.getElementById('thankYouModal');
       const modalCloseBtn = document.getElementById('modalCloseBtn');
       const payerNameEl = document.getElementById('payerName');
@@ -1036,6 +1118,41 @@
       const mainFooter = document.querySelector('.main-footer'); // [NEW] Get footer
 
       // --- All Functions Defined Inside DOMContentLoaded ---
+
+      // --- [NEW] COUPON APPLICATION LOGIC START ---
+      function applyCoupon() {
+          const enteredCode = couponInput.value.trim().toUpperCase();
+          const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+          appliedDiscount = 0.00; // Reset discount
+          
+          if (!couponMessageEl || !couponInput) return;
+
+          couponMessageEl.classList.remove('success', 'error');
+
+          if (enteredCode === couponRule.code) {
+              if (subtotal >= couponRule.minimumSubtotal) {
+                  appliedDiscount = subtotal * couponRule.discountPercentage;
+                  couponMessageEl.textContent = `${couponRule.discountPercentage * 100}% discount applied!`;
+                  couponMessageEl.classList.add('success');
+              } else {
+                  couponMessageEl.textContent = `Minimum $${couponRule.minimumSubtotal.toFixed(2)} purchase required.`;
+                  couponMessageEl.classList.add('error');
+              }
+          } else if (enteredCode === '') {
+              couponMessageEl.textContent = '';
+          } else {
+              couponMessageEl.textContent = 'Invalid coupon code.';
+              couponMessageEl.classList.add('error');
+          }
+          
+          // Re-render the cart UI to show the new totals
+          renderCartUI(); 
+          // Re-render PayPal buttons in case the price changed
+          if (payPalButtonsRendered) {
+              renderPayPalButtons();
+          }
+      }
+      // --- [NEW] COUPON APPLICATION LOGIC END ---
 
       function toggleMenu(event) {
         if (event) event.preventDefault(); // [FIX] Prevent ghost clicks
@@ -1143,6 +1260,9 @@
 
       function clearCart() {
         cart = [];
+        appliedDiscount = 0.00; // Reset discount on clear
+        if (couponInput) couponInput.value = ''; // Clear coupon input
+        if (couponMessageEl) couponMessageEl.textContent = ''; // Clear coupon message
         localStorage.removeItem('skullfoodCart');
         renderCartUI();
       }
@@ -1154,6 +1274,8 @@
           const id = removeButton.dataset.id;
           cart = cart.filter((item) => item.id !== id);
           saveCart();
+          // Recalculate coupon just in case removal drops subtotal below minimum
+          applyCoupon();
         }
       }
 
@@ -1189,24 +1311,53 @@
           }
         }
 
-        // === [NEW] SHIPPING LOGIC ===
-        const subtotal = cart.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
-        );
-        const shippingFee = subtotal > 0 && subtotal < 65 ? 20.0 : 0.0;
-        const grandTotal = subtotal + shippingFee;
+        // === [MODIFIED] SHIPPING & DISCOUNT LOGIC START ===
+        const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+        // 1. Calculate Discount
+        let discountAmount = 0.00;
+        if (appliedDiscount > 0.00 && subtotal >= couponRule.minimumSubtotal) {
+            discountAmount = subtotal * couponRule.discountPercentage;
+            // Ensure discount is never more than the subtotal
+            discountAmount = Math.min(discountAmount, subtotal); 
+        } else {
+            // Reset appliedDiscount globally if cart changes don't meet criteria
+            appliedDiscount = 0.00; 
+            if (couponMessageEl && couponInput.value !== '') {
+                // Update message if coupon was active but now invalid
+                couponMessageEl.textContent = `Coupon requires minimum $${couponRule.minimumSubtotal.toFixed(2)} purchase.`;
+                couponMessageEl.classList.remove('success');
+                couponMessageEl.classList.add('error');
+            }
+        }
+
+        const discountedSubtotal = subtotal - discountAmount;
+        
+        // 2. Calculate Shipping (based on discounted subtotal)
+        const shippingFee = (discountedSubtotal > 0 && discountedSubtotal < 65) ? 20.0 : 0.0;
+        const grandTotal = discountedSubtotal + shippingFee;
 
         if (cartSubtotalEl) {
           cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
         }
+        
+        // 3. Display Discount Row
+        if (cartDiscountRow && cartDiscountEl) {
+            if (discountAmount > 0) {
+                cartDiscountEl.textContent = `-$${discountAmount.toFixed(2)}`;
+                cartDiscountRow.style.display = 'flex';
+            } else {
+                cartDiscountRow.style.display = 'none';
+            }
+        }
+        
         if (cartShippingEl) {
           cartShippingEl.textContent = `$${shippingFee.toFixed(2)}`;
         }
         if (cartTotalEl) {
           cartTotalEl.textContent = `$${grandTotal.toFixed(2)}`;
         }
-        // === END SHIPPING LOGIC ===
+        // === [MODIFIED] SHIPPING & DISCOUNT LOGIC END ===
 
         const totalQuantity = cart.reduce(
           (sum, item) => sum + item.quantity,
@@ -1220,7 +1371,7 @@
           'paypal-button-container'
         );
         if (paypalContainer) {
-          paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
+          paypalContainer.style.display = subtotal > 0 ? 'block' : 'none';
         }
       }
 
@@ -1230,24 +1381,28 @@
           return;
         }
 
+        // Recalculate final grand total for PayPal
+        const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+        let discountAmount = 0.00;
+        if (appliedDiscount > 0.00 && subtotal >= couponRule.minimumSubtotal) {
+             discountAmount = subtotal * couponRule.discountPercentage;
+             discountAmount = Math.min(discountAmount, subtotal);
+        }
+        const discountedSubtotal = subtotal - discountAmount;
+        
+        const shippingFee = (discountedSubtotal > 0 && discountedSubtotal < 65) ? 20.0 : 0.0;
+        const grandTotal = discountedSubtotal + shippingFee;
+        
         paypal
           .Buttons({
             createOrder: function (data, actions) {
-              // === [NEW] RECALCULATE TOTAL FOR PAYPAL ===
-              const subtotal = cart.reduce(
-                (sum, item) => sum + item.price * item.quantity,
-                0
-              );
-              const shippingFee =
-                subtotal > 0 && subtotal < 65 ? 20.0 : 0.0;
-              const grandTotal = subtotal + shippingFee;
-              // === END PAYPAL TOTAL ===
-
+              
               return actions.order.create({
                 purchase_units: [
                   {
                     amount: {
-                      value: grandTotal.toFixed(2), // [CHANGED]
+                      value: grandTotal.toFixed(2), // Uses calculated grandTotal
                       currency_code: 'USD',
                     },
                   },
@@ -1325,6 +1480,13 @@
         modalCloseBtn.addEventListener('click', closeThankYou);
         modalCloseBtn.addEventListener('touchstart', closeThankYou);
       }
+
+      // === NEW COUPON LISTENER START ===
+      if (applyCouponBtn) {
+          applyCouponBtn.addEventListener('click', applyCoupon);
+          applyCouponBtn.addEventListener('touchstart', applyCoupon);
+      }
+      // === NEW COUPON LISTENER END ===
 
       // === NEW CONTACT FORM LISTENERS ===
       if (contactFab) {
