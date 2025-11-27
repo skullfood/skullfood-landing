@@ -12,18 +12,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function setupEventListeners() {
-    // Menu Toggles
+    // --- 1. SLIDE PANELS (Menu, Cart, Contact) ---
     const menuBtn = document.getElementById('menuToggle');
-    const cartBtn = document.getElementById('cartToggle');
     const closeMenu = document.getElementById('closeMenu');
-    const closeCart = document.getElementById('closeCart');
     
-    if(menuBtn) menuBtn.addEventListener('click', () => togglePanel('slideMenu'));
-    if(cartBtn) cartBtn.addEventListener('click', () => togglePanel('slideCart'));
-    if(closeMenu) closeMenu.addEventListener('click', () => togglePanel('slideMenu'));
-    if(closeCart) closeCart.addEventListener('click', () => togglePanel('slideCart'));
+    const cartBtn = document.getElementById('cartToggle');
+    const closeCart = document.getElementById('closeCart');
 
-    // Add to Cart Buttons
+    // Chat / Contact Button Logic
+    const contactFab = document.getElementById('contactFab');
+    const closeContact = document.getElementById('closeContact'); 
+    // (Note: In the about page code, the ID might be 'closeContact'. 
+    // In the slide-out panels, ensure the close button has id="closeContact")
+
+    // Menu Events
+    if(menuBtn) menuBtn.addEventListener('click', (e) => { e.preventDefault(); togglePanel('slideMenu'); });
+    if(closeMenu) closeMenu.addEventListener('click', (e) => { e.preventDefault(); togglePanel('slideMenu'); });
+
+    // Cart Events
+    if(cartBtn) cartBtn.addEventListener('click', (e) => { e.preventDefault(); togglePanel('slideCart'); });
+    if(closeCart) closeCart.addEventListener('click', (e) => { e.preventDefault(); togglePanel('slideCart'); });
+
+    // Contact/Chat Events
+    if(contactFab) contactFab.addEventListener('click', (e) => { 
+        e.preventDefault(); 
+        togglePanel('contactPanel'); 
+    });
+    
+    // We need to find the close button inside the contact panel dynamically if ID is missing
+    const contactPanel = document.getElementById('contactPanel');
+    if(contactPanel) {
+        const closeBtn = contactPanel.querySelector('.close-panel');
+        if(closeBtn) closeBtn.addEventListener('click', (e) => { e.preventDefault(); togglePanel('contactPanel'); });
+    }
+
+    // --- 2. ADD TO CART BUTTONS ---
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const product = {
@@ -36,11 +59,11 @@ function setupEventListeners() {
         });
     });
 
-    // Coupon Button
+    // --- 3. COUPON LOGIC ---
     const applyCouponBtn = document.getElementById('applyCouponBtn');
     if(applyCouponBtn) applyCouponBtn.addEventListener('click', applyCoupon);
 
-    // Cart Interactions (Remove items)
+    // --- 4. REMOVE ITEMS FROM CART ---
     const cartItemsContainer = document.getElementById('cartItems');
     if(cartItemsContainer) {
         cartItemsContainer.addEventListener('click', (e) => {
@@ -50,10 +73,33 @@ function setupEventListeners() {
             }
         });
     }
+
+    // --- 5. WAITLIST MODAL (If exists) ---
+    const waitlistBtn = document.getElementById('waitlistBtn');
+    const waitlistModal = document.getElementById('waitlistModal');
+    if(waitlistBtn && waitlistModal) {
+        waitlistBtn.addEventListener('click', () => {
+            waitlistModal.classList.add('active');
+        });
+        // Find close button inside waitlist modal
+        const closeWaitlist = waitlistModal.querySelector('.close-panel');
+        if(closeWaitlist) {
+            closeWaitlist.addEventListener('click', () => waitlistModal.classList.remove('active'));
+        }
+    }
 }
+
+// --- HELPER FUNCTIONS ---
 
 function togglePanel(panelId) {
     const panel = document.getElementById(panelId);
+    
+    // Close other panels first to avoid overlap
+    const allPanels = document.querySelectorAll('.slide-panel');
+    allPanels.forEach(p => {
+        if(p.id !== panelId) p.classList.remove('active');
+    });
+
     if(panel) panel.classList.toggle('active');
 }
 
@@ -65,7 +111,13 @@ function addToCart(product) {
         cart.push({...product, quantity: 1});
     }
     saveCart();
-    togglePanel('slideCart'); // Open cart
+    // Open the cart to show the user
+    const cartPanel = document.getElementById('slideCart');
+    if(cartPanel) {
+        // Close others
+        document.querySelectorAll('.slide-panel').forEach(p => p.classList.remove('active'));
+        cartPanel.classList.add('active');
+    }
 }
 
 function removeFromCart(id) {
@@ -173,7 +225,9 @@ function renderPayPal(amount) {
                     alert('Transaction completed by ' + details.payer.name.given_name);
                     cart = [];
                     saveCart();
-                    togglePanel('slideCart');
+                    // Close cart
+                    const cartPanel = document.getElementById('slideCart');
+                    if(cartPanel) cartPanel.classList.remove('active');
                 });
             }
         }).render('#paypal-button-container');
