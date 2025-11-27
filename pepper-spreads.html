@@ -4,689 +4,28 @@
   <meta charset="UTF-8" />
   <title>SKULL FOOD™ - Pepper Spreads</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
   <meta name="description" content="Shop SKULL FOOD™: Rebellious, clean-label, and flavor-forward PEPPER SPREADS." />
   <meta name="keywords" content="SKULL FOOD, shop, buy, clean label, rebellious food, pepper spread" />
   <meta name="author" content="SKULL FOOD LLC" />
 
+  <!-- Link to your new style file -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PayPal SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQ1goW3Tk1ZoZgHoceBqYLpPPSDXIkYXesxtQXxkcC1_00i8ikOEodIDQcgGDsDyN1hS5P-VXiZO27kT&currency=USD"></script>
-
-  <style>
-    /* === NEW SHIPPING BAR STYLES === */
-    .shipping-bar {
-      background: #00ffff; /* Your site's cyan color */
-      color: #000;
-      text-align: center;
-      padding: 0.75rem 1rem; /* Approx 12px */
-      position: sticky;
-      top: 0;
-      z-index: 950; /* Above the header (900) but below modals (1000+) */
-      box-sizing: border-box;
-    }
-    .shipping-bar p {
-      margin: 0;
-      font-weight: bold;
-      font-size: 1rem; /* Approx 16px */
-      line-height: 1.2; /* Tighter line height */
-      text-shadow: none; /* Override default p styles */
-      color: #000; /* Override default p styles */
-    }
-    /* === END SHIPPING BAR STYLES === */
-   
-    /* === NEW NAV BAR STYLES === */
-    .main-header {
-      background: rgba(10, 10, 10, 0.9);
-      border-bottom: 1px solid #ff4136; /* RED THEME */
-      padding: 1rem 0;
-      width: 100%;
-      position: sticky;
-      top: 44px; /* [CHANGED] */
-      z-index: 900; 
-      box-sizing: border-box;
-    }
-    .nav-container-new {
-      max-width: 700px; /* Aligns with homepage container */
-      margin: 0 auto;
-      padding: 0 2rem; 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-logo {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.5rem;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .main-nav ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: flex;
-    }
-    .main-nav li {
-      margin-left: 1.5rem;
-    }
-    .main-nav a {
-      color: #fff;
-      text-decoration: none;
-      font-family: 'Helvetica Neue', sans-serif;
-      font-weight: bold;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-    }
-    .main-nav a:hover {
-      color: #ff4136; /* RED THEME */
-    }
-    @media (max-width: 768px) {
-      .main-nav {
-        display: none; 
-      }
-      .nav-container-new {
-        justify-content: center; 
-      }
-      .main-header {
-        top: 44px; /* [CHANGED] */
-      }
-    }
-    /* === END NEW NAV BAR STYLES === */
-
-
-    /* RED THEME */
-    body {
-      margin: 0;
-      padding: 0;
-      color: #fff;
-      font-family: 'Helvetica Neue', sans-serif;
-      overflow-x: hidden;
-      overflow-y: auto;
-      background-image: url('website-design-content-layout-graphic.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      min-height: 100vh;
-      box-sizing: border-box;
-      /* [NEW] Add flex to push footer down */
-      display: flex;
-      flex-direction: column;
-    }
-    .container {
-      max-width: 900px;
-      margin: 3rem auto; 
-      padding: 2.5rem 2rem;
-      text-align: center;
-      position: relative;
-      z-index: 10;
-      /* [NEW] Make container grow to push footer */
-      flex-grow: 1;
-    }
-   
-    .page-title {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: #fff;
-      position: relative;
-      text-shadow: 0 0 8px #ff0000;
-    }
-    /* REMOVED .back-link styles */
-
-    .product-section {
-      margin-top: 3rem;
-      padding: 1.5rem;
-      background: rgba(0,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      justify-content: center;
-    }
-    .product-card {
-      background: rgba(17, 17, 17, 0.7);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-card h3 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.2rem;
-      color: #ff4136;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      /* [REMOVED] white-space, overflow, text-overflow */
-    }
-   
-    /* === [NEW] Product Desc Styles === */
-    .product-card .product-desc {
-      font-size: 0.95rem;
-      font-weight: normal;
-      color: #ccc;
-      text-shadow: none;
-      min-height: auto; /* [CHANGED] */
-      flex-grow: 1;
-    }
-    .product-desc .tagline-desc {
-      font-style: italic;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-    .product-desc h4 {
-      color: #fff;
-      font-weight: bold;
-      margin: 1rem 0 0.5rem 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-    }
-    .product-desc ul {
-      padding-left: 20px;
-      margin: 0.5rem 0;
-      color: #ccc;
-      font-size: 0.9rem;
-    }
-    .product-desc li {
-      margin-bottom: 5px;
-    }
-    .product-note {
-      font-size: 0.85rem !important;
-      font-weight: normal !important;
-      color: #ffc2b3 !important; /* Light red */
-      margin-top: 1rem;
-      border-top: 1px solid #555;
-      padding-top: 1rem;
-      text-shadow: none !important;
-    }
-    .product-note.torros {
-      color: #b3ffff !important; /* Light cyan */
-    }
-    /* === END Product Desc Styles === */
-   
-    .product-card .product-price {
-      display: flex;
-      justify-content: flex-end;
-      align-items: baseline;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      margin-top: 1rem;
-      text-shadow: none;
-    }
-   
-    .product-price .price-amount {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #fff;
-    }
-   
-    .product-price .price-unit {
-      font-size: 0.9rem;
-      font-weight: normal;
-      color: #aaa;
-    }
-
-    .price-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      margin-bottom: 1rem;
-      margin-top: 1rem;
-    }
-    .price-wrapper .sale-price {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #fff;
-    }
-    .price-wrapper .original-price {
-      font-size: 0.9rem;
-      color: #aaa;
-      text-decoration: line-through;
-    }
-    .price-wrapper .sale-badge {
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #ff4136;
-    }
-   
-    .price-wrapper .price-unit {
-      font-size: 0.9rem;
-      font-weight: normal;
-      color: #aaa;
-      margin-bottom: 0.25rem;
-    }
-
-    .add-to-cart-btn {
-      background: #ff4136;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      margin-top: auto;
-    }
-    .add-to-cart-btn:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 10px #ff4136;
-    }
-   
-    .coming-soon-text {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.2rem;
-      color: #ff4136;
-      text-align: center;
-      font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-      text-shadow: 0 0 3px #ff4136, 0 0 5px #ff0000;
-    }
-   
-    .waitlist-btn {
-      background: #ff4136;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      margin-top: auto;
-      text-align: center;
-    }
-    .waitlist-btn:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 10px #ff4136;
-    }
-
-    /* === [REVERTED] Product Image Styles === */
-    .product-image-container {
-      width: 100%;
-      aspect-ratio: 4 / 3; /* Responsive aspect ratio */
-      background: #333;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-style: italic;
-      color: #888;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      overflow: hidden; /* To contain the image */
-    }
-     
-    .product-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensures image fills the box, cropping as needed */
-      transition: transform 0.3s ease; /* Nice hover effect */
-    }
-
-    .product-card:hover .product-image-container img {
-        transform: scale(1.05); /* Zoom effect on card hover */
-    }
-    /* === END Product Image Styles === */
-   
-    /* --- ALL CART & MENU STYLES (Red Theme) --- */
-    .menu-toggle-btn {
-      position: fixed;
-      top: 64px; /* [CHANGED] */
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background: #111; /* [CHANGED] */
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 5px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      padding: 8px 6px;
-      box-sizing: border-box;
-      z-index: 1001;
-    }
-    .menu-toggle-btn .bar { width: 100%; height: 3px; background-color: #ffffff; border-radius: 2px; opacity: 1; box-shadow: 0 0 3px rgba(255,255,255,0.5); }
-    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-    .overlay.active { opacity: 1; visibility: visible; }
-    .slide-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #111; z-index: 1000; padding: 2rem; box-sizing: border-box; transition: right 0.3s ease; overflow-y: auto; }
-    .slide-menu.active { right: 0; }
-    .info-container { margin-top: 60px; }
-   
-    /* === NEW MOBILE NAV LINKS (THE FIX) === */
-    .mobile-nav-links {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 2rem 0;
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 2rem;
-    }
-    .mobile-nav-links li {
-      margin-bottom: 1rem;
-    }
-    .mobile-nav-links li:last-child {
-      margin-bottom: 0;
-    }
-    .mobile-nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.5rem;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    .mobile-nav-links a:hover {
-      color: #ff4136; /* RED THEME */
-    }
-    /* === END NEW MOBILE NAV LINKS === */
-   
-    .info-box { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
-    .info-box h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 0; border-bottom: 2px solid #ff4136; padding-bottom: 0.5rem; }
-    .info-box p { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #eee; text-shadow: none; }
-    .info-box a { color: #ff4136; text-decoration: none; font-weight: bold; }
-    .info-box a:hover { text-decoration: underline; }
-    .ig-link { background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; font-weight: bold; text-decoration: none; }
-    .cart-toggle-btn {
-      position: fixed;
-      top: 64px; /* [CHANGED] */
-      left: 20px;
-      width: 40px;
-      height: 40px;
-      background: #111; /* [CHANGED] */
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 1001;
-      font-size: 1.2rem;
-      color: white;
-      padding: 0;
-      display: flex; 
-      align-items: center;
-      justify-content: center;
-    }
-    .cart-counter { position: absolute; top: -8px; right: -8px; background: #ff4136; color: white; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #fff; }
-    .slide-cart { position: fixed; top: 0; left: -100vw; width: 90vw; max-width: 480px; height: 100%; background: #111; z-index: 1000; box-sizing: border-box; transition: left 0.3s ease; display: flex; flex-direction: column; border-right: 1px solid #ff4136; overflow-y: auto; }
-    .slide-cart.active { left: 0; }
-    .cart-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
-    .close-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 2.5rem; font-weight: bold; cursor: pointer; line-height: 1; padding: 0; z-index: 1002; }
-    .close-btn:hover { color: #ff4136; }
-    .slide-cart h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: #fff; margin-top: 60px; border-bottom: 2px solid #ff4136; padding-bottom: 0.5rem; }
-    .cart-items { margin-top: 1rem; }
-    .cart-empty { font-family: 'Helvetica Neue', sans-serif; font-weight: normal; font-size: 0.95rem; color: #aaa; text-shadow: none; text-align: center; margin-top: 2rem; }
-    .cart-item { display: flex; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #333; }
-   
-    /* === [NEW] Cart Item Image Style === */
-    .cart-item-image {
-      width: 60px;
-      height: 60px;
-      border-radius: 5px;
-      object-fit: cover;
-      border: 1px solid #444;
-      flex-shrink: 0; /* Prevents image from shrinking */
-    }
-    /* === END Cart Item Image Style === */
-
-    .cart-item-info { flex-grow: 1; margin-left: 1rem; }
-    .cart-item-info h4 { font-size: 1rem; color: #fff; margin: 0 0 5px 0; font-weight: bold; }
-    .cart-item-info p { font-size: 0.9rem; color: #aaa; margin: 0; font-weight: normal; text-shadow: none; }
-    .remove-item-btn { background: none; border: none; color: #ff4136; font-size: 1.1rem; font-weight: bold; cursor: pointer; padding: 5px; }
-    .remove-item-btn:hover { color: #fff; }
-   
-    .cart-summary {
-      border-top: 1px solid #444;
-      padding-top: 1rem;
-      margin-top: auto;
-    }
-    .cart-total {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-   
-    /* === [NEW] CSS For Shipping Cart === */
-    .cart-total.grand-total {
-      font-size: 1.3rem;
-      border-top: 1px solid #444;
-      padding-top: 0.75rem;
-      margin-top: 0.5rem;
-    }
-    /* === END NEW CSS === */
-   
-    #paypal-button-container { margin-top: 1rem; z-index: 100; position: relative; min-height: 250px; }
-   
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 2000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      overflow-y: auto; 
-      padding: 1rem 0; 
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal-container {
-      background: #111;
-      border: 1px solid #ff4136; /* RED THEME */
-      border-radius: 8px;
-      padding: 2rem;
-      width: 90%;
-      max-width: 450px;
-      position: relative;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* RED THEME */
-      margin: auto;
-    }
-   
-    .modal-container.thank-you {
-        text-align: center;
-    }
-    .modal-container h2 {
-      font-family: Georgia, 'Times New Roman', serif;
-      color: #ff4136; /* RED THEME */
-      margin: 0 0 1rem 0;
-      font-size: 1.8rem;
-    }
-    .modal-container p {
-      font-size: 1.1rem;
-      font-weight: normal;
-      text-shadow: none;
-      margin-bottom: 1.5rem;
-    }
-    .modal-close-btn {
-      background: #ff4136; /* RED THEME */
-      color: #fff;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .modal-close-btn:hover {
-      background: #fff;
-      color: #000;
-    }
-   
-    /* === NEW FOOTER STYLES === */
-    .main-footer {
-      background: rgba(10, 10, 10, 0.9);
-      border-top: 1px solid #ff4136; /* RED THEME */
-      padding: 2rem 0;
-      width: 100%;
-      z-index: 10;
-      position: relative;
-    }
-    .footer-container {
-      max-width: 700px; /* Aligns with homepage container */
-      margin: 0 auto;
-      padding: 0 2rem; 
-      text-align: center;
-    }
-    .social-links {
-      margin-bottom: 1.5rem;
-    }
-    .social-links a {
-      font-size: 1.2rem;
-      text-decoration: none;
-    }
-    .footer-copyright {
-      font-family: 'Helvetica Neue', sans-serif;
-      font-weight: normal;
-      font-size: 0.9rem;
-      color: #aaa;
-      margin: 0;
-      text-shadow: none;
-    }
-    /* === END FOOTER STYLES === */
-   
-    /* === NEW CONTACT FORM STYLES === */
-    /* NOTE: Contact button uses CYAN theme for consistency */
-    a.contact-fab { 
-      position: fixed;
-      bottom: 30px; 
-      right: 30px; 
-      background: #00ffff; /* CYAN THEME */
-      color: #fff !important; 
-      padding: 0.6rem 1rem; /* [CHANGED] Half size */
-      border-radius: 30px; 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none !important; 
-      box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4); /* CYAN THEME */
-      z-index: 800;
-      transition: all 0.3s ease;
-      font-size: 0.9rem; /* [CHANGED] Half size */
-      font-weight: bold; 
-    }
-    a.contact-fab:hover {
-      background: #fff;
-      color: #000 !important; 
-      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.6); /* CYAN THEME */
-      transform: scale(1.05);
-    }
-   
-    .fab-svg-icon {
-      width: 20px; /* [CHANGED] Half size */
-      height: 20px; /* [CHANGED] Half size */
-      margin-right: 0.5rem; /* [CHANGED] Half size */
-      fill: #fff; 
-      transition: fill 0.3s ease; 
-    }
-   
-    a.contact-fab:hover .fab-svg-icon {
-      fill: #000; 
-    }
-
-    .modal-close-icon {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 2.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      line-height: 1;
-      padding: 0;
-      z-index: 10;
-    }
-    .modal-close-icon:hover {
-      color: #ff4136; /* RED THEME */
-    }
-    .form-group {
-      margin-bottom: 1.25rem;
-      text-align: left;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.75rem;
-      background: #222;
-      border: 1px solid #444;
-      border-radius: 5px;
-      color: #fff;
-      font-size: 1rem;
-      box-sizing: border-box; /* Important for padding */
-      font-family: 'Helvetica Neue', sans-serif;
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-    .form-group .char-counter {
-      font-size: 0.8rem;
-      color: #888;
-      text-align: right;
-      margin-top: 4px;
-    }
-    .submit-btn {
-      background: #ff4136; /* RED THEME */
-      color: #fff; /* RED THEME */
-      border: none;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      margin-top: 1rem;
-    }
-    .submit-btn:hover {
-      background: #fff;
-      color: #000; /* RED THEME */
-      box-shadow: 0 0 10px #ff4136; /* RED THEME */
-    }
-    /* === END CONTACT FORM STYLES === */
-
-  </style>
 </head>
-<body>
+<!-- THEME PEPPER CLASS ACTIVATES RED MODE -->
+<body class="theme-pepper">
 
+  <!-- Shipping Bar -->
   <div class="shipping-bar">
-    <p>Free Nationwide Shipping on Orders $65+</p>
+    Free Nationwide Shipping on Orders $65+
   </div>
+
+  <!-- Header / Navigation -->
   <header class="main-header">
-    <div class="nav-container-new">
-      <a href="index.html" class="nav-logo">SKULL FOOD&trade;</a>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">SKULL FOOD<span>&trade;</span></a>
       <nav class="main-nav">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -697,854 +36,204 @@
       </nav>
     </div>
   </header>
-  <button class="menu-toggle-btn" id="menuToggle" aria-label="Open Menu">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
+
+  <!-- Floating Buttons (Menu & Cart) -->
+  <button class="floating-btn" id="menuToggle" aria-label="Open Menu">☰</button>
+  <button class="floating-btn" id="cartToggle" aria-label="Open Cart">
+    🛒 <span class="cart-badge" id="cartCounter">0</span>
   </button>
 
-  <button class="cart-toggle-btn" id="cartToggle" aria-label="Open Cart">
-    🛒
-    <span class="cart-counter" id="cartCounter">0</span>
-  </button>
-
-  <div class="overlay" id="overlay"></div>
-
-  <nav class="slide-menu" id="slideMenu">
-    <div class="info-container">
-   
-      <ul class="mobile-nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Sweet Spreads</a></li>
-        <li><a href="pepper-spreads.html">Pepper Spreads</a></li>
-        <li><a href="about.html">About Us</a></li>
+  <!-- Slide-out Menu Panel -->
+  <div class="slide-panel" id="slideMenu">
+    <div class="panel-content">
+      <div class="panel-header">
+        <h2>MENU</h2>
+        <button class="close-panel" id="closeMenu">&times;</button>
+      </div>
+      <ul style="list-style:none; padding:0; text-align:center; font-size:1.5rem; line-height:2;">
+        <li><a href="index.html" style="color:#fff; text-decoration:none;">Home</a></li>
+        <li><a href="shop.html" style="color:#fff; text-decoration:none;">Sweet Spreads</a></li>
+        <li><a href="pepper-spreads.html" style="color:#fff; text-decoration:none;">Pepper Spreads</a></li>
+        <li><a href="about.html" style="color:#fff; text-decoration:none;">About Us</a></li>
       </ul>
-      <div class="info-box">
-        <h2>FIND US</h2>
+      <hr style="border-color:#333; margin: 2rem 0;">
+      <div style="color:#ccc; margin-bottom: 2rem;">
+        <h3 style="color:var(--neon-red);">FIND US</h3>
         <p>Find SKULL FOOD™ products at select farmers' markets across California.</p>
-        <p>Follow our social media for weekly locations and weekly gives away!</p>
-        <p>
-          <span class="ig-link">Instagram:</span>
-          <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
-            @skullfood.us
-          </a>
-        </p>
+        <p>Instagram: <a href="https://www.instagram.com/skullfood.us" target="_blank" style="color:#fff;">@skullfood.us</a></p>
       </div>
-      <div class="info-box">
-        <h2>CONTACT US</h2>
-        <p>For inquiries, wholesale, or just to say hi:</p>
-        <p>
-          <a href="mailto:info@skullfood-us.com">info@skullfood-us.com</a>
-        </p>
-      </div>
-    </div>
-  </nav>
-
-  <aside class="slide-cart" id="slideCart">
-    <button class="close-btn" id="cartCloseBtn">&times;</button>
-    <div class="cart-content">
-      <h2>Your Cart</h2>
-      <div class="cart-items" id="cartItems">
-        <p class="cart-empty">Your cart is empty.</p>
-      </div>
-
-      <!-- [ADDED] COUPON SECTION START -->
-      <div class="coupon-section">
-        <div class="coupon-input-group">
-          <input type="text" id="couponCode" placeholder="Try: SKULL10" />
-          <button id="applyCouponBtn">Apply</button>
-        </div>
-        <p id="couponMessage" class="coupon-message"></p>
-      </div>
-      <!-- [ADDED] COUPON SECTION END -->
-     
-      <div class="cart-summary">
-        <div class="cart-total" id="cartSubtotalRow">
-          <strong>Subtotal:</strong>
-          <span id="cartSubtotal">$0.00</span>
-        </div>
-        <!-- [ADDED] Discount Row -->
-        <div class="cart-total cart-discount" id="cartDiscountRow" style="display: none;">
-            <strong>Discount:</strong>
-            <span id="cartDiscount">-$0.00</span>
-        </div>
-        <div class="cart-total">
-          <strong>Shipping:</strong>
-          <span id="cartShipping">$0.00</span>
-        </div>
-        <div class="cart-total grand-total">
-          <strong>Total:</strong>
-          <span id="cartTotal">$0.00</span>
-        </div>
-        <div id="paypal-button-container"></div>
-      </div>
-      </div>
-  </aside>
- 
-  <div class="modal-overlay" id="thankYouModal">
-    <div class="modal-container thank-you">
-      <h2>Thank You!</h2>
-      <p>Your order is confirmed. Thanks for joining the rebellion, <span id="payerName"></span>!</p>
-      <button class="modal-close-btn" id="modalCloseBtn">Close</button>
     </div>
   </div>
 
-
-  <div class="container">
-   
-    <h1 class="page-title">PEPPER SPREADS</h1>
-
-    <div class="product-section">
-      <div class="product-grid">
-       
-        <!-- Product 1 -->
-        <div class="product-card">
-          <div class="product-image-container">
-            <img src="https://skullfood.github.io/skullfood-landing/tangos.jpg" 
-                 alt="WILD N TANGOS Pepper Spread">
-          </div>
-          <h3>WILD N TANGOS™</h3>
-          <div class="product-desc">
-            <p class="tagline-desc">Tangy. Nutty. Mildly wild.</p>
-            <p>A daring fusion of Southern and Mexican peppers, pomegranate molasses, and rich nut butter, WILD N TANGOS™ delivers a tangy kick with a smooth, nutty finish. This spread dances between cultures and textures bright, earthy, and just spicy enough to keep things interesting (heat level: 5/10).</p>
-            <h4>Perfect for:</h4>
-            <ul>
-              <li>Crackers, pretzels, pasta, rice bowls, grilled meats, roasted veggies or anything that needs a flavor lift.</li>
-            </ul>
-            <h4>Why it hits different:</h4>
-            <ul>
-              <li>No added oils, gums, or preservatives</li>
-              <li>Shelf-stable and clean-label</li>
-              <li>Multicultural roots with rebellious soul</li>
-            </ul>
-            <p class="product-note">❄️ <strong>SHIPPED COLD:</strong> This product must be kept refrigerated. Please contact our support team if you reside outside California to place an order.</p>
-          </div>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" 
-                  data-id="p1-tangos" 
-                  data-name="WILD N TANGOS" 
-                  data-price="13.99" 
-                  data-image="https://skullfood.github.io/skullfood-landing/tangos.jpg">
-            Add to Cart
-          </button>
-        </div>
-       
-        <!-- Product 2 -->
-        <div class="product-card">
-          <div class="product-image-container">
-            <img src="https://skullfood.github.io/skullfood-landing/nytchos.jpg" 
-                 alt="WILD N NYCTHOS Pepper Spread">
-          </div>
-          <h3>WILD N NYCTHOS™</h3>
-          <div class="product-desc">
-            <p class="tagline-desc">Misspelled. Tastes styled.</p>
-            <p>The signature SKULL FOOD™ cheddar blend—100% organic cheese powder (no fake flavors, ever), swirled with nut butter, umami mushroom, and orange peel for a tangy, earthy, nutty punch. It’s comfort food with a rebellious twist.</p>
-            <h4>Flavor Notes:</h4>
-            <ul>
-              <li>Tangy cheddar meets earthy mushroom</li>
-              <li>Nutty richness with a citrusy spark</li>
-              <li>Heat Level: 5/10 — a gentle burn that builds</li>
-            </ul>
-            <h4>Perfect for:</h4>
-            <ul>
-              <li>Pasta, pizza, tacos, rice bowls, and of course—NYCTHOS™.</li>
-            </ul>
-            <p class="product-note">❄️ <strong>SHIPPED COLD:</strong> This product must be kept refrigerated. Please contact our support team if you reside outside California to place an order.</p>
-          </div>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" 
-                  data-id="p2-nycthos" 
-                  data-name="WILD N NYCTHOS" 
-                  data-price="13.99"
-                  data-image="https://skullfood.github.io/skullfood-landing/nytchos.jpg">
-            Add to Cart
-          </button>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-          <div class="product-image-container">
-            <img src="https://skullfood.github.io/skullfood-landing/TEJAA.jpg" 
-                 alt="WILD N TEJAA Pepper Spread">
-          </div>
-          <h3>WILD N TEJAA™</h3>
-          <div class="product-desc">
-            <p class="tagline-desc">Dare the flare. Spread the dread.</p>
-            <p>This is SKULL FOOD™’s fiercest flavor yet a fire spread made for the bold. Real Carolina Reaper (no fake flavors, ever) meets serrano, habanero, and dried chilis, roasted at 500°F and blended into a nut-based spread that’s smoky, spicy, and dangerously delicious.</p>
-            <h4>Flavor Notes:</h4>
-            <ul>
-              <li>Deep roasted heat</li>
-              <li>Nutty body with smoky layers</li>
-              <li>Heat Level: 1M/10 — not for the faint of taste</li>
-            </ul>
-            <h4>Perfect for:</h4>
-            <ul>
-              <li>Crackers, tacos, grilled meats, rice bowls, pizza, pasta—anything that dares to be devoured.</li>
-            </ul>
-            <p class="product-note">❄️ <strong>SHIPPED COLD:</strong> This product must be kept refrigerated. Please contact our support team if you reside outside California to place an order.</p>
-          </div>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" 
-                  data-id="p3-tejaa" 
-                  data-name="WILD N TEJAA" 
-                  data-price="13.99"
-                  data-image="https://skullfood.github.io/skullfood-landing/TEJAA.jpg">
-            Add to Cart
-          </button>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-          <div class="product-image-container">
-            <img src="https://skullfood.github.io/skullfood-landing/pistachio.jpg" 
-                 alt="WILD N PISTACHIO Pepper Spread">
-          </div>
-          <h3>WILD N PISTACHIO™</h3>
-          <div class="product-desc">
-            <p class="tagline-desc">Hot pistachio? We made it happen.</p>
-            <p>SKULL FOOD™ is the first to craft a savory umami spread from pistachios, no oil, no fillers, just pure nut-powered flavor. Roasted under 500°F pressure with a mix of 10 peppers and 3 nuts, this green rebel brings heat, depth, and nutty richness to your plate.</p>
-            <h4>Flavor Notes:</h4>
-            <ul>
-              <li>Earthy pistachio base</li>
-              <li>Tangy umami from pepper blend</li>
-              <li>Nutty finish with a gentle burn</li>
-              <li>Heat Level: 2/10 — mild but mighty</li>
-            </ul>
-            <h4>Perfect for:</h4>
-            <ul>
-              <li>Crackers, pretzels, pasta, rice, grilled meats, tacos, and anything craving savory swagger.</li>
-            </ul>
-            <p class="product-note">❄️ <strong>SHIPPED COLD:</strong> This product must be kept refrigerated. Please contact our support team if you reside outside California to place an order.</p>
-          </div>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" 
-                  data-id="p4-pistachio" 
-                  data-name="WILD N PISTACHIO" 
-                  data-price="13.99"
-                  data-image="https://skullfood.github.io/skullfood-landing/pistachio.jpg">
-            Add to Cart
-          </button>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-          <div class="product-image-container">
-            <img src="https://skullfood.github.io/skullfood-landing/torros.jpg" 
-                 alt="WILD N TORROS Pepper Spread">
-          </div>
-          <h3>WILD N TORROS™</h3>
-          <div class="product-desc">
-            <p class="tagline-desc">Elegance disguised. Flavor untamed.</p>
-            <p>SKULL FOOD™ proudly introduces the first-ever smoky, earthy, umami-rich black spread in the U.S. A culinary rebel made from BLACK TRUFFLE, BLACK GARLIC, BLACK TEA, BLACK CUMIN, BLACK PEPPER, BLACK SESAME, and a secret blend of black spices. It’s a deep, layered flavor experience wrapped in a clean-label attitude.</p>
-            <h4>Flavor Notes:</h4>
-            <ul>
-              <li>Smoky and earthy with umami depth</li>
-              <li>Truffle-forward with subtle spice</li>
-              <li>Heat Level: 1/10 — just a whisper of warmth</li>
-            </ul>
-            <h4>Perfect for:</h4>
-            <ul>
-              <li>Aged cheese, caviar, aged beef, crackers, pasta, and luxe bites that deserve bold elegance.</li>
-            </ul>
-            <p class="product-note torros">Shelf life is 3 months and doesn't require refrigeration.</p>
-          </div>
-          <div class="product-price">
-            <span class="price-unit">10 Oz</span>
-            <span class="price-amount">$13.99</span>
-          </div>
-          <button class="add-to-cart-btn" 
-                  data-id="p5-torros" 
-                  data-name="WILD N TORROS" 
-                  data-price="13.99"
-                  data-image="https://skullfood.github.io/skullfood-landing/torros.jpg">
-            Add to Cart
-          </button>
-        </div>
-
-        <!-- Product 6 (Bundle) -->
-        <div class="product-card">
-          <div class="product-image-container"> <!-- No .bundle-image class here -->
-            <img src="https://skullfood.github.io/skullfood-landing/bundel%20torros.jpg" 
-                 alt="WILD N TORROS BUNDLE (3-PACK)">
-          </div>
-          <h3>WILD N TORROS™ BUNDLE (3-PACK)</h3>
-          <div class="product-desc">
-            <p class="tagline-desc">Stock up on the darkness.</p>
-            <p>Get three 10 Oz jars of our signature WILD N TORROS™. Shelf life is 3 months and doesn't require refrigeration.</p>
-            <p class="product-note torros">Shelf life is 3 months and doesn't require refrigeration.</p>
-          </div>
-          <div class="price-wrapper">
-            <span class="price-unit">10 Oz x 3 Units</span>
-            <div>
-              <span class="original-price">$41.97</span>
-              <span class="sale-badge">(Save 28%)</span>
-            </div>
-            <span class="sale-price">$30.00</span>
-          </div>
-          <button class="add-to-cart-btn" 
-                  data-id="p6-torros-bundle" 
-                  data-name="WILD N TORROS BUNDLE" 
-                  data-price="30.00"
-                  data-image="https://skullfood.github.io/skullfood-landing/bundel%20torros.jpg">
-            Add to Cart
-          </button>
-        </div>
-
+  <!-- Slide-out Cart Panel -->
+  <div class="slide-panel" id="slideCart">
+    <div class="panel-content">
+      <div class="panel-header">
+        <h2>YOUR CART</h2>
+        <button class="close-panel" id="closeCart">&times;</button>
       </div>
-    </div>
-   
-  </div>
-
-  <div class="modal-overlay" id="contactModal">
-    <div class="modal-container">
-      <button class="modal-close-icon" id="contactModalClose">&times;</button>
-      <h2>Contact Us</h2>
-      <!-- [FIXED] Updated email to info@skullfood-us.com -->
-      <form action="https://formsubmit.co/info@skullfood-us.com" method="POST">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="First Name" required>
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="Last Name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="Email" required>
-        </div>
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <select id="subject" name="Subject" required>
-            <option value="">Please choose an option...</option>
-            <option value="Placing an order">Placing an order</option>
-            <option value="Issue with cart">Issue with cart</option>
-            <option value="Tracking an order">Tracking an order</option>
-            <option value="Refund">Refund</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="Message" maxlength="300" required></textarea>
-          <div class="char-counter" id="charCounter">300 characters remaining</div>
-        </div>
-        <input type="hidden" name="_subject" value="New SKULL FOOD Contact Form!">
-        <input type="hidden" name="_replyto" value="email">
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
-    </div>
-  </div>
-  <a href="#" id="contact-fab" class="contact-fab" aria-label="Contact Us"> 
-    <svg class="fab-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
-    </svg>
-    <span class="fab-text">Chat with us</span>
-  </a>
-  <footer class="main-footer">
-    <div class="footer-container">
-      <div class="social-links">
-        <a href="https://www.instagram.com/skullfood.us" target="_blank" class="ig-link">
-          Instagram: @skullfood.us
-        </a>
-      </div>
-      <p class="footer-copyright">&copy; 2025 SKULL FOOD LLC. All rights reserved.</p>
-    </div>
-  </footer>
-  <script>
-    // --- State ---
-    let cart = [];
-    let payPalButtonsRendered = false;
-
-    // --- [ADDED] COUPON STATE AND RULE ---
-    let appliedDiscount = 0.00; 
-    const couponRule = {
-        code: "SKULL10", 
-        discountPercentage: 0.10, 
-        minimumSubtotal: 20.00 
-    };
-
-    // --- [FIX] Wait for DOM to be loaded ---
-    document.addEventListener('DOMContentLoaded', () => {
-
-      // --- DOM Elements ---
-      const menuToggle = document.getElementById('menuToggle');
-      const slideMenu = document.getElementById('slideMenu');
-      const cartToggle = document.getElementById('cartToggle');
-      const slideCart = document.getElementById('slideCart');
-      const cartCloseBtn = document.getElementById('cartCloseBtn');
-      const overlay = document.getElementById('overlay');
-     
-      const cartItemsContainer = document.getElementById('cartItems');
-      const cartTotalEl = document.getElementById('cartTotal');
-      const cartCounterEl = document.getElementById('cartCounter');
-     
-      // === [NEW] SHIPPING JS ELEMENTS ===
-      const cartSubtotalEl = document.getElementById('cartSubtotal');
-      const cartShippingEl = document.getElementById('cartShipping');
-      // === END NEW SHIPPING JS ===
-
-      // === [ADDED] COUPON JS ELEMENTS ===
-      const couponInput = document.getElementById('couponCode');
-      const applyCouponBtn = document.getElementById('applyCouponBtn');
-      const couponMessageEl = document.getElementById('couponMessage');
-      const cartDiscountRow = document.getElementById('cartDiscountRow');
-      const cartDiscountEl = document.getElementById('cartDiscount');
-      // === END COUPON JS ELEMENTS ===
-     
-      const waitlistModal = document.getElementById('waitlistModal');
-      const modalClose = document.getElementById('modalClose');
-      const waitlistButton = document.getElementById('waitlistBtn');
-     
-      const thankYouModal = document.getElementById('thankYouModal');
-      const modalCloseBtn = document.getElementById('modalCloseBtn');
-      const payerNameEl = document.getElementById('payerName');
-     
-      const allAddToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-
-      // === NEW CONTACT FORM ELEMENTS ===
-      const contactFab = document.getElementById('contact-fab');
-      const contactModal = document.getElementById('contactModal');
-      const contactModalClose = document.getElementById('contactModalClose');
-      const messageTextarea = document.getElementById('message');
-      const charCounter = document.getElementById('charCounter');
-      const mainFooter = document.querySelector('.main-footer'); // [NEW] Get footer
-
-      // --- All Functions Defined Inside DOMContentLoaded ---
-
-      // --- [ADDED] COUPON APPLICATION LOGIC ---
-      function applyCoupon() {
-          const enteredCode = couponInput.value.trim().toUpperCase();
-          const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-          appliedDiscount = 0.00; 
-          
-          if (!couponMessageEl || !couponInput) return;
-
-          couponMessageEl.classList.remove('success', 'error');
-
-          if (enteredCode === couponRule.code) {
-              if (subtotal >= couponRule.minimumSubtotal) {
-                  appliedDiscount = subtotal * couponRule.discountPercentage;
-                  couponMessageEl.textContent = `${couponRule.discountPercentage * 100}% discount applied!`;
-                  couponMessageEl.classList.add('success');
-              } else {
-                  couponMessageEl.textContent = `Minimum $${couponRule.minimumSubtotal.toFixed(2)} purchase required.`;
-                  couponMessageEl.classList.add('error');
-              }
-          } else if (enteredCode === '') {
-              couponMessageEl.textContent = '';
-          } else {
-              couponMessageEl.textContent = 'Invalid coupon code.';
-              couponMessageEl.classList.add('error');
-          }
-          
-          renderCartUI(); 
-          if (payPalButtonsRendered) {
-              renderPayPalButtons();
-          }
-      }
-      // --- END COUPON LOGIC ---
-
-      function toggleMenu(event) {
-        if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
-        if (slideCart && slideCart.classList.contains('active')) {
-          toggleCart(); // Close cart if open
-        }
-        if (contactModal && contactModal.classList.contains('active')) {
-          closeContactModal(); // Close contact modal if open
-        }
-        if (slideMenu) slideMenu.classList.toggle('active');
-        if (overlay) overlay.classList.toggle('active');
-      }
-
-      function toggleCart(event) {
-        if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
-        if (slideMenu && slideMenu.classList.contains('active')) {
-          toggleMenu(); // Close menu if open
-        }
-        if (contactModal && contactModal.classList.contains('active')) {
-          closeContactModal(); // Close contact modal if open
-        }
-        if (slideCart) {
-            const isCartActive = slideCart.classList.toggle('active');
-           
-            // === [NEW FIX] Hide/show cart button ===
-            if (cartToggle) {
-                // Use 'flex' as that's what we set in the CSS
-                cartToggle.style.display = isCartActive ? 'none' : 'flex'; 
-            }
-            // === END NEW FIX ===
-           
-            if (overlay) overlay.classList.toggle('active');
-
-            if (isCartActive && !payPalButtonsRendered) {
-              renderPayPalButtons();
-              payPalButtonsRendered = true;
-            }
-        }
-      }
-
-      function openWaitlistModal(event) {
-        if(event) event.preventDefault();
-        if (waitlistModal) waitlistModal.classList.add('active');
-      }
-      function closeWaitlistModal(event) {
-        if(event) event.preventDefault();
-        if (waitlistModal) waitlistModal.classList.remove('active');
-      }
-
-      // === NEW CONTACT MODAL FUNCTIONS ===
-      function openContactModal(event) {
-        if(event) event.preventDefault();
-        if (slideMenu && slideMenu.classList.contains('active')) {
-          toggleMenu(); // Close menu if open
-        }
-        if (slideCart && slideCart.classList.contains('active')) {
-          toggleCart(); // Close cart if open
-        }
-        if(contactModal) contactModal.classList.add('active');
-        if(overlay) overlay.classList.add('active');
-      }
-
-      function closeContactModal(event) {
-        if(event) event.preventDefault();
-        if(contactModal) contactModal.classList.remove('active');
-        // Only remove overlay if menu and cart are also closed
-        if (!slideMenu.classList.contains('active') && !slideCart.classList.contains('active')) {
-            if(overlay) overlay.classList.remove('active');
-        }
-      }
-
-      function updateCharCounter() {
-        if (!messageTextarea) return; // [FIX] Check if element exists
-        const maxLength = messageTextarea.maxLength;
-        const currentLength = messageTextarea.value.length;
-        const charsRemaining = maxLength - currentLength;
-        charCounter.textContent = `${charsRemaining} characters remaining`;
-      }
-      // === END NEW CONTACT MODAL FUNCTIONS ===
-
-      // === [NEW] FOOTER AVOIDANCE FUNCTION ===
-      function handleFabPosition() {
-        if (!contactFab || !mainFooter) return; // Exit if elements don't exist
-       
-        const footerTop = mainFooter.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        const fabMargin = 30; // 30px
-       
-        const overlap = windowHeight - footerTop;
-       
-        if (overlap > 0) {
-          // Footer is in view, move button up
-          contactFab.style.bottom = (overlap + fabMargin) + 'px';
-        } else {
-          // Footer is not in view, reset button
-          contactFab.style.bottom = fabMargin + 'px';
-        }
-      }
-      // === END FOOTER AVOIDANCE FUNCTION ===
-
-
-      function loadCart() {
-        const storedCart = localStorage.getItem('skullfoodCart');
-        cart = storedCart ? JSON.parse(storedCart) : [];
-        renderCartUI();
-      }
-
-      function saveCart() {
-        localStorage.setItem('skullfoodCart', JSON.stringify(cart));
-        renderCartUI();
-      }
-     
-      function clearCart() {
-        cart = [];
-        appliedDiscount = 0.00; 
-        if (couponInput) couponInput.value = ''; 
-        if (couponMessageEl) couponMessageEl.textContent = ''; 
-        localStorage.removeItem('skullfoodCart');
-        renderCartUI();
-      }
-
-      function addToCart(event) {
-        if(event) event.preventDefault(); // [FIX] Prevent ghost clicks
-       
-        const button = event.currentTarget; // Get the button that was clicked/touched
-        const id = button.dataset.id;
-        const name = button.dataset.name;
-        const price = parseFloat(button.dataset.price);
-        const image = button.dataset.image; // [NEW] Get image URL
-
-        const existingItem = cart.find(item => item.id === id);
-        if (existingItem) {
-          existingItem.quantity++;
-        } else {
-          // [MODIFIED] Add image to the new cart item
-          cart.push({ id, name, price: price, quantity: 1, image: image });
-        }
-        saveCart();
-       
-        if (slideCart && !slideCart.classList.contains('active')) {
-          if (slideMenu && slideMenu.classList.contains('active')) {
-            toggleMenu();
-          }
-          toggleCart();
-        }
-      }
-
-      function handleCartClick(event) {
-        const removeButton = event.target.closest('.remove-item-btn');
-        if (removeButton) {
-          event.preventDefault(); // Stop click from bubbling up
-          const id = removeButton.dataset.id;
-          cart = cart.filter(item => item.id !== id);
-          saveCart();
-          applyCoupon(); // Re-check coupon after deletion
-        }
-      }
-
-      function renderCartUI() {
-        if (cartItemsContainer) {
-          cartItemsContainer.innerHTML = '';
-          if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
-          } else {
-            cart.forEach(item => {
-              const itemEl = document.createElement('div');
-              itemEl.classList.add('cart-item');
-              // [MODIFIED] Added cart item image
-              itemEl.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-                <div class="cart-item-info">
-                  <h4>${item.name}</h4>
-                  <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-                </div>
-                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove ${item.name}">&times;</button>
-              `;
-              cartItemsContainer.appendChild(itemEl);
-            });
-          }
-        }
-
-        // === [MODIFIED] SHIPPING & DISCOUNT LOGIC ===
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-        // 1. Calculate Discount
-        let discountAmount = 0.00;
-        const couponEntered = couponInput ? couponInput.value.trim().toUpperCase() : '';
-        
-        if (appliedDiscount > 0.00 || couponEntered === couponRule.code) {
-             if (subtotal >= couponRule.minimumSubtotal) {
-                 discountAmount = subtotal * couponRule.discountPercentage;
-                 discountAmount = Math.min(discountAmount, subtotal); 
-             } else {
-                 appliedDiscount = 0.00; 
-                 if (couponMessageEl && couponEntered !== '') {
-                     couponMessageEl.textContent = `Coupon requires minimum $${couponRule.minimumSubtotal.toFixed(2)} purchase.`;
-                     couponMessageEl.classList.remove('success');
-                     couponMessageEl.classList.add('error');
-                 }
-             }
-        }
-        
-        const discountedSubtotal = subtotal - discountAmount;
-        
-        // 2. Calculate Shipping (based on discounted subtotal)
-        const shippingFee = (discountedSubtotal > 0 && discountedSubtotal < 65) ? 20.00 : 0.00;
-        const grandTotal = discountedSubtotal + shippingFee;
-
-        if (cartSubtotalEl) {
-          cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-        }
-        
-        // Display Discount Row
-        if (cartDiscountRow && cartDiscountEl) {
-            if (discountAmount > 0) {
-                cartDiscountEl.textContent = `-$${discountAmount.toFixed(2)}`;
-                cartDiscountRow.style.display = 'flex';
-            } else {
-                cartDiscountRow.style.display = 'none';
-            }
-        }
-
-        if (cartShippingEl) {
-          cartShippingEl.textContent = `$${shippingFee.toFixed(2)}`;
-        }
-        if (cartTotalEl) {
-          cartTotalEl.textContent = `$${grandTotal.toFixed(2)}`;
-        }
-        // === END LOGIC ===
-
-        const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-        if (cartCounterEl) {
-          cartCounterEl.textContent = totalQuantity;
-        }
-       
-        const paypalContainer = document.getElementById('paypal-button-container');
-        if (paypalContainer) {
-          paypalContainer.style.display = subtotal > 0 ? 'block' : 'none'; // [CHANGED]
-        }
-      }
-     
-      function renderPayPalButtons() {
-          if (!window.paypal) {
-            console.error("PayPal SDK script not loaded.");
-            return;
-          }
-          
-          // Clear existing buttons to prevent duplicates on re-render
-          const container = document.getElementById('paypal-button-container');
-          if(container) container.innerHTML = '';
-
-          // === [NEW] RECALCULATE TOTAL FOR PAYPAL ===
-          const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-          
-          let discountAmount = 0.00;
-          if (appliedDiscount > 0.00 && subtotal >= couponRule.minimumSubtotal) {
-               discountAmount = subtotal * couponRule.discountPercentage;
-               discountAmount = Math.min(discountAmount, subtotal);
-          }
-          const discountedSubtotal = subtotal - discountAmount;
-
-          const shippingFee = (discountedSubtotal > 0 && discountedSubtotal < 65) ? 20.00 : 0.00;
-          const grandTotal = discountedSubtotal + shippingFee;
-          // === END PAYPAL TOTAL ===
-          
-          paypal.Buttons({
-            createOrder: function(data, actions) {
-              return actions.order.create({
-                purchase_units: [{
-                  amount: {
-                    value: grandTotal.toFixed(2), // [CHANGED]
-                    currency_code: 'USD'
-                  }
-                }]
-              });
-            },
-            onApprove: function(data, actions) {
-              return actions.order.capture().then(function(details) {
-                const payerName = details.payer.name.given_name || 'Rebel';
-                if(payerNameEl) payerNameEl.textContent = payerName;
-                if(thankYouModal) thankYouModal.classList.add('active');
-                if (slideCart.classList.contains('active')) {
-                  toggleCart();
-                }
-                clearCart();
-              });
-            },
-            onCancel: function(data) {
-              console.log('Payment cancelled:', data);
-            },
-            onError: function(err) {
-              console.error('An error occurred with the PayPal payment:', err);
-              alert('An error occurred. Please try again.');
-            }
-          }).render('#paypal-button-container');
-      }
-
-      // --- [FIX] Event Listeners for Mobile + Desktop ---
-     
-      if (menuToggle) {
-          menuToggle.addEventListener('click', toggleMenu);
-          menuToggle.addEventListener('touchstart', toggleMenu);
-      }
-
-      if (cartToggle) {
-          cartToggle.addEventListener('click', toggleCart);
-          cartToggle.addEventListener('touchstart', toggleCart);
-      }
-     
-      if (cartCloseBtn) {
-          cartCloseBtn.addEventListener('click', toggleCart);
-          cartCloseBtn.addEventListener('touchstart', toggleCart);
-      }
-     
-      function closeModals(event) {
-          if(event) event.preventDefault();
-          if (slideMenu && slideMenu.classList.contains('active')) toggleMenu();
-          if (slideCart && slideCart.classList.contains('active')) toggleCart();
-          if (waitlistModal && waitlistModal.classList.contains('active')) closeWaitlistModal();
-          if (contactModal && contactModal.classList.contains('active')) closeContactModal(); // [NEW] Close contact modal
-      }
-     
-      if (overlay) {
-          overlay.addEventListener('click', closeModals);
-          overlay.addEventListener('touchstart', closeModals);
-      }
-
-      if (cartItemsContainer) {
-        // This listener is for dynamic content, 'click' is more stable here
-        cartItemsContainer.addEventListener('click', handleCartClick);
-      }
-     
-      if (modalClose) {
-        modalClose.addEventListener('click', closeWaitlistModal);
-        modalClose.addEventListener('touchstart', closeWaitlistModal);
-      }
-     
-      function closeThankYou(event) {
-        if(event) event.preventDefault();
-        if (thankYouModal) thankYouModal.classList.remove('active');
-      }
-     
-      if (modalCloseBtn) {
-          modalCloseBtn.addEventListener('click', closeThankYou);
-          modalCloseBtn.addEventListener('touchstart', closeThankYou);
-      }
-
-      // --- [FIX] Direct Event Listeners for Buttons (Click + Touchstart) ---
-      allAddToCartButtons.forEach(button => {
-        button.addEventListener('click', addToCart);
-        button.addEventListener('touchstart', addToCart); // [FIX] Added touchstart
-      });
-
-      if (waitlistButton) {
-        waitlistButton.addEventListener('click', openWaitlistModal);
-        waitlistButton.addEventListener('touchstart', openWaitlistModal); // [FIX] Added touchstart
-      }
+      <div id="cartItems"></div>
       
-      // === [ADDED] COUPON LISTENER ===
-      if (applyCouponBtn) {
-          applyCouponBtn.addEventListener('click', applyCoupon);
-          applyCouponBtn.addEventListener('touchstart', applyCoupon);
-      }
-     
-      // === NEW CONTACT FORM LISTENERS ===
-      if (contactFab) {
-        contactFab.addEventListener('click', openContactModal);
-        contactFab.addEventListener('touchstart', openContactModal);
-      }
-      if (contactModalClose) {
-        contactModalClose.addEventListener('click', closeContactModal);
-        contactModalClose.addEventListener('touchstart', closeContactModal);
-      }
-      if (messageTextarea) {
-        messageTextarea.addEventListener('input', updateCharCounter);
-        updateCharCounter(); // Run on load
-      }
-      // === END CONTACT FORM LISTENERS ===
+      <!-- Coupon -->
+      <div style="margin-top: 2rem; border-top: 1px solid #333; padding-top: 1rem;">
+        <div style="display:flex; gap:10px;">
+          <input type="text" id="couponCode" placeholder="Enter Coupon Code" style="flex:1; padding:10px; border-radius:4px; border:none;">
+          <button id="applyCouponBtn" class="btn btn-pepper" style="width:auto;">Apply</button>
+        </div>
+        <p id="couponMessage" style="font-size:0.8rem; text-align:center; margin-top:5px;"></p>
+      </div>
 
-      // === [NEW] SCROLL LISTENER FOR FAB ===
-      window.addEventListener('scroll', handleFabPosition);
-      // === END SCROLL LISTENER ===
+      <!-- Totals -->
+      <div style="margin-top: 1rem; color:#fff; font-weight:bold;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+          <span>Subtotal:</span> <span id="cartSubtotal">$0.00</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+          <span>Shipping:</span> <span id="cartShipping">$0.00</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:1.2rem; border-top:1px solid #333; padding-top:0.5rem;">
+          <span>Total:</span> <span id="cartTotal">$0.00</span>
+        </div>
+      </div>
+      <div id="paypal-button-container" style="margin-top:1rem;"></div>
+    </div>
+  </div>
 
-      // --- Initial Load ---
-      loadCart();
-      handleFabPosition(); // [NEW] Run on load
-     
-    }); // End of DOMContentLoaded
-  </script>
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <h1 style="font-size: 2.5rem; margin-bottom: 2rem; color: #fff; text-shadow: 0 0 10px var(--neon-red);">PEPPER SPREADS</h1>
+
+    <div class="product-grid">
+      
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="product-image-container">
+          <img src="https://skullfood.github.io/skullfood-landing/tangos.jpg" alt="WILD N TANGOS Pepper Spread">
+        </div>
+        <h3>WILD N TANGOS™</h3>
+        <div class="product-desc">
+            <p style="font-style:italic; color:#fff; margin-bottom:0.5rem;">Tangy. Nutty. Mildly wild.</p>
+            <p>A daring fusion of Southern and Mexican peppers, pomegranate molasses, and rich nut butter. Heat level: 5/10.</p>
+            <p style="color:var(--neon-red); font-size:0.8rem; border-top:1px solid #333; margin-top:0.5rem; padding-top:0.5rem;">❄️ SHIPPED COLD: Must be kept refrigerated.</p>
+        </div>
+        <div class="product-price">10 Oz | $13.99</div>
+        <button class="btn btn-pepper add-to-cart-btn" 
+          data-id="p1-tangos" data-name="WILD N TANGOS" data-price="13.99" 
+          data-image="https://skullfood.github.io/skullfood-landing/tangos.jpg">
+          Add to Cart
+        </button>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-image-container">
+          <img src="https://skullfood.github.io/skullfood-landing/nytchos.jpg" alt="WILD N NYCTHOS Pepper Spread">
+        </div>
+        <h3>WILD N NYCTHOS™</h3>
+        <div class="product-desc">
+            <p style="font-style:italic; color:#fff; margin-bottom:0.5rem;">Misspelled. Tastes styled.</p>
+            <p>The signature SKULL FOOD™ cheddar blend. Tangy cheddar meets earthy mushroom. Heat Level: 5/10.</p>
+            <p style="color:var(--neon-red); font-size:0.8rem; border-top:1px solid #333; margin-top:0.5rem; padding-top:0.5rem;">❄️ SHIPPED COLD: Must be kept refrigerated.</p>
+        </div>
+        <div class="product-price">10 Oz | $13.99</div>
+        <button class="btn btn-pepper add-to-cart-btn" 
+          data-id="p2-nycthos" data-name="WILD N NYCTHOS" data-price="13.99" 
+          data-image="https://skullfood.github.io/skullfood-landing/nytchos.jpg">
+          Add to Cart
+        </button>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-image-container">
+          <img src="https://skullfood.github.io/skullfood-landing/TEJAA.jpg" alt="WILD N TEJAA Pepper Spread">
+        </div>
+        <h3>WILD N TEJAA™</h3>
+        <div class="product-desc">
+            <p style="font-style:italic; color:#fff; margin-bottom:0.5rem;">Dare the flare. Spread the dread.</p>
+            <p>Real Carolina Reaper meets serrano and habanero. Smoky, spicy, and dangerously delicious. Heat Level: 1M/10.</p>
+            <p style="color:var(--neon-red); font-size:0.8rem; border-top:1px solid #333; margin-top:0.5rem; padding-top:0.5rem;">❄️ SHIPPED COLD: Must be kept refrigerated.</p>
+        </div>
+        <div class="product-price">10 Oz | $13.99</div>
+        <button class="btn btn-pepper add-to-cart-btn" 
+          data-id="p3-tejaa" data-name="WILD N TEJAA" data-price="13.99" 
+          data-image="https://skullfood.github.io/skullfood-landing/TEJAA.jpg">
+          Add to Cart
+        </button>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="product-image-container">
+          <img src="https://skullfood.github.io/skullfood-landing/pistachio.jpg" alt="WILD N PISTACHIO Pepper Spread">
+        </div>
+        <h3>WILD N PISTACHIO™</h3>
+        <div class="product-desc">
+            <p style="font-style:italic; color:#fff; margin-bottom:0.5rem;">Hot pistachio? We made it happen.</p>
+            <p>Roasted under 500°F pressure with a mix of 10 peppers and 3 nuts. Tangy umami. Heat Level: 2/10.</p>
+            <p style="color:var(--neon-red); font-size:0.8rem; border-top:1px solid #333; margin-top:0.5rem; padding-top:0.5rem;">❄️ SHIPPED COLD: Must be kept refrigerated.</p>
+        </div>
+        <div class="product-price">10 Oz | $13.99</div>
+        <button class="btn btn-pepper add-to-cart-btn" 
+          data-id="p4-pistachio" data-name="WILD N PISTACHIO" data-price="13.99" 
+          data-image="https://skullfood.github.io/skullfood-landing/pistachio.jpg">
+          Add to Cart
+        </button>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <div class="product-image-container">
+          <img src="https://skullfood.github.io/skullfood-landing/torros.jpg" alt="WILD N TORROS Pepper Spread">
+        </div>
+        <h3>WILD N TORROS™</h3>
+        <div class="product-desc">
+            <p style="font-style:italic; color:#fff; margin-bottom:0.5rem;">Elegance disguised. Flavor untamed.</p>
+            <p>Black Truffle, Black Garlic, Black Tea. Smoky and earthy with umami depth. Heat Level: 1/10.</p>
+            <p style="color:var(--neon-cyan); font-size:0.8rem; border-top:1px solid #333; margin-top:0.5rem; padding-top:0.5rem;">✓ Shelf life 3 months. No refrigeration required.</p>
+        </div>
+        <div class="product-price">10 Oz | $13.99</div>
+        <button class="btn btn-pepper add-to-cart-btn" 
+          data-id="p5-torros" data-name="WILD N TORROS" data-price="13.99" 
+          data-image="https://skullfood.github.io/skullfood-landing/torros.jpg">
+          Add to Cart
+        </button>
+      </div>
+
+      <!-- Product 6 (Bundle) -->
+      <div class="product-card">
+        <div class="product-image-container">
+          <img src="https://skullfood.github.io/skullfood-landing/bundel%20torros.jpg" alt="WILD N TORROS BUNDLE (3-PACK)">
+        </div>
+        <h3>WILD N TORROS™ (3-PACK)</h3>
+        <div class="product-desc">
+            <p style="font-style:italic; color:#fff; margin-bottom:0.5rem;">Stock up on the darkness.</p>
+            <p>Get three 10 Oz jars of our signature WILD N TORROS™. Shelf life is 3 months and doesn't require refrigeration.</p>
+        </div>
+        <div class="product-price">
+           <span style="font-size:0.9rem; text-decoration:line-through; color:#888;">$41.97</span> 
+           <span style="color:#fff;">$30.00</span>
+        </div>
+        <button class="btn btn-pepper add-to-cart-btn" 
+          data-id="p6-torros-bundle" data-name="WILD N TORROS BUNDLE" data-price="30.00" 
+          data-image="https://skullfood.github.io/skullfood-landing/bundel%20torros.jpg">
+          Add to Cart
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div style="margin-bottom:1rem;">
+      <a href="https://www.instagram.com/skullfood.us" target="_blank" class="social-link" style="color:var(--neon-red);">Instagram: @skullfood.us</a>
+    </div>
+    <p style="color:#666;">&copy; 2025 SKULL FOOD LLC. All rights reserved.</p>
+  </footer>
+
+  <!-- Connect Logic Script -->
+  <script src="script.js"></script>
 
 </body>
 </html>
